@@ -13,11 +13,11 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:    #080808;
-      --surface:  #111111;
-      --surface2: #181818;
+      --black:    #0d0f16;
+      --surface:  #0f1119;
+      --surface2: #11141d;
       --border:   rgba(255,255,255,0.07);
-      --border2:  rgba(255,255,255,0.12);
+      --border2:  rgba(255,255,255,0.13);
       --white:    #ffffff;
       --muted:    rgba(255,255,255,0.45);
       --subtle:   rgba(255,255,255,0.22);
@@ -37,6 +37,23 @@
       overflow-x: hidden;
     }
 
+    /* Edge glow — dark navy with blue ambient light at corners */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 0%,   rgba(13,89,242,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 0%,  rgba(13,89,242,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 100%,rgba(13,89,242,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 0% 100%,  rgba(13,89,242,0.07) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* All content above the glow overlay */
+    .nav, section, footer, div { position: relative; z-index: 1; }
+
     /* ─────────────────────────────────────────
        NAV — hero bar → scroll island
     ───────────────────────────────────────── */
@@ -52,7 +69,7 @@
       align-items: center;
       justify-content: space-between;
       height: 64px;
-      padding: 0 40px;
+      padding: 0 32px;
       background: transparent;
       border: 1px solid transparent;
       border-radius: 0;
@@ -69,44 +86,21 @@
         border-radius 380ms cubic-bezier(0.4,0,0.2,1);
     }
 
-    /* Island state — triggered on scroll */
     .nav.scrolled {
       top: 14px;
       width: calc(100% - 48px);
       max-width: 1100px;
       height: 52px;
-      padding: 0 6px 0 22px;
-      background: rgba(12,12,12,0.92);
-      border-color: rgba(255,255,255,0.12);
+      padding: 0 8px 0 22px;
+      background: rgba(13,15,22,0.86);
+      border-color: rgba(255,255,255,0.10);
       border-radius: 999px;
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      text-decoration: none;
-      color: var(--white);
-    }
-
-    .nav-logo-mark {
-      width: 22px; height: 22px;
-      border: 1.5px solid rgba(255,255,255,0.6);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-
-    .nav-logo-word {
-      font-family: var(--sans);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 34px; width: auto; }
 
     .nav-links {
       display: flex;
@@ -123,9 +117,10 @@
       font-weight: 400;
       color: var(--muted);
       text-decoration: none;
-      padding: 7px 16px;
-      border-radius: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
       transition: color 200ms, background 200ms;
+      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
 
@@ -139,8 +134,21 @@
       text-decoration: none;
       transition: background 200ms;
       flex-shrink: 0;
+      white-space: nowrap;
     }
     .nav-cta:hover { background: #e0e0e0; }
+
+    /* Mobile nav */
+    .nav-mobile-cta {
+      display: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      background: var(--white);
+      border-radius: 999px;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
 
     /* ─────────────────────────────────────────
        HERO
@@ -152,12 +160,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 100px 32px 80px;
+      padding: 100px 24px 80px;
       overflow: hidden;
       text-align: center;
     }
 
-    /* Rock-like atmospheric panels — left and right */
     .hero-rock {
       position: absolute;
       top: 0; bottom: 0;
@@ -168,9 +175,8 @@
     .hero-rock--left {
       left: 0;
       background:
-        radial-gradient(ellipse at 80% 30%, rgba(45,35,22,0.95) 0%, rgba(20,15,8,0.8) 35%, transparent 65%),
-        radial-gradient(ellipse at 40% 75%, rgba(30,22,12,0.7) 0%, transparent 50%),
-        radial-gradient(ellipse at 90% 65%, rgba(55,40,25,0.5) 0%, transparent 40%);
+        radial-gradient(ellipse at 80% 30%, rgba(13,89,242,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse at 40% 75%, rgba(13,89,242,0.04) 0%, transparent 55%);
       mask-image: linear-gradient(to right, black 0%, black 40%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, black 0%, black 40%, transparent 100%);
     }
@@ -178,14 +184,12 @@
     .hero-rock--right {
       right: 0;
       background:
-        radial-gradient(ellipse at 20% 40%, rgba(45,35,22,0.95) 0%, rgba(20,15,8,0.8) 35%, transparent 65%),
-        radial-gradient(ellipse at 60% 80%, rgba(30,22,12,0.7) 0%, transparent 50%),
-        radial-gradient(ellipse at 10% 60%, rgba(55,40,25,0.5) 0%, transparent 40%);
+        radial-gradient(ellipse at 20% 40%, rgba(13,89,242,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse at 60% 80%, rgba(13,89,242,0.04) 0%, transparent 55%);
       mask-image: linear-gradient(to left, black 0%, black 40%, transparent 100%);
       -webkit-mask-image: linear-gradient(to left, black 0%, black 40%, transparent 100%);
     }
 
-    /* Grain on the rocks */
     .hero-rock::after {
       content: '';
       position: absolute;
@@ -194,27 +198,11 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* Rock edge detail lines */
-    .hero-rock--left::before {
-      content: '';
-      position: absolute;
-      right: 0; top: 10%; bottom: 10%;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 70%, transparent);
-    }
-
-    .hero-rock--right::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 10%; bottom: 10%;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 70%, transparent);
-    }
-
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      max-width: 720px;
+      width: 100%;
     }
 
     .hero-eyebrow {
@@ -222,7 +210,7 @@
       font-weight: 400;
       color: var(--muted);
       letter-spacing: 0.02em;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero-headline {
@@ -232,7 +220,7 @@
       line-height: 1.05;
       letter-spacing: -0.01em;
       color: var(--white);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .hero-sub {
@@ -240,8 +228,8 @@
       font-weight: 400;
       color: var(--muted);
       line-height: 1.65;
-      max-width: 440px;
-      margin: 0 auto 36px;
+      max-width: 420px;
+      margin: 0 auto 32px;
     }
 
     .btn-pill {
@@ -254,127 +242,90 @@
       border-radius: 999px;
       padding: 11px 26px;
       text-decoration: none;
-      transition: background 200ms, opacity 200ms;
+      transition: background 200ms;
     }
     .btn-pill:hover { background: #e8e8e8; }
 
-    /* Hero UI mockup */
+    /* Hero dashboard UI */
     .hero-ui {
       position: relative;
       z-index: 2;
-      margin-top: 64px;
+      margin-top: 56px;
       width: 100%;
       max-width: 820px;
-      background: #0e0e0e;
-      border: 1px solid var(--border2);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+    }
+
+    /* Nature photo fills the hero UI background */
+    .hero-ui .nature-bg {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      filter: grayscale(1) brightness(0.38) contrast(1.1);
+      transform: scale(1.02);
+    }
+
+    /* Glass content layer sits above the photo */
+    .hero-ui-glass {
+      position: relative;
+      z-index: 2;
+      background: rgba(13,15,22,0.52);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .hero-ui-bar {
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 12px 16px;
+      padding: 11px 16px;
       border-bottom: 1px solid var(--border);
-      background: #0d0d0d;
+      background: rgba(0,0,0,0.18);
     }
 
-    .hero-ui-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-    }
-
-    .hero-ui-title {
-      font-size: 11px;
-      color: var(--muted);
-      margin-left: 8px;
-    }
-
-    .hero-ui-date {
-      font-size: 11px;
-      color: var(--muted);
-      margin-left: auto;
-    }
+    .hero-ui-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.08); }
+    .hero-ui-title { font-size: 11px; color: var(--muted); margin-left: 8px; }
+    .hero-ui-date  { font-size: 11px; color: var(--muted); margin-left: auto; }
 
     .hero-ui-body {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      min-height: 280px;
+      grid-template-columns: 180px 1fr;
+      min-height: 260px;
     }
 
     .hero-ui-sidebar {
       border-right: 1px solid var(--border);
-      padding: 16px;
+      padding: 14px;
     }
 
     .hero-ui-nav-item {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       padding: 7px 10px;
       border-radius: 5px;
       font-size: 12px;
       color: var(--muted);
       margin-bottom: 2px;
     }
-    .hero-ui-nav-item.active {
-      background: rgba(255,255,255,0.06);
-      color: var(--white);
-    }
-    .hero-ui-nav-icon {
-      width: 14px; height: 14px;
-      border-radius: 3px;
-      background: rgba(255,255,255,0.1);
-    }
+    .hero-ui-nav-item.active { background: rgba(255,255,255,0.06); color: var(--white); }
+    .hero-ui-nav-icon { width: 14px; height: 14px; border-radius: 3px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
 
-    .hero-ui-main {
-      padding: 20px 24px;
-    }
+    .hero-ui-main { padding: 18px 22px; }
+    .hero-ui-greeting { font-size: 14px; font-weight: 600; margin-bottom: 16px; }
 
-    .hero-ui-greeting {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 18px;
-    }
+    .hero-ui-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hero-ui-col-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
 
-    .hero-ui-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .hero-ui-col-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .hero-ui-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 7px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 12px;
-    }
-
-    .hero-ui-row-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .hero-ui-row-dot.orange { background: #fb923c; }
-    .hero-ui-row-dot.muted  { background: rgba(255,255,255,0.2); }
-
-    .hero-ui-row-text { color: rgba(255,255,255,0.7); line-height: 1.4; }
+    .hero-ui-row { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .hero-ui-row-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+    .hero-ui-row-dot.g { background: var(--green); }
+    .hero-ui-row-dot.o { background: #fb923c; }
+    .hero-ui-row-dot.m { background: rgba(255,255,255,0.2); }
+    .hero-ui-row-text { color: rgba(255,255,255,0.65); line-height: 1.4; }
     .hero-ui-row-time { margin-left: auto; color: var(--muted); font-size: 10px; flex-shrink: 0; }
 
     /* ─────────────────────────────────────────
@@ -383,786 +334,303 @@
     .cred-strip {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 28px 32px;
+      padding: 24px 32px;
       text-align: center;
     }
-
-    .cred-strip-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    .cred-items {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-
-    .cred-item {
-      font-size: 14px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
+    .cred-strip-label { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+    .cred-items { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .cred-item { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; text-transform: uppercase; }
 
     /* ─────────────────────────────────────────
-       SECTION TYPOGRAPHY
+       SECTION SCAFFOLDING
     ───────────────────────────────────────── */
-    .section-tag {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
-
-    .section-heading {
-      font-family: var(--serif);
-      font-size: clamp(36px, 4vw, 56px);
-      font-weight: 500;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--white);
-    }
+    .section { padding: 80px 32px; max-width: 1200px; margin: 0 auto; }
+    .section-divider { border: none; border-top: 1px solid var(--border); }
+    .section-tag { font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 4px; }
 
     /* ─────────────────────────────────────────
-       WHAT WE OFFER — 2 CARDS
+       OFFER CARDS — 2-component images
     ───────────────────────────────────────── */
-    .offer-section {
-      padding: 100px 32px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
     .offer-heading {
       font-family: var(--serif);
-      font-size: clamp(36px, 4vw, 52px);
+      font-size: clamp(32px, 3.8vw, 50px);
       font-weight: 500;
       line-height: 1.08;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
-    .offer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     .offer-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
     }
 
-    /* Card image area — atmospheric CSS */
+    /* ── 2-component card image ── */
     .offer-card-img {
       height: 300px;
       position: relative;
       overflow: hidden;
     }
 
-    /* Card 1: property interior / warm */
-    .offer-card-img--os {
-      background:
-        radial-gradient(ellipse at 50% 120%, rgba(74,222,128,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(40,60,40,0.6) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 60%, rgba(20,35,20,0.8) 0%, transparent 55%),
-        #0a0f0a;
+    /* B&W nature photo base */
+    .nature-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(1) brightness(0.45) contrast(1.1);
+      transform: scale(1.02);
+      transition: transform 6s ease;
+    }
+    .offer-card:hover .nature-bg { transform: scale(1.06); }
+
+    /* Dark fade at bottom so glassmorphic card reads cleanly */
+    .nature-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,15,22,0.05) 0%, rgba(13,15,22,0.55) 70%, rgba(13,15,22,0.92) 100%);
     }
 
-    /* Card 2: property market / cool */
-    .offer-card-img--deals {
-      background:
-        radial-gradient(ellipse at 50% 110%, rgba(99,102,241,0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 20% 30%, rgba(30,35,60,0.7) 0%, transparent 50%),
-        radial-gradient(ellipse at 75% 70%, rgba(15,20,40,0.8) 0%, transparent 55%),
-        #090a10;
-    }
-
-    /* Floating UI card on image */
-    .offer-card-ui {
+    /* Glassmorphic browser window */
+    .glass-browser {
       position: absolute;
       bottom: 20px;
       left: 20px;
       right: 20px;
-      background: rgba(10,10,10,0.88);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 16px 18px;
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+      overflow: hidden;
     }
 
-    .offer-card-ui-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 10px;
+    .glass-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
     }
 
-    .offer-card-ui-row {
+    .glass-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .glass-dot-r { background: rgba(255,95,87,0.75); }
+    .glass-dot-y { background: rgba(255,189,68,0.75); }
+    .glass-dot-g { background: rgba(40,200,64,0.75); }
+
+    .glass-urlbar {
+      flex: 1;
+      max-width: 180px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    .glass-body { padding: 12px 14px; }
+
+    .glass-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 5px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 11px;
     }
-    .offer-card-ui-row:first-of-type { border-top: none; }
-    .offer-card-ui-key { color: var(--muted); }
-    .offer-card-ui-val { font-size: 12px; color: var(--white); font-weight: 500; }
-    .offer-card-ui-val.green { color: var(--green); }
+    .glass-row:last-child { border-bottom: none; }
+    .glass-key { color: rgba(255,255,255,0.45); }
+    .glass-val { color: rgba(255,255,255,0.9); font-weight: 500; }
+    .glass-val.green { color: var(--green); }
 
-    .offer-card-body {
-      padding: 24px 28px 28px;
-    }
-
-    .offer-card-tag {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
-
-    .offer-card-title {
-      font-family: var(--serif);
-      font-size: 28px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-
-    .offer-card-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
+    .offer-card-body { padding: 22px 26px 26px; }
+    .offer-card-tag { font-size: 11px; font-weight: 500; color: var(--green); margin-bottom: 8px; }
+    .offer-card-title { font-family: var(--serif); font-size: 26px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 10px; }
+    .offer-card-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
 
     .btn-text {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--white);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      border: 1px solid var(--border2);
-      border-radius: 6px;
-      padding: 8px 16px;
+      font-size: 13px; font-weight: 500; color: var(--white); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
+      border: 1px solid var(--border2); border-radius: 999px; padding: 7px 16px;
       transition: background 200ms, border-color 200ms;
     }
-    .btn-text:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+    .btn-text:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.22); }
 
     /* ─────────────────────────────────────────
-       THE SYSTEM — FEATURE LIST + SCREENSHOT
+       SYSTEM — feature list + screenshot
     ───────────────────────────────────────── */
-    .system-section {
-      padding: 0 32px 100px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .system-section { padding: 0 32px 80px; max-width: 1200px; margin: 0 auto; }
 
     .system-heading {
       font-family: var(--serif);
-      font-size: clamp(36px, 4vw, 56px);
+      font-size: clamp(32px, 3.8vw, 52px);
       font-weight: 500;
       line-height: 1.08;
-      margin-bottom: 64px;
+      margin-bottom: 56px;
     }
 
-    /* Each row: text + screenshot */
     .system-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       align-items: start;
-      padding-bottom: 64px;
+      padding-bottom: 56px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 64px;
+      margin-bottom: 56px;
     }
     .system-row:last-child { border-bottom: none; margin-bottom: 0; }
-
-    /* Flip layout for second row */
     .system-row--flip { direction: rtl; }
     .system-row--flip > * { direction: ltr; }
 
-    .system-copy-label {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
+    .system-copy-label { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+    .system-copy-sub { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
 
-    .system-copy-sub {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-
-    /* Feature list — exact Obsidianos pattern */
     .feat-list { list-style: none; }
-
-    .feat-item {
-      border-top: 1px solid var(--border);
-      padding: 14px 0;
-      cursor: pointer;
-    }
+    .feat-item { border-top: 1px solid var(--border); padding: 13px 0; cursor: pointer; }
     .feat-item:last-child { border-bottom: 1px solid var(--border); }
-
-    .feat-item-title {
-      font-size: 14px;
-      color: var(--muted);
-      transition: color 150ms;
-      user-select: none;
-    }
-
-    .feat-item.active .feat-item-title {
-      color: var(--white);
-      font-weight: 600;
-    }
-
-    .feat-item-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 300ms ease, margin-top 200ms ease;
-    }
-    .feat-item.active .feat-item-body {
-      max-height: 100px;
-      margin-top: 8px;
-    }
-
-    .feat-item-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 10px;
-    }
-
-    /* Active item underline bar — like Obsidianos */
-    .feat-item-bar {
-      height: 1px;
-      background: rgba(255,255,255,0.3);
-      width: 0;
-      transition: width 300ms ease;
-    }
+    .feat-item-title { font-size: 14px; color: var(--muted); transition: color 150ms; user-select: none; }
+    .feat-item.active .feat-item-title { color: var(--white); font-weight: 600; }
+    .feat-item-body { max-height: 0; overflow: hidden; transition: max-height 300ms ease, margin-top 200ms ease; }
+    .feat-item.active .feat-item-body { max-height: 100px; margin-top: 8px; }
+    .feat-item-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+    .feat-item-bar { height: 1px; background: rgba(255,255,255,0.3); width: 0; transition: width 300ms ease; }
     .feat-item.active .feat-item-bar { width: 48px; }
 
-    /* Screenshot visual */
+    /* System visual — also 2-component */
     .system-visual {
-      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       height: 460px;
       position: relative;
     }
 
-    .system-visual--1 {
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(74,222,128,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(30,50,30,0.5) 0%, transparent 55%),
-        #0d120d;
-    }
+    .system-visual .nature-bg { height: 100%; }
 
-    .system-visual--2 {
-      background:
-        radial-gradient(ellipse at 20% 100%, rgba(99,102,241,0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 60% 20%, rgba(20,25,50,0.6) 0%, transparent 55%),
-        #0a0b12;
-    }
-
-    .system-visual-overlay {
+    .system-visual-inner {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(8,8,8,0.7) 100%);
-    }
-
-    /* Inner UI card on screenshot */
-    .system-visual-card {
-      position: absolute;
-      bottom: 28px;
-      left: 24px;
-      right: 24px;
-      background: rgba(12,12,12,0.92);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 18px 20px;
-      backdrop-filter: blur(10px);
-    }
-
-    .system-visual-card-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .system-visual-card-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 12px;
-    }
-    .system-visual-card-row:first-of-type { border-top: none; }
-    .system-visual-card-key { color: var(--muted); }
-    .system-visual-card-val { color: var(--white); font-weight: 500; }
-    .system-visual-card-val.green { color: var(--green); }
-    .system-visual-card-val.tag {
-      font-size: 10px;
-      background: rgba(74,222,128,0.12);
-      color: var(--green);
-      border-radius: 999px;
-      padding: 2px 9px;
-    }
-
-    /* Top of visual — progress bars or charts */
-    .system-visual-top {
-      padding: 24px;
-    }
-
-    .system-visual-chart-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .system-visual-bars {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-    }
-
-    .system-visual-bar-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .system-visual-bar-label { width: 120px; flex-shrink: 0; }
-
-    .system-visual-bar-track {
-      flex: 1;
-      height: 3px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .system-visual-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: var(--green);
-      opacity: 0.7;
-    }
-
-    .system-visual-bar-val { width: 32px; text-align: right; }
-
-    /* ─────────────────────────────────────────
-       TRUST PILLARS — "Built for regulated"
-    ───────────────────────────────────────── */
-    .pillars-wrap {
-      border-top: 1px solid var(--border);
-    }
-
-    .pillars-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 32px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .pillars-heading {
-      font-family: var(--serif);
-      font-size: clamp(32px, 3.5vw, 52px);
-      font-weight: 500;
-      line-height: 1.1;
-    }
-
-    .pillars-cols {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    .pillar-icon {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: rgba(74,222,128,0.1);
-      display: flex;
-      align-items: center;
       justify-content: center;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(13,15,22,0.10) 0%, rgba(13,15,22,0.68) 55%, rgba(13,15,22,0.95) 100%);
+    }
+
+    .system-visual-chart {
+      padding: 16px;
       margin-bottom: 16px;
-      color: var(--green);
     }
+    .system-visual-chart-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 12px; }
 
-    .pillar-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .pillar-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    .system-visual-bars { display: flex; flex-direction: column; gap: 9px; }
+    .system-visual-bar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+    .system-visual-bar-label { width: 110px; flex-shrink: 0; }
+    .system-visual-bar-track { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+    .system-visual-bar-fill { height: 100%; border-radius: 2px; background: var(--green); opacity: 0.7; }
+    .system-visual-bar-val { width: 28px; text-align: right; }
 
     /* ─────────────────────────────────────────
-       DEAL FLOW SECTION (extra)
+       TRUST PILLARS
     ───────────────────────────────────────── */
-    .dealflow-wrap {
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-    }
+    .pillars-wrap { border-top: 1px solid var(--border); }
+    .pillars-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start; }
 
-    .dealflow-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 32px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
+    .pillars-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; }
+    .pillars-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .pillar-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(74,222,128,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: var(--green); }
+    .pillar-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .pillar-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
 
-    .dealflow-heading {
-      font-family: var(--serif);
-      font-size: clamp(32px, 3.5vw, 52px);
-      font-weight: 500;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
+    /* ─────────────────────────────────────────
+       DEAL FLOW
+    ───────────────────────────────────────── */
+    .dealflow-wrap { border-top: 1px solid var(--border); background: var(--surface); }
+    .dealflow-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 
-    .dealflow-desc {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-
-    .dealflow-table {
-      margin-top: 36px;
-      border-top: 1px solid var(--border);
-    }
-
-    .dealflow-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-    }
-
+    .dealflow-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; margin-bottom: 18px; }
+    .dealflow-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+    .dealflow-table { margin-top: 32px; border-top: 1px solid var(--border); }
+    .dealflow-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
     .dealflow-key { color: var(--muted); }
     .dealflow-val { color: var(--white); font-weight: 500; }
 
-    .dealflow-card {
-      background: var(--black);
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-      overflow: hidden;
-    }
+    /* Deal flow property card — also 2-component */
+    .dealflow-card { background: var(--black); border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; }
+    .dealflow-card-img { height: 200px; position: relative; overflow: hidden; }
+    .dealflow-card-img .nature-bg { height: 100%; }
+    .dealflow-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 20%, rgba(13,15,22,0.90) 100%); }
 
-    .dealflow-card-img {
-      height: 220px;
-      background:
-        radial-gradient(ellipse at 50% 100%, rgba(74,222,128,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 30% 30%, rgba(20,40,20,0.6) 0%, transparent 55%),
-        #090e09;
-      position: relative;
-    }
-
-    .dealflow-card-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 30%, var(--black) 100%);
-    }
-
-    .dealflow-card-body {
-      padding: 20px 24px 24px;
-    }
-
-    .dealflow-card-tag {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--green);
-      margin-bottom: 10px;
-    }
-
-    .dealflow-card-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 3px rgba(74,222,128,0.15);
-      animation: gpulse 1.8s ease-in-out infinite;
-    }
-
-    @keyframes gpulse {
-      0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.15); }
-      50%      { box-shadow: 0 0 0 7px rgba(74,222,128,0.04); }
-    }
-
-    .dealflow-card-address {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1.3;
-      margin-bottom: 18px;
-    }
-
-    .dealflow-card-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .dc-stat-label {
-      font-size: 10px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .dc-stat-val {
-      font-size: 16px;
-      font-weight: 600;
-    }
+    .dealflow-card-body { padding: 18px 22px 22px; }
+    .dealflow-card-tag { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 500; color: var(--green); margin-bottom: 10px; }
+    .dealflow-card-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(74,222,128,0.15); animation: gpulse 1.8s ease-in-out infinite; }
+    @keyframes gpulse { 0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 7px rgba(74,222,128,0.04); } }
+    .dealflow-card-address { font-family: var(--serif); font-size: 19px; font-weight: 500; line-height: 1.3; margin-bottom: 16px; }
+    .dealflow-card-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .dc-stat-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
+    .dc-stat-val { font-size: 16px; font-weight: 600; }
     .dc-stat-val.green { color: var(--green); }
 
     /* ─────────────────────────────────────────
        INVESTMENT
     ───────────────────────────────────────── */
-    .invest-wrap {
-      border-top: 1px solid var(--border);
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 32px;
-    }
+    .invest-wrap { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .invest-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; margin-bottom: 48px; }
 
-    .invest-heading {
-      font-family: var(--serif);
-      font-size: clamp(32px, 3.5vw, 52px);
-      font-weight: 500;
-      line-height: 1.1;
-      margin-bottom: 56px;
-    }
-
-    .invest-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .invest-card {
-      padding: 36px 32px;
-      border-right: 1px solid var(--border);
-    }
+    .invest-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .invest-card { padding: 32px 28px; border-right: 1px solid var(--border); }
     .invest-card:last-child { border-right: none; }
-
-    .invest-card-icon {
-      margin-bottom: 20px;
-      color: var(--green);
-    }
-
-    .invest-price {
-      font-family: var(--serif);
-      font-size: 36px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
+    .invest-card-icon { margin-bottom: 18px; color: var(--green); }
+    .invest-price { font-family: var(--serif); font-size: 34px; font-weight: 500; letter-spacing: -0.01em; line-height: 1; margin-bottom: 6px; }
     .invest-price small { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--muted); }
-
-    .invest-name {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--green);
-      margin-bottom: 14px;
-    }
-
-    .invest-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .invest-note {
-      font-size: 12px;
-      color: var(--subtle);
-      margin-top: 28px;
-      font-style: italic;
-    }
+    .invest-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); margin-bottom: 12px; }
+    .invest-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .invest-note { font-size: 12px; color: var(--subtle); margin-top: 24px; font-style: italic; }
 
     /* ─────────────────────────────────────────
        APPLY
     ───────────────────────────────────────── */
-    .apply-wrap {
-      border-top: 1px solid var(--border);
-      padding: 120px 32px;
-      text-align: center;
-    }
-
-    .apply-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    .apply-heading {
-      font-family: var(--serif);
-      font-size: clamp(40px, 5vw, 68px);
-      font-weight: 500;
-      line-height: 1.06;
-      margin-bottom: 20px;
-    }
-
-    .apply-body {
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-
-    .apply-note {
-      font-size: 12px;
-      color: var(--subtle);
-      margin-top: 16px;
-    }
+    .apply-wrap { border-top: 1px solid var(--border); padding: 100px 32px; text-align: center; }
+    .apply-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 22px; }
+    .apply-heading { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 500; line-height: 1.06; margin-bottom: 18px; }
+    .apply-body { font-size: 15px; color: var(--muted); max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
+    .apply-note { font-size: 12px; color: var(--subtle); margin-top: 14px; }
 
     /* ─────────────────────────────────────────
        FOOTER
     ───────────────────────────────────────── */
-    .footer-disclaimer {
-      border-top: 1px solid var(--border);
-      padding: 20px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .footer-disclaimer { border-top: 1px solid var(--border); padding: 18px 32px; }
+    .footer-disclaimer-text { font-size: 11px; color: var(--subtle); line-height: 1.5; }
 
-    .footer-disclaimer-text {
-      font-size: 11px;
-      color: var(--subtle);
-      max-width: 600px;
-      line-height: 1.5;
-    }
+    .footer-main { border-top: 1px solid var(--border); padding: 48px 32px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
 
-    .footer-main {
-      border-top: 1px solid var(--border);
-      padding: 48px 32px 32px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 12px;
-      text-decoration: none;
-      color: var(--white);
-    }
-
-    .footer-brand-mark {
-      width: 22px; height: 22px;
-      border: 1.5px solid rgba(255,255,255,0.4);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700;
-    }
-
-    .footer-brand-word {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .footer-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 240px;
-      margin-bottom: 20px;
-    }
-
-    .footer-col-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .footer-col-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-col-links a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 200ms;
-    }
+    .footer-brand { display: block; margin-bottom: 12px; text-decoration: none; }
+    .footer-brand img { height: 29px; width: auto; opacity: 0.6; }
+    .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 220px; }
+    .footer-col-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 200ms; }
     .footer-col-links a:hover { color: var(--white); }
 
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding: 16px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      color: var(--subtle);
-    }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 12px; color: var(--subtle); }
 
     .footer-watermark {
       font-family: var(--serif);
-      font-size: clamp(80px, 16vw, 200px);
-      font-weight: 600;
+      font-size: clamp(72px, 14vw, 180px);
+      font-weight: 700;
       color: rgba(255,255,255,0.025);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       line-height: 1;
-      padding: 0 28px 0;
+      padding: 0 28px;
       user-select: none;
       overflow: hidden;
       white-space: nowrap;
@@ -1171,36 +639,108 @@
     /* ─────────────────────────────────────────
        SCROLL REVEAL
     ───────────────────────────────────────── */
-    .r {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 500ms ease, transform 500ms ease;
-    }
+    .r { opacity: 0; transform: translateY(20px); transition: opacity 500ms ease, transform 500ms ease; }
     .r.on { opacity: 1; transform: none; }
     .r1 { transition-delay: 80ms; }
     .r2 { transition-delay: 160ms; }
     .r3 { transition-delay: 240ms; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .pillars-inner { grid-template-columns: 1fr; gap: 40px; }
+      .pillars-cols { grid-template-columns: repeat(3, 1fr); }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav { padding: 0 20px; height: 56px; }
+      .nav.scrolled { width: calc(100% - 32px); padding: 0 6px 0 18px; height: 48px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-cta { display: block; }
+
+      /* Hero */
+      .hero { padding: 80px 20px 60px; }
+      .hero-rock { display: none; }
+      .hero-ui-body { grid-template-columns: 1fr; }
+      .hero-ui-sidebar { display: none; }
+      .hero-ui-cols { grid-template-columns: 1fr; }
+      .hero-ui-cols > div:last-child { display: none; }
+
+      /* Sections */
+      .section { padding: 60px 20px; }
+      .system-section { padding: 0 20px 60px; }
+      .cred-strip { padding: 20px; }
+      .cred-items { gap: 20px; }
+
+      /* Cards */
+      .offer-grid { grid-template-columns: 1fr; }
+      .offer-card-img { height: 260px; }
+
+      /* System rows */
+      .system-row { grid-template-columns: 1fr; gap: 32px; }
+      .system-row--flip { direction: ltr; }
+      .system-visual { height: 320px; }
+
+      /* Pillars */
+      .pillars-inner { padding: 60px 20px; }
+      .pillars-cols { grid-template-columns: 1fr; gap: 24px; }
+
+      /* Deal flow */
+      .dealflow-inner { grid-template-columns: 1fr; padding: 60px 20px; gap: 40px; }
+
+      /* Investment */
+      .invest-wrap { padding: 60px 20px; }
+      .invest-grid { grid-template-columns: 1fr; border-radius: 10px; }
+      .invest-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .invest-card:last-child { border-bottom: none; }
+
+      /* Apply */
+      .apply-wrap { padding: 70px 20px; }
+
+      /* Footer */
+      .footer-main { grid-template-columns: 1fr; padding: 40px 20px 24px; }
+      .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
+      .footer-disclaimer { padding: 16px 20px; }
+      .footer-watermark { padding: 0 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 32px; }
+      .offer-heading { font-size: 28px; }
+      .system-heading { font-size: 28px; }
+      .dealflow-heading { font-size: 28px; }
+      .apply-heading { font-size: 32px; }
+      .pillars-heading { font-size: 26px; }
+      .invest-heading { font-size: 26px; }
+      .hero-ui { margin-top: 40px; }
+      .cred-item { font-size: 11px; }
+      .glass-browser { left: 12px; right: 12px; bottom: 12px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <!-- ═══ NAV ═══ -->
   <nav class="nav">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">PL</div>
-      <span class="nav-logo-word">proplaunch</span>
+      <img src="logo.svg" alt="PropLaunch">
     </a>
     <ul class="nav-links">
-      <li><a href="#system">The System ↓</a></li>
+      <li><a href="#system">The System</a></li>
       <li><a href="#built">What Gets Built</a></li>
       <li><a href="#dealflow">Deal Flow</a></li>
       <li><a href="#apply">Apply</a></li>
     </ul>
     <a href="#apply" class="nav-cta">Apply for access</a>
+    <a href="#apply" class="nav-mobile-cta">Apply</a>
   </nav>
 
 
-  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+  <!-- ═══ HERO ═══ -->
   <section class="hero">
     <div class="hero-rock hero-rock--left"></div>
     <div class="hero-rock hero-rock--right"></div>
@@ -1216,80 +756,40 @@
       <a href="#apply" class="btn-pill r r3">Apply for access →</a>
     </div>
 
-    <!-- Product UI mockup — like Obsidianos dashboard -->
     <div class="hero-ui r r3">
-      <div class="hero-ui-bar">
-        <div class="hero-ui-dot"></div>
-        <div class="hero-ui-dot"></div>
-        <div class="hero-ui-dot"></div>
-        <span class="hero-ui-title">PropLaunch OS</span>
-        <span class="hero-ui-date">Mon, 13 May 2026</span>
-      </div>
-      <div class="hero-ui-body">
-        <div class="hero-ui-sidebar">
-          <div class="hero-ui-nav-item active">
-            <div class="hero-ui-nav-icon"></div> Dashboard
-          </div>
-          <div class="hero-ui-nav-item">
-            <div class="hero-ui-nav-icon"></div> Leads
-          </div>
-          <div class="hero-ui-nav-item">
-            <div class="hero-ui-nav-icon"></div> Deal Flow
-          </div>
-          <div class="hero-ui-nav-item">
-            <div class="hero-ui-nav-icon"></div> Campaigns
-          </div>
-          <div class="hero-ui-nav-item">
-            <div class="hero-ui-nav-icon"></div> Reports
-          </div>
+      <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=70')"></div>
+      <div class="hero-ui-glass">
+        <div class="hero-ui-bar">
+          <div class="hero-ui-dot"></div>
+          <div class="hero-ui-dot"></div>
+          <div class="hero-ui-dot"></div>
+          <span class="hero-ui-title">PropLaunch OS</span>
+          <span class="hero-ui-date">Mon, 13 May 2026</span>
         </div>
-        <div class="hero-ui-main">
-          <div class="hero-ui-greeting">Welcome back, Kesh →</div>
-          <div class="hero-ui-cols">
-            <div>
-              <div class="hero-ui-col-label">Active leads</div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot"></div>
-                <div class="hero-ui-row-text">Sarah Mitchell — follow-up sent</div>
-                <div class="hero-ui-row-time">auto</div>
+        <div class="hero-ui-body">
+          <div class="hero-ui-sidebar">
+            <div class="hero-ui-nav-item active"><div class="hero-ui-nav-icon"></div> Dashboard</div>
+            <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Leads</div>
+            <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Deal Flow</div>
+            <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Campaigns</div>
+            <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Reports</div>
+          </div>
+          <div class="hero-ui-main">
+            <div class="hero-ui-greeting">Welcome back, Kesh →</div>
+            <div class="hero-ui-cols">
+              <div>
+                <div class="hero-ui-col-label">Active leads</div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Sarah Mitchell — follow-up sent</div><div class="hero-ui-row-time">auto</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">James Cooper — review</div><div class="hero-ui-row-time">10:30</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Priya Nair — qualified</div><div class="hero-ui-row-time">auto</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Tom Reeves — new inquiry</div><div class="hero-ui-row-time">9:14</div></div>
               </div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot orange"></div>
-                <div class="hero-ui-row-text">James Cooper — review</div>
-                <div class="hero-ui-row-time">10:30</div>
-              </div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot"></div>
-                <div class="hero-ui-row-text">Priya Nair — qualified</div>
-                <div class="hero-ui-row-time">auto</div>
-              </div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot muted"></div>
-                <div class="hero-ui-row-text">Tom Reeves — new inquiry</div>
-                <div class="hero-ui-row-time">9:14</div>
-              </div>
-            </div>
-            <div>
-              <div class="hero-ui-col-label">Current allocation</div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot"></div>
-                <div class="hero-ui-row-text">Tarneit VIC — off-market</div>
-                <div class="hero-ui-row-time">A–</div>
-              </div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot muted"></div>
-                <div class="hero-ui-row-text">Werribee VIC — under analysis</div>
-                <div class="hero-ui-row-time">—</div>
-              </div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot muted"></div>
-                <div class="hero-ui-row-text">Kalkallo VIC — coming</div>
-                <div class="hero-ui-row-time">—</div>
-              </div>
-              <div class="hero-ui-row">
-                <div class="hero-ui-row-dot orange"></div>
-                <div class="hero-ui-row-text">Meta campaign — live</div>
-                <div class="hero-ui-row-time">$6K</div>
+              <div>
+                <div class="hero-ui-col-label">Current allocation</div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Tarneit VIC — off-market</div><div class="hero-ui-row-time">A–</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Werribee VIC — under analysis</div><div class="hero-ui-row-time">—</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Kalkallo VIC — coming</div><div class="hero-ui-row-time">—</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">Meta campaign — live</div><div class="hero-ui-row-time">$6K</div></div>
               </div>
             </div>
           </div>
@@ -1299,7 +799,7 @@
   </section>
 
 
-  <!-- ═══════════════════════════════ CREDENTIAL STRIP ═══════════════════════════════ -->
+  <!-- ═══ CREDENTIAL STRIP ═══ -->
   <div class="cred-strip">
     <p class="cred-strip-label">Built by operators who've run</p>
     <div class="cred-items">
@@ -1312,30 +812,28 @@
   </div>
 
 
-  <!-- ═══════════════════════════════ WHAT WE OFFER ═══════════════════════════════ -->
-  <section class="offer-section r" id="system">
+  <!-- ═══ WHAT WE OFFER ═══ -->
+  <section class="section" id="system">
     <h2 class="offer-heading r">Not a program. Not an agency.<br>An operating system.</h2>
     <div class="offer-grid">
 
+      <!-- Card 1: Business OS -->
       <div class="offer-card r">
-        <div class="offer-card-img offer-card-img--os">
-          <div class="offer-card-ui">
-            <div class="offer-card-ui-title">Business OS · Live</div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">CRM</span>
-              <span class="offer-card-ui-val green">Active</span>
+        <div class="offer-card-img">
+          <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=70')"></div>
+          <div class="nature-fade"></div>
+          <div class="glass-browser">
+            <div class="glass-titlebar">
+              <div class="glass-dot glass-dot-r"></div>
+              <div class="glass-dot glass-dot-y"></div>
+              <div class="glass-dot glass-dot-g"></div>
+              <div class="glass-urlbar">proplaunch.com/dashboard</div>
             </div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Leads in pipeline</span>
-              <span class="offer-card-ui-val">24</span>
-            </div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Auto follow-ups today</span>
-              <span class="offer-card-ui-val green">8 sent</span>
-            </div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Brand assets</span>
-              <span class="offer-card-ui-val">Ready</span>
+            <div class="glass-body">
+              <div class="glass-row"><span class="glass-key">CRM status</span><span class="glass-val green">Active</span></div>
+              <div class="glass-row"><span class="glass-key">Leads in pipeline</span><span class="glass-val">24</span></div>
+              <div class="glass-row"><span class="glass-key">Auto follow-ups today</span><span class="glass-val green">8 sent</span></div>
+              <div class="glass-row"><span class="glass-key">Brand assets</span><span class="glass-val">Ready</span></div>
             </div>
           </div>
         </div>
@@ -1347,25 +845,23 @@
         </div>
       </div>
 
+      <!-- Card 2: Deal Flow -->
       <div class="offer-card r r1">
-        <div class="offer-card-img offer-card-img--deals">
-          <div class="offer-card-ui">
-            <div class="offer-card-ui-title">Active allocation · Cohort 026</div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Location</span>
-              <span class="offer-card-ui-val">Tarneit VIC</span>
+        <div class="offer-card-img">
+          <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=900&q=70')"></div>
+          <div class="nature-fade"></div>
+          <div class="glass-browser">
+            <div class="glass-titlebar">
+              <div class="glass-dot glass-dot-r"></div>
+              <div class="glass-dot glass-dot-y"></div>
+              <div class="glass-dot glass-dot-g"></div>
+              <div class="glass-urlbar">proplaunch.com/deals</div>
             </div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Entry</span>
-              <span class="offer-card-ui-val">$685,000</span>
-            </div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Gross yield</span>
-              <span class="offer-card-ui-val green">4.70%</span>
-            </div>
-            <div class="offer-card-ui-row">
-              <span class="offer-card-ui-key">Access</span>
-              <span class="offer-card-ui-val">Off-market</span>
+            <div class="glass-body">
+              <div class="glass-row"><span class="glass-key">Location</span><span class="glass-val">Tarneit VIC</span></div>
+              <div class="glass-row"><span class="glass-key">Entry</span><span class="glass-val">$685,000</span></div>
+              <div class="glass-row"><span class="glass-key">Gross yield</span><span class="glass-val green">4.70%</span></div>
+              <div class="glass-row"><span class="glass-key">Access</span><span class="glass-val">Off-market</span></div>
             </div>
           </div>
         </div>
@@ -1381,218 +877,120 @@
   </section>
 
 
-  <!-- ═══════════════════════════════ THE SYSTEM ═══════════════════════════════ -->
+  <!-- ═══ THE SYSTEM ═══ -->
   <section class="system-section" id="built">
     <h2 class="system-heading r">The system that runs your firm</h2>
 
-    <!-- Row 1: text left, visual right -->
+    <!-- Row 1 -->
     <div class="system-row r">
       <div>
         <p class="system-copy-label">Starting out</p>
-        <p class="system-copy-sub">You have the drive, the licence, and the conviction. What you don't have is the infrastructure. PropLaunch gives you what took others a decade to figure out — on day one.</p>
+        <p class="system-copy-sub">You have the drive, the licence, and the conviction. PropLaunch gives you what took others a decade to figure out — on day one.</p>
         <ul class="feat-list" id="featList1">
-          <li class="feat-item active" data-i="0" data-list="1">
-            <div class="feat-item-title">Brand Identity</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Logo, style guide, templates, and a complete asset library — built to last.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
-          <li class="feat-item" data-i="1" data-list="1">
-            <div class="feat-item-title">Business Operating System</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">CRM, pipelines, and automations configured to your business from day one.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
-          <li class="feat-item" data-i="2" data-list="1">
-            <div class="feat-item-title">AI-Powered Workflows</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Every lead engaged, qualified, and summarised. Every follow-up sent automatically.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
-          <li class="feat-item" data-i="3" data-list="1">
-            <div class="feat-item-title">Content System</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Social templates, email frameworks, and a content library ready to publish.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
+          <li class="feat-item active" data-i="0" data-list="1"><div class="feat-item-title">Brand Identity</div><div class="feat-item-body"><p class="feat-item-desc">Logo, style guide, templates, and a complete asset library — built to last.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item" data-i="1" data-list="1"><div class="feat-item-title">Business Operating System</div><div class="feat-item-body"><p class="feat-item-desc">CRM, pipelines, and automations configured to your business from day one.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item" data-i="2" data-list="1"><div class="feat-item-title">AI-Powered Workflows</div><div class="feat-item-body"><p class="feat-item-desc">Every lead engaged, qualified, and summarised. Every follow-up sent automatically.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item" data-i="3" data-list="1"><div class="feat-item-title">Content System</div><div class="feat-item-body"><p class="feat-item-desc">Social templates, email frameworks, and a content library ready to publish.</p><div class="feat-item-bar"></div></div></li>
         </ul>
       </div>
-      <div class="system-visual system-visual--1">
-        <div class="system-visual-overlay"></div>
-        <div class="system-visual-top">
-          <div class="system-visual-chart-label">Build progress · Day 47 of 90</div>
-          <div class="system-visual-bars">
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">Brand Identity</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div>
-              <span class="system-visual-bar-val green" style="color:var(--green)">✓</span>
+      <div class="system-visual r r1">
+        <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=70')"></div>
+        <div class="system-visual-inner">
+          <div class="glass-browser" style="position:relative;bottom:auto;left:auto;right:auto;margin:16px 16px 16px;">
+            <div class="glass-titlebar">
+              <div class="glass-dot glass-dot-r"></div><div class="glass-dot glass-dot-y"></div><div class="glass-dot glass-dot-g"></div>
+              <div class="glass-urlbar">proplaunch.com/build</div>
             </div>
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">CRM Setup</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div>
-              <span class="system-visual-bar-val green" style="color:var(--green)">✓</span>
+            <div class="glass-body">
+              <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;">Build progress · Day 47 of 90</div>
+              <div class="system-visual-bars" style="margin-bottom:12px;">
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Brand Identity</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">CRM Setup</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">AI Workflows</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:78%"></div></div><span class="system-visual-bar-val">78%</span></div>
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Content Library</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:45%"></div></div><span class="system-visual-bar-val">45%</span></div>
+              </div>
+              <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+                <div class="glass-row"><span class="glass-key">logo.svg</span><span class="glass-val green">Complete</span></div>
+                <div class="glass-row"><span class="glass-key">style-guide.pdf</span><span class="glass-val green">Complete</span></div>
+                <div class="glass-row"><span class="glass-key">asset-library/</span><span class="glass-val">Ready</span></div>
+              </div>
             </div>
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">AI Workflows</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:78%"></div></div>
-              <span class="system-visual-bar-val">78%</span>
-            </div>
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">Content Library</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:45%"></div></div>
-              <span class="system-visual-bar-val">45%</span>
-            </div>
-          </div>
-        </div>
-        <div class="system-visual-card">
-          <div class="system-visual-card-label" id="svLabel1">Brand Identity</div>
-          <div class="system-visual-card-row">
-            <span class="system-visual-card-key">logo.svg</span>
-            <span class="system-visual-card-val tag">Complete</span>
-          </div>
-          <div class="system-visual-card-row">
-            <span class="system-visual-card-key">style-guide.pdf</span>
-            <span class="system-visual-card-val tag">Complete</span>
-          </div>
-          <div class="system-visual-card-row">
-            <span class="system-visual-card-key">asset-library/</span>
-            <span class="system-visual-card-val green">Ready</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Row 2: visual left, text right — flipped like Obsidianos "Consolidators" -->
+    <!-- Row 2 (flipped) -->
     <div class="system-row system-row--flip r">
       <div>
         <p class="system-copy-label">Already operating</p>
-        <p class="system-copy-sub">You have clients, transactions, and a track record. PropLaunch replaces the manual with automated, the inconsistent with systematic, the reactive with proactive.</p>
+        <p class="system-copy-sub">You have clients, transactions, and a track record. PropLaunch replaces the manual with automated, the inconsistent with systematic.</p>
         <ul class="feat-list" id="featList2">
-          <li class="feat-item active" data-i="0" data-list="2">
-            <div class="feat-item-title">Sales Infrastructure</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Discovery frameworks, objection handling, and a repeatable process for converting clients.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
-          <li class="feat-item" data-i="1" data-list="2">
-            <div class="feat-item-title">Deal Flow Access</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Curated, analysis-backed property sourced through a proprietary supply network.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
-          <li class="feat-item" data-i="2" data-list="2">
-            <div class="feat-item-title">$6,000 Meta Campaign</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Managed and optimised over 90 days. Leads in your pipeline before you've done a single thing.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
-          <li class="feat-item" data-i="3" data-list="2">
-            <div class="feat-item-title">Everything for Starting Out and more</div>
-            <div class="feat-item-body">
-              <p class="feat-item-desc">Built on the full foundation layer with additional infrastructure for scale, consistency, and growth.</p>
-              <div class="feat-item-bar"></div>
-            </div>
-          </li>
+          <li class="feat-item active" data-i="0" data-list="2"><div class="feat-item-title">Sales Infrastructure</div><div class="feat-item-body"><p class="feat-item-desc">Discovery frameworks, objection handling, and a repeatable conversion process.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item" data-i="1" data-list="2"><div class="feat-item-title">Deal Flow Access</div><div class="feat-item-body"><p class="feat-item-desc">Curated, analysis-backed property sourced through a proprietary supply network.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item" data-i="2" data-list="2"><div class="feat-item-title">$6,000 Meta Campaign</div><div class="feat-item-body"><p class="feat-item-desc">Managed and optimised over 90 days. Leads in your pipeline from day one.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item" data-i="3" data-list="2"><div class="feat-item-title">Everything for Starting Out and more</div><div class="feat-item-body"><p class="feat-item-desc">Built on the full foundation with additional infrastructure for scale and consistency.</p><div class="feat-item-bar"></div></div></li>
         </ul>
       </div>
-      <div class="system-visual system-visual--2">
-        <div class="system-visual-overlay"></div>
-        <div class="system-visual-top">
-          <div class="system-visual-chart-label">Pipeline · This week</div>
-          <div class="system-visual-bars">
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">New inquiries</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:88%"></div></div>
-              <span class="system-visual-bar-val">12</span>
+      <div class="system-visual r r1">
+        <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=900&q=70')"></div>
+        <div class="system-visual-inner">
+          <div class="glass-browser" style="position:relative;bottom:auto;left:auto;right:auto;margin:16px 16px 16px;">
+            <div class="glass-titlebar">
+              <div class="glass-dot glass-dot-r"></div><div class="glass-dot glass-dot-y"></div><div class="glass-dot glass-dot-g"></div>
+              <div class="glass-urlbar">proplaunch.com/pipeline</div>
             </div>
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">Qualified leads</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:55%"></div></div>
-              <span class="system-visual-bar-val">7</span>
+            <div class="glass-body">
+              <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;">Pipeline · This week</div>
+              <div class="system-visual-bars" style="margin-bottom:12px;">
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">New inquiries</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:88%"></div></div><span class="system-visual-bar-val">12</span></div>
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Qualified leads</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:55%"></div></div><span class="system-visual-bar-val">7</span></div>
+                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Proposals sent</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:30%"></div></div><span class="system-visual-bar-val">4</span></div>
+              </div>
+              <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+                <div class="glass-row"><span class="glass-key">10:14 — Lead qualified</span><span class="glass-val green">Auto</span></div>
+                <div class="glass-row"><span class="glass-key">10:22 — Follow-up sent</span><span class="glass-val green">Auto</span></div>
+                <div class="glass-row"><span class="glass-key">11:05 — Deal assigned</span><span class="glass-val">Done</span></div>
+              </div>
             </div>
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">Proposals sent</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:30%"></div></div>
-              <span class="system-visual-bar-val">4</span>
-            </div>
-            <div class="system-visual-bar-row">
-              <span class="system-visual-bar-label">Conversions</span>
-              <div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:15%"></div></div>
-              <span class="system-visual-bar-val">2</span>
-            </div>
-          </div>
-        </div>
-        <div class="system-visual-card">
-          <div class="system-visual-card-label">Audit trail · Today</div>
-          <div class="system-visual-card-row">
-            <span class="system-visual-card-key">10:14 — Lead qualified</span>
-            <span class="system-visual-card-val tag">Auto</span>
-          </div>
-          <div class="system-visual-card-row">
-            <span class="system-visual-card-key">10:22 — Follow-up sent</span>
-            <span class="system-visual-card-val tag">Auto</span>
-          </div>
-          <div class="system-visual-card-row">
-            <span class="system-visual-card-key">11:05 — Deal assigned</span>
-            <span class="system-visual-card-val green">Done</span>
           </div>
         </div>
       </div>
     </div>
-
   </section>
 
 
-  <!-- ═══════════════════════════════ TRUST PILLARS ═══════════════════════════════ -->
+  <!-- ═══ TRUST PILLARS ═══ -->
   <div class="pillars-wrap">
     <div class="pillars-inner">
       <h2 class="pillars-heading r">Built on<br>infrastructure</h2>
       <div class="pillars-cols">
         <div class="r">
-          <div class="pillar-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-            </svg>
-          </div>
+          <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div class="pillar-title">90-day build</div>
           <p class="pillar-desc">Business designed, configured, and handed over live. Not a course. Not a framework. A running operation.</p>
         </div>
         <div class="r r1">
-          <div class="pillar-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
-            </svg>
-          </div>
+          <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
           <div class="pillar-title">Proprietary deal flow</div>
-          <p class="pillar-desc">A supply relationship, not a portal. Stress-tested stock across Australia's highest-conviction growth corridors — exclusive to PropLaunch operators.</p>
+          <p class="pillar-desc">A supply relationship, not a portal. Stress-tested stock across Australia's highest-conviction growth corridors — exclusive to operators.</p>
         </div>
         <div class="r r2">
-          <div class="pillar-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-          </div>
+          <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           <div class="pillar-title">AI-powered automation</div>
-          <p class="pillar-desc">Every lead engaged, qualified, and followed up. Every summary generated. The business runs between client conversations.</p>
+          <p class="pillar-desc">Every lead engaged, qualified, and followed up. The business runs between client conversations.</p>
         </div>
       </div>
     </div>
   </div>
 
 
-  <!-- ═══════════════════════════════ DEAL FLOW ═══════════════════════════════ -->
+  <!-- ═══ DEAL FLOW ═══ -->
   <div class="dealflow-wrap" id="dealflow">
     <div class="dealflow-inner">
       <div>
         <p class="section-tag r">— Deal Flow</p>
-        <h2 class="dealflow-heading r">Your clients want<br>good property.<br>We make sure you<br>always have it.</h2>
+        <h2 class="dealflow-heading r">Your clients want good property. We make sure you always have it.</h2>
         <p class="dealflow-desc r r1">Behind PropLaunch is a proprietary deal sourcing network operating across Australia's highest-conviction growth corridors. Every piece of stock has been researched, stress-tested, and approved before it reaches you.</p>
         <p class="dealflow-desc r r1">This is not a portal. It is not a database. It is a supply relationship — exclusive to PropLaunch operators.</p>
         <div class="dealflow-table r r2">
@@ -1604,26 +1002,16 @@
       </div>
       <div class="r r1">
         <div class="dealflow-card">
-          <div class="dealflow-card-img"></div>
+          <div class="dealflow-card-img">
+            <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=70')"></div>
+          </div>
           <div class="dealflow-card-body">
-            <div class="dealflow-card-tag">
-              <div class="dealflow-card-dot"></div>
-              Active allocation · Off-market
-            </div>
+            <div class="dealflow-card-tag"><div class="dealflow-card-dot"></div>Active allocation · Off-market</div>
             <div class="dealflow-card-address">Lot 5440, Hoist Drive,<br><em>Tarneit VIC 3029</em></div>
             <div class="dealflow-card-stats">
-              <div>
-                <div class="dc-stat-label">Entry</div>
-                <div class="dc-stat-val">$685K</div>
-              </div>
-              <div>
-                <div class="dc-stat-label">Yield</div>
-                <div class="dc-stat-val green">4.70%</div>
-              </div>
-              <div>
-                <div class="dc-stat-label">Rating</div>
-                <div class="dc-stat-val">A–</div>
-              </div>
+              <div><div class="dc-stat-label">Entry</div><div class="dc-stat-val">$685K</div></div>
+              <div><div class="dc-stat-label">Yield</div><div class="dc-stat-val green">4.70%</div></div>
+              <div><div class="dc-stat-label">Rating</div><div class="dc-stat-val">A–</div></div>
             </div>
           </div>
         </div>
@@ -1632,52 +1020,37 @@
   </div>
 
 
-  <!-- ═══════════════════════════════ INVESTMENT ═══════════════════════════════ -->
+  <!-- ═══ INVESTMENT ═══ -->
   <div class="invest-wrap r">
     <p class="section-tag r">— The Investment</p>
-    <h2 class="invest-heading r">The investment is what it is<br>because the output is what it is.</h2>
+    <h2 class="invest-heading r">The investment is what it is because the output is what it is.</h2>
     <div class="invest-grid">
       <div class="invest-card">
-        <div class="invest-card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <rect x="2" y="3" width="20" height="14"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
-        </div>
+        <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="invest-price">$33,000</div>
         <div class="invest-name">Foundation Setup</div>
         <p class="invest-desc">Everything above, delivered in 90 days. $6,000 of this is your first Meta campaign — live, managed, optimised.</p>
       </div>
       <div class="invest-card">
-        <div class="invest-card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-          </svg>
-        </div>
+        <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
         <div class="invest-price">$1,000 <small>/mo</small></div>
         <div class="invest-name">Platform Core</div>
         <p class="invest-desc">Ongoing systems, deal flow access, and implementation support. The infrastructure keeps running.</p>
       </div>
       <div class="invest-card">
-        <div class="invest-card-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-          </svg>
-        </div>
+        <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
         <div class="invest-price">$4,000 – $5,500 <small>/mo</small></div>
         <div class="invest-name">Brand &amp; Growth Tiers</div>
-        <p class="invest-desc">Active brand management, content production, and marketing account management. Ad spend is separate and yours.</p>
+        <p class="invest-desc">Active brand management, content production, and marketing account management. Ad spend is separate.</p>
       </div>
     </div>
     <p class="invest-note">// no payment plans · no exceptions · the investment is what it is because the output is what it is</p>
   </div>
 
 
-  <!-- ═══════════════════════════════ APPLY ═══════════════════════════════ -->
+  <!-- ═══ APPLY ═══ -->
   <div class="apply-wrap" id="apply">
-    <div class="apply-tag r">
-      <div class="dealflow-card-dot"></div>
-      Selective intake · Limited operators at any time
-    </div>
+    <div class="apply-tag r"><div class="dealflow-card-dot"></div>Selective intake · Limited operators at any time</div>
     <h2 class="apply-heading r">This isn't for everyone.<br>It's for the <em>right person.</em></h2>
     <p class="apply-body r r1">PropLaunch intake is selective. We work with a limited number of operators at any one time, and every application is reviewed personally. If you're ready to run a property business that operates like a serious firm — apply below.</p>
     <a href="#" class="btn-pill r r2">Apply for access →</a>
@@ -1685,7 +1058,7 @@
   </div>
 
 
-  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <!-- ═══ FOOTER ═══ -->
   <div class="footer-disclaimer">
     <p class="footer-disclaimer-text">PropLaunch is not a licensed financial adviser. Information on this site is general in nature and does not constitute financial advice. Past results are not indicative of future performance. All figures are indicative only.</p>
   </div>
@@ -1693,10 +1066,7 @@
   <footer>
     <div class="footer-main">
       <div>
-        <a href="#" class="footer-brand">
-          <div class="footer-brand-mark">PL</div>
-          <span class="footer-brand-word">proplaunch</span>
-        </a>
+        <a href="#" class="footer-brand"><img src="logo.svg" alt="PropLaunch"></a>
         <p class="footer-desc">The operating system for serious property businesses. Brand, systems, marketing and deal flow — built and running in 90 days.</p>
       </div>
       <div>
@@ -1731,10 +1101,10 @@
 
 
   <script>
-    // Island nav — darken slightly on scroll
+    // Island nav on scroll
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
+      nav.classList.toggle('scrolled', window.scrollY > 80);
     }, { passive: true });
 
     // Scroll reveal
