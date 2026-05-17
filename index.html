@@ -123,6 +123,7 @@
       white-space: nowrap;
     }
     .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.09); }
 
     .nav-cta {
       font-size: 13px;
@@ -1106,6 +1107,23 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 80);
     }, { passive: true });
+
+    // Scrollspy — highlight nav link for current section
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    const spyObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(sec => spyObs.observe(sec));
 
     // Scroll reveal
     const obs = new IntersectionObserver(
