@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PropLaunch — The Operating System for Serious Property Businesses</title>
-  <meta name="description" content="PropLaunch builds your property business. Brand, systems, marketing and curated deal flow — built and running in 90 days.">
+  <title>PropLaunch: The Operating System for Serious Property Businesses</title>
+  <meta name="description" content="PropLaunch builds your property business. Brand, systems, marketing and curated deal flow – built and running in 90 days.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       overflow-x: hidden;
     }
 
-    /* Edge glow — dark navy with blue ambient light at corners */
+    /* Edge glow – dark navy with blue ambient light at corners */
     body::before {
       content: '';
       position: fixed;
@@ -55,7 +55,7 @@
     .nav, section, footer, div { position: relative; z-index: 1; }
 
     /* ─────────────────────────────────────────
-       NAV — hero bar → scroll island
+       NAV – hero bar → scroll island
     ───────────────────────────────────────── */
     .nav {
       position: fixed;
@@ -207,6 +207,9 @@
     }
 
     .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 12px;
       font-weight: 400;
       color: var(--muted);
@@ -350,7 +353,7 @@
     .section-tag { font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 4px; }
 
     /* ─────────────────────────────────────────
-       OFFER CARDS — 2-component images
+       OFFER CARDS – 2-component images
     ───────────────────────────────────────── */
     .offer-heading {
       font-family: var(--serif);
@@ -466,7 +469,7 @@
     .btn-text:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.22); }
 
     /* ─────────────────────────────────────────
-       SYSTEM — feature list + screenshot
+       SYSTEM – feature list + screenshot
     ───────────────────────────────────────── */
     .system-section { padding: 0 32px 80px; max-width: 1200px; margin: 0 auto; }
 
@@ -495,7 +498,7 @@
     .system-copy-sub { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
 
     .feat-list { list-style: none; }
-    /* Bar IS the divider — no separate border needed */
+    /* Bar IS the divider – no separate border needed */
     .feat-item { padding: 13px 0; cursor: pointer; }
     .feat-item-title { font-size: 14px; color: var(--muted); transition: color 150ms; user-select: none; }
     .feat-item.active .feat-item-title { color: var(--white); font-weight: 600; }
@@ -503,7 +506,7 @@
     .feat-item.active .feat-item-body { max-height: 100px; margin-top: 8px; }
     .feat-item-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
 
-    /* Progress bar — lives at top of each item, acts as the divider line */
+    /* Progress bar – lives at top of each item, acts as the divider line */
     .feat-item-bar {
       height: 2px;
       width: 100%;
@@ -531,7 +534,7 @@
       to   { width: 100%; }
     }
 
-    /* System visual — also 2-component */
+    /* System visual – also 2-component */
     .system-visual {
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -590,7 +593,7 @@
     .dealflow-key { color: var(--muted); }
     .dealflow-val { color: var(--white); font-weight: 500; }
 
-    /* Deal flow property card — also 2-component */
+    /* Deal flow property card – also 2-component */
     .dealflow-card { background: var(--black); border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; }
     .dealflow-card-img { height: 200px; position: relative; overflow: hidden; }
     .dealflow-card-img .nature-bg { height: 100%; }
@@ -599,7 +602,10 @@
     .dealflow-card-body { padding: 18px 22px 22px; }
     .dealflow-card-tag { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 500; color: var(--green); margin-bottom: 10px; }
     .dealflow-card-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(74,222,128,0.15); animation: gpulse 1.8s ease-in-out infinite; }
-    @keyframes gpulse { 0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.15); } 50% { box-shadow: 0 0 0 7px rgba(74,222,128,0.04); } }
+    @keyframes gpulse {
+      0%,100% { box-shadow: 0 0 0 0px rgba(74,222,128,0.5), 0 0 5px 1px rgba(74,222,128,0.35); }
+      50%      { box-shadow: 0 0 0 5px rgba(74,222,128,0.0), 0 0 12px 4px rgba(74,222,128,0.12); }
+    }
     .dealflow-card-address { font-family: var(--serif); font-size: 19px; font-weight: 500; line-height: 1.3; margin-bottom: 16px; }
     .dealflow-card-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 14px; border-top: 1px solid var(--border); }
     .dc-stat-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
@@ -773,13 +779,13 @@
     <div class="hero-rock hero-rock--right"></div>
 
     <div class="hero-content">
-      <p class="hero-eyebrow r">PropLaunch OS · Now accepting applications</p>
+      <p class="hero-eyebrow r"><span class="dealflow-card-dot"></span>PropLaunch OS · Now accepting applications</p>
       <h1 class="hero-headline r r1">
         We build your business.<br>
         We supply your deals.<br>
         You just <em>close.</em>
       </h1>
-      <p class="hero-sub r r2">The operating system for serious property businesses. Brand, systems, marketing and curated deal flow — built and running in 90 days.</p>
+      <p class="hero-sub r r2">The operating system for serious property businesses. Brand, systems, marketing and curated deal flow – built and running in 90 days.</p>
       <a href="#apply" class="btn-pill r r3">Apply for access →</a>
     </div>
 
@@ -806,17 +812,17 @@
             <div class="hero-ui-cols">
               <div>
                 <div class="hero-ui-col-label">Active leads</div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Sarah Mitchell — follow-up sent</div><div class="hero-ui-row-time">auto</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">James Cooper — review</div><div class="hero-ui-row-time">10:30</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Priya Nair — qualified</div><div class="hero-ui-row-time">auto</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Tom Reeves — new inquiry</div><div class="hero-ui-row-time">9:14</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Sarah Mitchell · follow-up sent</div><div class="hero-ui-row-time">auto</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">James Cooper · review</div><div class="hero-ui-row-time">10:30</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Priya Nair · qualified</div><div class="hero-ui-row-time">auto</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Tom Reeves · new inquiry</div><div class="hero-ui-row-time">9:14</div></div>
               </div>
               <div>
                 <div class="hero-ui-col-label">Current allocation</div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Tarneit VIC — off-market</div><div class="hero-ui-row-time">A–</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Werribee VIC — under analysis</div><div class="hero-ui-row-time">—</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Kalkallo VIC — coming</div><div class="hero-ui-row-time">—</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">Meta campaign — live</div><div class="hero-ui-row-time">$6K</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Tarneit VIC · off-market</div><div class="hero-ui-row-time">A–</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Werribee VIC · under analysis</div><div class="hero-ui-row-time">–</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Kalkallo VIC · coming</div><div class="hero-ui-row-time">–</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">Meta campaign · live</div><div class="hero-ui-row-time">$6K</div></div>
               </div>
             </div>
           </div>
@@ -867,7 +873,7 @@
         <div class="offer-card-body">
           <p class="offer-card-tag">Built for you · 90 days</p>
           <h3 class="offer-card-title">Business Operating System</h3>
-          <p class="offer-card-desc">Brand, CRM, automations, content, and sales infrastructure — designed, configured, and live. You arrive with a business that runs, not a to-do list.</p>
+          <p class="offer-card-desc">Brand, CRM, automations, content, and sales infrastructure: designed, configured, and live. You arrive with a business that runs, not a to-do list.</p>
           <a href="#built" class="btn-text">See what gets built →</a>
         </div>
       </div>
@@ -912,9 +918,9 @@
     <div class="system-row r">
       <div>
         <p class="system-copy-label">Starting out</p>
-        <p class="system-copy-sub">You have the drive, the licence, and the conviction. PropLaunch gives you what took others a decade to figure out — on day one.</p>
+        <p class="system-copy-sub">You have the drive, the licence, and the conviction. PropLaunch gives you what took others a decade to figure out, on day one.</p>
         <ul class="feat-list" id="featList1">
-          <li class="feat-item active" data-i="0" data-list="1" data-img="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Brand Identity</div><div class="feat-item-body"><p class="feat-item-desc">Logo, style guide, templates, and a complete asset library — built to last.</p></div></li>
+          <li class="feat-item active" data-i="0" data-list="1" data-img="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Brand Identity</div><div class="feat-item-body"><p class="feat-item-desc">Logo, style guide, templates, and a complete asset library, built to last.</p></div></li>
           <li class="feat-item" data-i="1" data-list="1" data-img="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Business Operating System</div><div class="feat-item-body"><p class="feat-item-desc">CRM, pipelines, and automations configured to your business from day one.</p></div></li>
           <li class="feat-item" data-i="2" data-list="1" data-img="https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">AI-Powered Workflows</div><div class="feat-item-body"><p class="feat-item-desc">Every lead engaged, qualified, and summarised. Every follow-up sent automatically.</p></div></li>
           <li class="feat-item" data-i="3" data-list="1" data-img="https://images.unsplash.com/photo-1478827387698-1527781a4887?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Content System</div><div class="feat-item-body"><p class="feat-item-desc">Social templates, email frameworks, and a content library ready to publish.</p></div></li>
@@ -975,9 +981,9 @@
                 <div class="system-visual-bar-row"><span class="system-visual-bar-label">Proposals sent</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:30%"></div></div><span class="system-visual-bar-val">4</span></div>
               </div>
               <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
-                <div class="glass-row"><span class="glass-key">10:14 — Lead qualified</span><span class="glass-val green">Auto</span></div>
-                <div class="glass-row"><span class="glass-key">10:22 — Follow-up sent</span><span class="glass-val green">Auto</span></div>
-                <div class="glass-row"><span class="glass-key">11:05 — Deal assigned</span><span class="glass-val">Done</span></div>
+                <div class="glass-row"><span class="glass-key">10:14 · Lead qualified</span><span class="glass-val green">Auto</span></div>
+                <div class="glass-row"><span class="glass-key">10:22 · Follow-up sent</span><span class="glass-val green">Auto</span></div>
+                <div class="glass-row"><span class="glass-key">11:05 · Deal assigned</span><span class="glass-val">Done</span></div>
               </div>
             </div>
           </div>
@@ -1000,7 +1006,7 @@
         <div class="r r1">
           <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
           <div class="pillar-title">Proprietary deal flow</div>
-          <p class="pillar-desc">A supply relationship, not a portal. Stress-tested stock across Australia's highest-conviction growth corridors — exclusive to operators.</p>
+          <p class="pillar-desc">A supply relationship, not a portal. Stress-tested stock across Australia's highest-conviction growth corridors, exclusive to operators.</p>
         </div>
         <div class="r r2">
           <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
@@ -1016,10 +1022,10 @@
   <div class="dealflow-wrap" id="dealflow">
     <div class="dealflow-inner">
       <div>
-        <p class="section-tag r">— Deal Flow</p>
+        <p class="section-tag r">· Deal Flow</p>
         <h2 class="dealflow-heading r">Your clients want good property. We make sure you always have it.</h2>
         <p class="dealflow-desc r r1">Behind PropLaunch is a proprietary deal sourcing network operating across Australia's highest-conviction growth corridors. Every piece of stock has been researched, stress-tested, and approved before it reaches you.</p>
-        <p class="dealflow-desc r r1">This is not a portal. It is not a database. It is a supply relationship — exclusive to PropLaunch operators.</p>
+        <p class="dealflow-desc r r1">This is not a portal. It is not a database. It is a supply relationship, exclusive to PropLaunch operators.</p>
         <div class="dealflow-table r r2">
           <div class="dealflow-row"><span class="dealflow-key">Supply network</span><span class="dealflow-val">Proprietary</span></div>
           <div class="dealflow-row"><span class="dealflow-key">Research standard</span><span class="dealflow-val">Stress-tested</span></div>
@@ -1049,14 +1055,14 @@
 
   <!-- ═══ INVESTMENT ═══ -->
   <div class="invest-wrap r">
-    <p class="section-tag r">— The Investment</p>
+    <p class="section-tag r">· The Investment</p>
     <h2 class="invest-heading r">The investment is what it is because the output is what it is.</h2>
     <div class="invest-grid">
       <div class="invest-card">
         <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="invest-price">$33,000</div>
         <div class="invest-name">Foundation Setup</div>
-        <p class="invest-desc">Everything above, delivered in 90 days. $6,000 of this is your first Meta campaign — live, managed, optimised.</p>
+        <p class="invest-desc">Everything above, delivered in 90 days. $6,000 of this is your first Meta campaign: live, managed, optimised.</p>
       </div>
       <div class="invest-card">
         <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
@@ -1079,7 +1085,7 @@
   <div class="apply-wrap" id="apply">
     <div class="apply-tag r"><div class="dealflow-card-dot"></div>Selective intake · Limited operators at any time</div>
     <h2 class="apply-heading r">This isn't for everyone.<br>It's for the <em>right person.</em></h2>
-    <p class="apply-body r r1">PropLaunch intake is selective. We work with a limited number of operators at any one time, and every application is reviewed personally. If you're ready to run a property business that operates like a serious firm — apply below.</p>
+    <p class="apply-body r r1">PropLaunch intake is selective. We work with a limited number of operators at any one time, and every application is reviewed personally. If you're ready to run a property business that operates like a serious firm. Apply below.</p>
     <a href="#" class="btn-pill r r2">Apply for access →</a>
     <p class="apply-note r r3">$33,000 Foundation Setup · Applications reviewed within 48 hours</p>
   </div>
@@ -1094,7 +1100,7 @@
     <div class="footer-main">
       <div>
         <a href="#" class="footer-brand"><img src="logo.svg" alt="PropLaunch"></a>
-        <p class="footer-desc">The operating system for serious property businesses. Brand, systems, marketing and deal flow — built and running in 90 days.</p>
+        <p class="footer-desc">The operating system for serious property businesses. Brand, systems, marketing and deal flow – built and running in 90 days.</p>
       </div>
       <div>
         <div class="footer-col-title">Product</div>
@@ -1109,6 +1115,7 @@
         <ul class="footer-col-links">
           <li><a href="#">About</a></li>
           <li><a href="#apply">Apply</a></li>
+          <li><a href="deal-launch.html">Deal Launch</a></li>
           <li><a href="mailto:info@proplaunch.com.au">Contact</a></li>
         </ul>
       </div>
@@ -1134,7 +1141,7 @@
       nav.classList.toggle('scrolled', window.scrollY > 80);
     }, { passive: true });
 
-    // Scrollspy — highlight nav link for current section
+    // Scrollspy – highlight nav link for current section
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     const sections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 
@@ -1189,10 +1196,10 @@
         { url: 'proplaunch.com/workflows',
           html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Automation · Running</div>
 <div style="border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:10px;margin-bottom:10px;">
-  <div class="glass-row"><span class="glass-key">10:14 — Lead qualified</span><span class="glass-val green">Auto</span></div>
-  <div class="glass-row"><span class="glass-key">10:22 — Follow-up sent</span><span class="glass-val green">Auto</span></div>
-  <div class="glass-row"><span class="glass-key">10:45 — SMS triggered</span><span class="glass-val green">Auto</span></div>
-  <div class="glass-row"><span class="glass-key">11:03 — Email sequence</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">10:14 · Lead qualified</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">10:22 · Follow-up sent</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">10:45 · SMS triggered</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">11:03 · Email sequence</span><span class="glass-val green">Auto</span></div>
 </div>
 <div class="glass-row"><span class="glass-key">Auto-handled leads</span><span class="glass-val green">94%</span></div>
 <div class="glass-row"><span class="glass-key">Avg response time</span><span class="glass-val">&lt; 2 min</span></div>` },
@@ -1223,9 +1230,9 @@
 </div>` },
         { url: 'proplaunch.com/deals',
           html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Active Allocation · Off-market</div>
-<div class="glass-row"><span class="glass-key">Tarneit VIC — $685K</span><span class="glass-val green">A–</span></div>
-<div class="glass-row"><span class="glass-key">Werribee VIC — $590K</span><span class="glass-val">Analysis</span></div>
-<div class="glass-row"><span class="glass-key">Kalkallo VIC — $720K</span><span class="glass-val">Coming</span></div>
+<div class="glass-row"><span class="glass-key">Tarneit VIC · $685K</span><span class="glass-val green">A–</span></div>
+<div class="glass-row"><span class="glass-key">Werribee VIC · $590K</span><span class="glass-val">Analysis</span></div>
+<div class="glass-row"><span class="glass-key">Kalkallo VIC · $720K</span><span class="glass-val">Coming</span></div>
 <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:10px;padding-top:10px;">
   <div class="glass-row"><span class="glass-key">Properties reviewed</span><span class="glass-val">47</span></div>
   <div class="glass-row"><span class="glass-key">Approved for release</span><span class="glass-val green">3</span></div>
@@ -1258,7 +1265,7 @@
       ]
     };
 
-    // Feature list — auto-advance every 7s with animated progress bar
+    // Feature list – auto-advance every 7s with animated progress bar
     function initFeatList(listId) {
       const items = Array.from(document.querySelectorAll(`.feat-item[data-list="${listId}"]`));
       if (!items.length) return;
