@@ -575,6 +575,7 @@
     .pillars-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start; }
 
     .pillars-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; }
+    .pillars-sub { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.6; }
     .pillars-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
     .pillar-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(74,222,128,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: var(--green); }
     .pillar-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
@@ -734,6 +735,10 @@
       /* Apply */
       .apply-wrap { padding: 70px 20px; }
 
+      /* Deal Flow Filters */
+      .dealflow-filters-wrap { padding: 60px 20px; }
+      .filter-grid { grid-template-columns: repeat(2, 1fr); }
+
       /* Footer */
       .footer-main { grid-template-columns: 1fr; padding: 40px 20px 24px; }
       .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
@@ -752,6 +757,58 @@
       .hero-ui { margin-top: 40px; }
       .cred-item { font-size: 11px; }
       .glass-browser { left: 12px; right: 12px; bottom: 12px; }
+      .filter-grid { grid-template-columns: 1fr; }
+    }
+    /* ── Deal Flow Filters Section ── */
+    .dealflow-filters-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 80px 32px;
+    }
+    .dealflow-filters-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .dealflow-filters-heading {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.2vw, 42px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 40px;
+    }
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .filter-card {
+      background: var(--black);
+      padding: 32px 28px;
+    }
+    .filter-num {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .filter-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .filter-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
     }
   </style>
 </head>
@@ -763,9 +820,9 @@
       <img src="logo.svg" alt="PropLaunch">
     </a>
     <ul class="nav-links">
-      <li><a href="#system">The System</a></li>
-      <li><a href="#built">What Gets Built</a></li>
       <li><a href="#dealflow">Deal Flow</a></li>
+      <li><a href="#system">PropLaunch OS</a></li>
+      <li><a href="#built">What Gets Built</a></li>
       <li><a href="#apply">Apply</a></li>
     </ul>
     <a href="apply-now.html" class="nav-cta">Apply for access</a>
@@ -801,28 +858,28 @@
         </div>
         <div class="hero-ui-body">
           <div class="hero-ui-sidebar">
-            <div class="hero-ui-nav-item active"><div class="hero-ui-nav-icon"></div> Dashboard</div>
+            <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Dashboard</div>
             <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Leads</div>
-            <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Deal Flow</div>
+            <div class="hero-ui-nav-item active"><div class="hero-ui-nav-icon"></div> Deal Flow</div>
             <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Campaigns</div>
             <div class="hero-ui-nav-item"><div class="hero-ui-nav-icon"></div> Reports</div>
           </div>
           <div class="hero-ui-main">
-            <div class="hero-ui-greeting">Welcome back, Kesh →</div>
+            <div class="hero-ui-greeting">Deal Flow · 3 active allocations</div>
             <div class="hero-ui-cols">
               <div>
-                <div class="hero-ui-col-label">Active leads</div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Sarah Mitchell · follow-up sent</div><div class="hero-ui-row-time">auto</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">James Cooper · review</div><div class="hero-ui-row-time">10:30</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Priya Nair · qualified</div><div class="hero-ui-row-time">auto</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Tom Reeves · new inquiry</div><div class="hero-ui-row-time">9:14</div></div>
+                <div class="hero-ui-col-label">Available stock</div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Tarneit VIC · off-market</div><div class="hero-ui-row-time">A–</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Ipswich QLD · wholesale</div><div class="hero-ui-row-time">A</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Melton VIC · analysis</div><div class="hero-ui-row-time">–</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">Caboolture QLD · pending</div><div class="hero-ui-row-time">–</div></div>
               </div>
               <div>
-                <div class="hero-ui-col-label">Current allocation</div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Tarneit VIC · off-market</div><div class="hero-ui-row-time">A–</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Werribee VIC · under analysis</div><div class="hero-ui-row-time">–</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot m"></div><div class="hero-ui-row-text">Kalkallo VIC · coming</div><div class="hero-ui-row-time">–</div></div>
-                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">Meta campaign · live</div><div class="hero-ui-row-time">$6K</div></div>
+                <div class="hero-ui-col-label">Corridor ratings</div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Affordability</div><div class="hero-ui-row-time">9.2</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Infrastructure</div><div class="hero-ui-row-time">8.8</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot g"></div><div class="hero-ui-row-text">Demographics</div><div class="hero-ui-row-time">9.5</div></div>
+                <div class="hero-ui-row"><div class="hero-ui-row-dot o"></div><div class="hero-ui-row-text">Supply constraint</div><div class="hero-ui-row-time">8.0</div></div>
               </div>
             </div>
           </div>
@@ -845,8 +902,77 @@
   </div>
 
 
+  <!-- ═══ DEAL FLOW ═══ -->
+  <div class="dealflow-wrap" id="dealflow">
+    <div class="dealflow-inner">
+      <div>
+        <p class="section-tag r">· Deal Flow</p>
+        <h2 class="dealflow-heading r">Your clients want good property. We make sure you always have it.</h2>
+        <p class="dealflow-desc r r1">Behind PropLaunch is a proprietary deal sourcing network operating across Australia's highest-conviction growth corridors. Every piece of stock has been researched, stress-tested, and approved before it reaches you.</p>
+        <p class="dealflow-desc r r1">This is not a portal. It is not a database. It is a supply relationship, exclusive to PropLaunch operators.</p>
+        <div class="dealflow-table r r2">
+          <div class="dealflow-row"><span class="dealflow-key">Supply network</span><span class="dealflow-val">Proprietary</span></div>
+          <div class="dealflow-row"><span class="dealflow-key">Research standard</span><span class="dealflow-val">Stress-tested</span></div>
+          <div class="dealflow-row"><span class="dealflow-key">Access model</span><span class="dealflow-val">Operator-exclusive</span></div>
+          <div class="dealflow-row"><span class="dealflow-key">Coverage</span><span class="dealflow-val">AUS growth corridors</span></div>
+        </div>
+      </div>
+      <div class="r r1">
+        <div class="dealflow-card">
+          <div class="dealflow-card-img">
+            <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=70')"></div>
+          </div>
+          <div class="dealflow-card-body">
+            <div class="dealflow-card-tag"><div class="dealflow-card-dot"></div>Active allocation · Off-market</div>
+            <div class="dealflow-card-address">Lot 5440, Hoist Drive,<br><em>Tarneit VIC 3029</em></div>
+            <div class="dealflow-card-stats">
+              <div><div class="dc-stat-label">Entry</div><div class="dc-stat-val">$685K</div></div>
+              <div><div class="dc-stat-label">Yield</div><div class="dc-stat-val green">4.70%</div></div>
+              <div><div class="dc-stat-label">Rating</div><div class="dc-stat-val">A–</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ HOW DEAL FLOW WORKS ═══ -->
+  <div class="dealflow-filters-wrap">
+    <div class="dealflow-filters-inner">
+      <p class="section-tag r">· Four filters. Zero guesswork.</p>
+      <h2 class="dealflow-filters-heading r">Every deal passes four screens before you see it.</h2>
+      <div class="filter-grid">
+        <div class="filter-card r">
+          <div class="filter-num">01</div>
+          <h3 class="filter-title">Affordability Convergence</h3>
+          <p class="filter-desc">Where median prices meet household income growth. The intersection that drives sustained demand without speculative risk.</p>
+        </div>
+        <div class="filter-card r r1">
+          <div class="filter-num">02</div>
+          <h3 class="filter-title">Infrastructure Catalysts</h3>
+          <p class="filter-desc">Government-backed corridors with committed capital in transport, health, and education. The spending that always precedes price movement.</p>
+        </div>
+        <div class="filter-card r r2">
+          <div class="filter-num">03</div>
+          <h3 class="filter-title">Demographic Acceleration</h3>
+          <p class="filter-desc">Population growth running above the national average. The leading indicator of rental demand and long-term capital appreciation.</p>
+        </div>
+        <div class="filter-card r r3">
+          <div class="filter-num">04</div>
+          <h3 class="filter-title">Supply Constraints</h3>
+          <p class="filter-desc">Limited land release, low vacancy rates, and restrictive zoning. Where scarcity meets demand, prices move. We only work here.</p>
+        </div>
+      </div>
+      <div class="r r3" style="text-align:center;margin-top:48px;">
+        <a href="deal-launch.html" class="btn-text">See Deal Launch in full →</a>
+      </div>
+    </div>
+  </div>
+
+
   <!-- ═══ WHAT WE OFFER ═══ -->
   <section class="section" id="system">
+    <p class="section-tag r">· PropLaunch OS</p>
     <h2 class="offer-heading r">Not a program. Not an agency.<br>An operating system.</h2>
     <div class="offer-grid">
 
@@ -996,7 +1122,10 @@
   <!-- ═══ TRUST PILLARS ═══ -->
   <div class="pillars-wrap">
     <div class="pillars-inner">
-      <h2 class="pillars-heading r">Built on<br>infrastructure</h2>
+      <div>
+        <h2 class="pillars-heading r">Built on<br>infrastructure</h2>
+        <p class="pillars-sub r">Tested, refined, and scaled over 18 months of live operations.</p>
+      </div>
       <div class="pillars-cols">
         <div class="r">
           <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -1018,76 +1147,13 @@
   </div>
 
 
-  <!-- ═══ DEAL FLOW ═══ -->
-  <div class="dealflow-wrap" id="dealflow">
-    <div class="dealflow-inner">
-      <div>
-        <p class="section-tag r">· Deal Flow</p>
-        <h2 class="dealflow-heading r">Your clients want good property. We make sure you always have it.</h2>
-        <p class="dealflow-desc r r1">Behind PropLaunch is a proprietary deal sourcing network operating across Australia's highest-conviction growth corridors. Every piece of stock has been researched, stress-tested, and approved before it reaches you.</p>
-        <p class="dealflow-desc r r1">This is not a portal. It is not a database. It is a supply relationship, exclusive to PropLaunch operators.</p>
-        <div class="dealflow-table r r2">
-          <div class="dealflow-row"><span class="dealflow-key">Supply network</span><span class="dealflow-val">Proprietary</span></div>
-          <div class="dealflow-row"><span class="dealflow-key">Research standard</span><span class="dealflow-val">Stress-tested</span></div>
-          <div class="dealflow-row"><span class="dealflow-key">Access model</span><span class="dealflow-val">Operator-exclusive</span></div>
-          <div class="dealflow-row"><span class="dealflow-key">Coverage</span><span class="dealflow-val">AUS growth corridors</span></div>
-        </div>
-      </div>
-      <div class="r r1">
-        <div class="dealflow-card">
-          <div class="dealflow-card-img">
-            <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=70')"></div>
-          </div>
-          <div class="dealflow-card-body">
-            <div class="dealflow-card-tag"><div class="dealflow-card-dot"></div>Active allocation · Off-market</div>
-            <div class="dealflow-card-address">Lot 5440, Hoist Drive,<br><em>Tarneit VIC 3029</em></div>
-            <div class="dealflow-card-stats">
-              <div><div class="dc-stat-label">Entry</div><div class="dc-stat-val">$685K</div></div>
-              <div><div class="dc-stat-label">Yield</div><div class="dc-stat-val green">4.70%</div></div>
-              <div><div class="dc-stat-label">Rating</div><div class="dc-stat-val">A–</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ═══ INVESTMENT ═══ -->
-  <div class="invest-wrap r">
-    <p class="section-tag r">· The Investment</p>
-    <h2 class="invest-heading r">The investment is what it is because the output is what it is.</h2>
-    <div class="invest-grid">
-      <div class="invest-card">
-        <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <div class="invest-price">$33,000</div>
-        <div class="invest-name">Foundation Setup</div>
-        <p class="invest-desc">Everything above, delivered in 90 days. $6,000 of this is your first Meta campaign: live, managed, optimised.</p>
-      </div>
-      <div class="invest-card">
-        <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-        <div class="invest-price">$1,000 <small>/mo</small></div>
-        <div class="invest-name">Platform Core</div>
-        <p class="invest-desc">Ongoing systems, deal flow access, and implementation support. The infrastructure keeps running.</p>
-      </div>
-      <div class="invest-card">
-        <div class="invest-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <div class="invest-price">$4,000 – $5,500 <small>/mo</small></div>
-        <div class="invest-name">Brand &amp; Growth Tiers</div>
-        <p class="invest-desc">Active brand management, content production, and marketing account management. Ad spend is separate.</p>
-      </div>
-    </div>
-    <p class="invest-note">// no payment plans · no exceptions · the investment is what it is because the output is what it is</p>
-  </div>
-
-
   <!-- ═══ APPLY ═══ -->
   <div class="apply-wrap" id="apply">
     <div class="apply-tag r"><div class="dealflow-card-dot"></div>Selective intake · Limited operators at any time</div>
     <h2 class="apply-heading r">This isn't for everyone.<br>It's for the <em>right person.</em></h2>
     <p class="apply-body r r1">PropLaunch intake is selective. We work with a limited number of operators at any one time, and every application is reviewed personally. If you're ready to run a property business that operates like a serious firm. Apply below.</p>
     <a href="apply-now.html" class="btn-pill r r2">Apply for access →</a>
-    <p class="apply-note r r3">$33,000 Foundation Setup · Applications reviewed within 48 hours</p>
+    <p class="apply-note r r3">Applications reviewed within 48 hours</p>
   </div>
 
 
@@ -1105,9 +1171,9 @@
       <div>
         <div class="footer-col-title">Product</div>
         <ul class="footer-col-links">
-          <li><a href="#system">The System</a></li>
-          <li><a href="#built">What Gets Built</a></li>
           <li><a href="#dealflow">Deal Flow</a></li>
+          <li><a href="#system">PropLaunch OS</a></li>
+          <li><a href="#built">What Gets Built</a></li>
         </ul>
       </div>
       <div>
