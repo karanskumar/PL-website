@@ -495,15 +495,41 @@
     .system-copy-sub { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
 
     .feat-list { list-style: none; }
-    .feat-item { border-top: 1px solid var(--border); padding: 13px 0; cursor: pointer; }
-    .feat-item:last-child { border-bottom: 1px solid var(--border); }
+    /* Bar IS the divider — no separate border needed */
+    .feat-item { padding: 13px 0; cursor: pointer; }
     .feat-item-title { font-size: 14px; color: var(--muted); transition: color 150ms; user-select: none; }
     .feat-item.active .feat-item-title { color: var(--white); font-weight: 600; }
     .feat-item-body { max-height: 0; overflow: hidden; transition: max-height 300ms ease, margin-top 200ms ease; }
     .feat-item.active .feat-item-body { max-height: 100px; margin-top: 8px; }
-    .feat-item-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
-    .feat-item-bar { height: 1px; background: rgba(255,255,255,0.3); width: 0; transition: width 300ms ease; }
-    .feat-item.active .feat-item-bar { width: 48px; }
+    .feat-item-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* Progress bar — lives at top of each item, acts as the divider line */
+    .feat-item-bar {
+      height: 2px;
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border-radius: 1px;
+      overflow: hidden;
+      margin-bottom: 13px;
+    }
+    /* Closing line after last item */
+    .feat-list::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 1px;
+    }
+    .feat-item-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: rgba(255,255,255,0.88);
+      border-radius: 1px;
+    }
+    @keyframes featProgress {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
 
     /* System visual — also 2-component */
     .system-visual {
@@ -888,10 +914,10 @@
         <p class="system-copy-label">Starting out</p>
         <p class="system-copy-sub">You have the drive, the licence, and the conviction. PropLaunch gives you what took others a decade to figure out — on day one.</p>
         <ul class="feat-list" id="featList1">
-          <li class="feat-item active" data-i="0" data-list="1"><div class="feat-item-title">Brand Identity</div><div class="feat-item-body"><p class="feat-item-desc">Logo, style guide, templates, and a complete asset library — built to last.</p><div class="feat-item-bar"></div></div></li>
-          <li class="feat-item" data-i="1" data-list="1"><div class="feat-item-title">Business Operating System</div><div class="feat-item-body"><p class="feat-item-desc">CRM, pipelines, and automations configured to your business from day one.</p><div class="feat-item-bar"></div></div></li>
-          <li class="feat-item" data-i="2" data-list="1"><div class="feat-item-title">AI-Powered Workflows</div><div class="feat-item-body"><p class="feat-item-desc">Every lead engaged, qualified, and summarised. Every follow-up sent automatically.</p><div class="feat-item-bar"></div></div></li>
-          <li class="feat-item" data-i="3" data-list="1"><div class="feat-item-title">Content System</div><div class="feat-item-body"><p class="feat-item-desc">Social templates, email frameworks, and a content library ready to publish.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item active" data-i="0" data-list="1" data-img="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Brand Identity</div><div class="feat-item-body"><p class="feat-item-desc">Logo, style guide, templates, and a complete asset library — built to last.</p></div></li>
+          <li class="feat-item" data-i="1" data-list="1" data-img="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Business Operating System</div><div class="feat-item-body"><p class="feat-item-desc">CRM, pipelines, and automations configured to your business from day one.</p></div></li>
+          <li class="feat-item" data-i="2" data-list="1" data-img="https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">AI-Powered Workflows</div><div class="feat-item-body"><p class="feat-item-desc">Every lead engaged, qualified, and summarised. Every follow-up sent automatically.</p></div></li>
+          <li class="feat-item" data-i="3" data-list="1" data-img="https://images.unsplash.com/photo-1478827387698-1527781a4887?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Content System</div><div class="feat-item-body"><p class="feat-item-desc">Social templates, email frameworks, and a content library ready to publish.</p></div></li>
         </ul>
       </div>
       <div class="system-visual r r1">
@@ -927,10 +953,10 @@
         <p class="system-copy-label">Already operating</p>
         <p class="system-copy-sub">You have clients, transactions, and a track record. PropLaunch replaces the manual with automated, the inconsistent with systematic.</p>
         <ul class="feat-list" id="featList2">
-          <li class="feat-item active" data-i="0" data-list="2"><div class="feat-item-title">Sales Infrastructure</div><div class="feat-item-body"><p class="feat-item-desc">Discovery frameworks, objection handling, and a repeatable conversion process.</p><div class="feat-item-bar"></div></div></li>
-          <li class="feat-item" data-i="1" data-list="2"><div class="feat-item-title">Deal Flow Access</div><div class="feat-item-body"><p class="feat-item-desc">Curated, analysis-backed property sourced through a proprietary supply network.</p><div class="feat-item-bar"></div></div></li>
-          <li class="feat-item" data-i="2" data-list="2"><div class="feat-item-title">$6,000 Meta Campaign</div><div class="feat-item-body"><p class="feat-item-desc">Managed and optimised over 90 days. Leads in your pipeline from day one.</p><div class="feat-item-bar"></div></div></li>
-          <li class="feat-item" data-i="3" data-list="2"><div class="feat-item-title">Everything for Starting Out and more</div><div class="feat-item-body"><p class="feat-item-desc">Built on the full foundation with additional infrastructure for scale and consistency.</p><div class="feat-item-bar"></div></div></li>
+          <li class="feat-item active" data-i="0" data-list="2" data-img="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Sales Infrastructure</div><div class="feat-item-body"><p class="feat-item-desc">Discovery frameworks, objection handling, and a repeatable conversion process.</p></div></li>
+          <li class="feat-item" data-i="1" data-list="2" data-img="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Deal Flow Access</div><div class="feat-item-body"><p class="feat-item-desc">Curated, analysis-backed property sourced through a proprietary supply network.</p></div></li>
+          <li class="feat-item" data-i="2" data-list="2" data-img="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">$6,000 Meta Campaign</div><div class="feat-item-body"><p class="feat-item-desc">Managed and optimised over 90 days. Leads in your pipeline from day one.</p></div></li>
+          <li class="feat-item" data-i="3" data-list="2" data-img="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Everything for Starting Out and more</div><div class="feat-item-body"><p class="feat-item-desc">Built on the full foundation with additional infrastructure for scale and consistency.</p></div></li>
         </ul>
       </div>
       <div class="system-visual r r1">
@@ -1132,14 +1158,178 @@
     );
     document.querySelectorAll('.r').forEach(el => obs.observe(el));
 
-    // Feature list accordions
-    document.querySelectorAll('.feat-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const listId = item.dataset.list;
-        document.querySelectorAll(`.feat-item[data-list="${listId}"]`).forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
+    // Browser window content per feat-item [list][index]
+    const featBrowserContent = {
+      '1': [
+        { url: 'proplaunch.com/brand',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Brand Identity · Assets</div>
+<div class="system-visual-bars" style="margin-bottom:12px;">
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Logo suite</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Style guide</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Templates</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Asset library</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">logo.svg</span><span class="glass-val green">Complete</span></div>
+  <div class="glass-row"><span class="glass-key">style-guide.pdf</span><span class="glass-val green">Complete</span></div>
+  <div class="glass-row"><span class="glass-key">asset-library/</span><span class="glass-val">Ready</span></div>
+</div>` },
+        { url: 'proplaunch.com/crm',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">CRM Overview · Live</div>
+<div class="system-visual-bars" style="margin-bottom:12px;">
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Contacts</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:88%"></div></div><span class="system-visual-bar-val">847</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Pipeline value</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:72%"></div></div><span class="system-visual-bar-val">$2.4M</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Qualified leads</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:55%"></div></div><span class="system-visual-bar-val">7</span></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">New inquiries</span><span class="glass-val">12</span></div>
+  <div class="glass-row"><span class="glass-key">Proposals sent</span><span class="glass-val">4</span></div>
+  <div class="glass-row"><span class="glass-key">Closed this month</span><span class="glass-val green">2</span></div>
+</div>` },
+        { url: 'proplaunch.com/workflows',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Automation · Running</div>
+<div style="border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:10px;margin-bottom:10px;">
+  <div class="glass-row"><span class="glass-key">10:14 — Lead qualified</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">10:22 — Follow-up sent</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">10:45 — SMS triggered</span><span class="glass-val green">Auto</span></div>
+  <div class="glass-row"><span class="glass-key">11:03 — Email sequence</span><span class="glass-val green">Auto</span></div>
+</div>
+<div class="glass-row"><span class="glass-key">Auto-handled leads</span><span class="glass-val green">94%</span></div>
+<div class="glass-row"><span class="glass-key">Avg response time</span><span class="glass-val">&lt; 2 min</span></div>` },
+        { url: 'proplaunch.com/content',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Content Library · Active</div>
+<div class="system-visual-bars" style="margin-bottom:12px;">
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Social posts</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val">48</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Email sequences</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:75%"></div></div><span class="system-visual-bar-val">12</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Video scripts</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:40%"></div></div><span class="system-visual-bar-val">6</span></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">Scheduled this week</span><span class="glass-val green">14</span></div>
+  <div class="glass-row"><span class="glass-key">Published this month</span><span class="glass-val">38</span></div>
+</div>` }
+      ],
+      '2': [
+        { url: 'proplaunch.com/sales',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Conversion Pipeline · Live</div>
+<div class="system-visual-bars" style="margin-bottom:12px;">
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Discovery calls</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val">24</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Qualified</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:75%"></div></div><span class="system-visual-bar-val">18</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Proposals sent</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:46%"></div></div><span class="system-visual-bar-val">11</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Closed</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:25%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">6</span></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">Close rate</span><span class="glass-val green">54%</span></div>
+  <div class="glass-row"><span class="glass-key">Avg deal size</span><span class="glass-val">$685K</span></div>
+</div>` },
+        { url: 'proplaunch.com/deals',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Active Allocation · Off-market</div>
+<div class="glass-row"><span class="glass-key">Tarneit VIC — $685K</span><span class="glass-val green">A–</span></div>
+<div class="glass-row"><span class="glass-key">Werribee VIC — $590K</span><span class="glass-val">Analysis</span></div>
+<div class="glass-row"><span class="glass-key">Kalkallo VIC — $720K</span><span class="glass-val">Coming</span></div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:10px;padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">Properties reviewed</span><span class="glass-val">47</span></div>
+  <div class="glass-row"><span class="glass-key">Approved for release</span><span class="glass-val green">3</span></div>
+  <div class="glass-row"><span class="glass-key">Supply network</span><span class="glass-val">Proprietary</span></div>
+</div>` },
+        { url: 'proplaunch.com/campaigns',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Meta Campaign · Live</div>
+<div class="system-visual-bars" style="margin-bottom:12px;">
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Budget used</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:47%"></div></div><span class="system-visual-bar-val">47%</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Leads generated</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:62%"></div></div><span class="system-visual-bar-val">31</span></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">Spend to date</span><span class="glass-val">$2,840</span></div>
+  <div class="glass-row"><span class="glass-key">Cost per lead</span><span class="glass-val">$91.60</span></div>
+  <div class="glass-row"><span class="glass-key">CTR</span><span class="glass-val green">3.2%</span></div>
+  <div class="glass-row"><span class="glass-key">ROAS</span><span class="glass-val green">4.1×</span></div>
+</div>` },
+        { url: 'proplaunch.com/dashboard',
+          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">System Status · All Live</div>
+<div class="system-visual-bars" style="margin-bottom:12px;">
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Brand Identity</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">CRM + Pipelines</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">AI Workflows</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Deal Flow</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
+  <div class="glass-row"><span class="glass-key">Meta Campaign</span><span class="glass-val green">Live</span></div>
+  <div class="glass-row"><span class="glass-key">Content System</span><span class="glass-val green">Active</span></div>
+</div>` }
+      ]
+    };
+
+    // Feature list — auto-advance every 7s with animated progress bar
+    function initFeatList(listId) {
+      const items = Array.from(document.querySelectorAll(`.feat-item[data-list="${listId}"]`));
+      if (!items.length) return;
+
+      let current = 0;
+      let timer = null;
+      let paused = false;
+
+      function activate(idx) {
+        current = idx;
+        const row = items[idx].closest('.system-row');
+        const natureBg = row ? row.querySelector('.system-visual .nature-bg') : null;
+        const glassBody = row ? row.querySelector('.glass-browser .glass-body') : null;
+        const glassTitlebar = row ? row.querySelector('.glass-urlbar') : null;
+        const content = featBrowserContent[listId] && featBrowserContent[listId][idx];
+
+        items.forEach((item, i) => {
+          const fill = item.querySelector('.feat-item-bar-fill');
+          item.classList.remove('active');
+          // Reset animation
+          fill.style.animation = 'none';
+          fill.offsetWidth; // force reflow
+          fill.style.animation = '';
+
+          if (i === idx) {
+            item.classList.add('active');
+            fill.style.animation = 'featProgress 7s linear forwards';
+            // Swap background image
+            if (natureBg && item.dataset.img) {
+              natureBg.style.backgroundImage = `url('${item.dataset.img}')`;
+            }
+            // Swap browser window content
+            if (content) {
+              if (glassTitlebar) glassTitlebar.textContent = content.url;
+              if (glassBody) glassBody.innerHTML = content.html;
+            }
+          }
+        });
+      }
+
+      function next() {
+        if (!paused) activate((current + 1) % items.length);
+      }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 7000);
+      }
+
+      // Click to jump to item
+      items.forEach((item, i) => {
+        item.addEventListener('click', () => {
+          activate(i);
+          startTimer();
+        });
       });
-    });
+
+      // Pause on hover
+      const row = items[0].closest('.system-row');
+      if (row) {
+        row.addEventListener('mouseenter', () => { paused = true; });
+        row.addEventListener('mouseleave', () => { paused = false; });
+      }
+
+      // Kick off
+      activate(0);
+      startTimer();
+    }
+
+    initFeatList('1');
+    initFeatList('2');
   </script>
 
 </body>
