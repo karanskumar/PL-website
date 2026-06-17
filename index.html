@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PropLaunch: The Operating System for Serious Property Businesses</title>
-  <meta name="description" content="PropLaunch builds your property business. Brand, systems, marketing and curated deal flow – built and running in 90 days.">
+  <title>PropLaunch: The Property Wealth Operating System</title>
+  <meta name="description" content="Wholesale supply, AI intelligence, and end-to-end execution for Australia's best property advisers. Exclusive builders, exclusive land, our own developments.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -233,7 +233,7 @@
       font-weight: 400;
       color: var(--muted);
       line-height: 1.65;
-      max-width: 420px;
+      max-width: 460px;
       margin: 0 auto 32px;
     }
 
@@ -334,133 +334,111 @@
     .hero-ui-row-time { margin-left: auto; color: var(--muted); font-size: 10px; flex-shrink: 0; }
 
     /* ─────────────────────────────────────────
-       CREDENTIAL STRIP
+       GREEN PULSE DOT
     ───────────────────────────────────────── */
-    .cred-strip {
+    .green-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(74,222,128,0.15);
+      animation: gpulse 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    @keyframes gpulse {
+      0%,100% { box-shadow: 0 0 0 0px rgba(74,222,128,0.5), 0 0 5px 1px rgba(74,222,128,0.35); }
+      50%      { box-shadow: 0 0 0 5px rgba(74,222,128,0.0), 0 0 12px 4px rgba(74,222,128,0.12); }
+    }
+
+    /* ─────────────────────────────────────────
+       STATS STRIP
+    ───────────────────────────────────────── */
+    .stats-strip {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 24px 32px;
+    }
+    .stats-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-col {
+      padding: 32px 36px;
+      border-right: 1px solid var(--border);
       text-align: center;
     }
-    .cred-strip-label { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
-    .cred-items { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
-    .cred-item { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; text-transform: uppercase; }
+    .stat-col:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.5vw, 48px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ─────────────────────────────────────────
+       MANIFESTO BLOCK
+    ───────────────────────────────────────── */
+    .manifesto-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 32px;
+      text-align: center;
+    }
+    .manifesto-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .manifesto-line {
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .manifesto-line.em { font-weight: 500; }
+    .manifesto-line.dim { color: var(--muted); font-size: clamp(17px, 1.8vw, 22px); }
+    .manifesto-kicker {
+      font-family: var(--serif);
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-style: italic;
+      color: var(--green);
+      margin-top: 32px;
+    }
 
     /* ─────────────────────────────────────────
        SECTION SCAFFOLDING
     ───────────────────────────────────────── */
     .section { padding: 80px 32px; max-width: 1200px; margin: 0 auto; }
     .section-divider { border: none; border-top: 1px solid var(--border); }
-    .section-tag { font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 4px; }
-
-    /* ─────────────────────────────────────────
-       OFFER CARDS – 2-component images
-    ───────────────────────────────────────── */
-    .offer-heading {
+    .section-tag { font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 8px; letter-spacing: 0.01em; }
+    .section-heading {
       font-family: var(--serif);
-      font-size: clamp(32px, 3.8vw, 50px);
+      font-size: clamp(30px, 3.5vw, 50px);
       font-weight: 500;
       line-height: 1.08;
-      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .section-lede {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 680px;
+      margin-bottom: 48px;
     }
 
-    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .offer-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    /* ── 2-component card image ── */
-    .offer-card-img {
-      height: 300px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* B&W nature photo base */
-    .nature-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      filter: grayscale(1) brightness(0.45) contrast(1.1);
-      transform: scale(1.02);
-      transition: transform 6s ease;
-    }
-    .offer-card:hover .nature-bg { transform: scale(1.06); }
-
-    /* Dark fade at bottom so glassmorphic card reads cleanly */
-    .nature-fade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(13,15,22,0.05) 0%, rgba(13,15,22,0.55) 70%, rgba(13,15,22,0.92) 100%);
-    }
-
-    /* Glassmorphic browser window */
-    .glass-browser {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 10px;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-
-    .glass-titlebar {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .glass-dot { width: 9px; height: 9px; border-radius: 50%; }
-    .glass-dot-r { background: rgba(255,95,87,0.75); }
-    .glass-dot-y { background: rgba(255,189,68,0.75); }
-    .glass-dot-g { background: rgba(40,200,64,0.75); }
-
-    .glass-urlbar {
-      flex: 1;
-      max-width: 180px;
-      margin: 0 auto;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      padding: 2px 10px;
-      font-size: 10px;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-    }
-
-    .glass-body { padding: 12px 14px; }
-
-    .glass-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 5px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 11px;
-    }
-    .glass-row:last-child { border-bottom: none; }
-    .glass-key { color: rgba(255,255,255,0.45); }
-    .glass-val { color: rgba(255,255,255,0.9); font-weight: 500; }
-    .glass-val.green { color: var(--green); }
-
-    .offer-card-body { padding: 22px 26px 26px; }
-    .offer-card-tag { font-size: 11px; font-weight: 500; color: var(--green); margin-bottom: 8px; }
-    .offer-card-title { font-family: var(--serif); font-size: 26px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 10px; }
-    .offer-card-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
-
+    /* ─────────────────────────────────────────
+       BTN-TEXT
+    ───────────────────────────────────────── */
     .btn-text {
       font-size: 13px; font-weight: 500; color: var(--white); text-decoration: none;
       display: inline-flex; align-items: center; gap: 4px;
@@ -470,314 +448,41 @@
     .btn-text:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.22); }
 
     /* ─────────────────────────────────────────
-       SYSTEM – feature list + screenshot
+       SUPPLY SECTION
     ───────────────────────────────────────── */
-    .system-section { padding: 0 32px 80px; max-width: 1200px; margin: 0 auto; }
-
-    .system-heading {
-      font-family: var(--serif);
-      font-size: clamp(32px, 3.8vw, 52px);
-      font-weight: 500;
-      line-height: 1.08;
-      margin-bottom: 56px;
-    }
-
-    .system-row {
+    .supply-wrap { border-top: 1px solid var(--border); }
+    .supply-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .supply-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 56px;
+      margin-bottom: 48px;
       align-items: start;
-      padding-bottom: 56px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 56px;
     }
-    .system-row:last-child { border-bottom: none; margin-bottom: 0; }
-    .system-row--flip { direction: rtl; }
-    .system-row--flip > * { direction: ltr; }
-
-    .system-copy-label { font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic; color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px; }
-    .system-copy-sub { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
-
-    .feat-list { list-style: none; }
-    /* Bar IS the divider – no separate border needed */
-    .feat-item { padding: 13px 0; cursor: pointer; }
-    .feat-item-title { font-size: 14px; color: var(--muted); transition: color 150ms; user-select: none; }
-    .feat-item.active .feat-item-title { color: var(--white); font-weight: 600; }
-    .feat-item-body { max-height: 0; overflow: hidden; transition: max-height 300ms ease, margin-top 200ms ease; }
-    .feat-item.active .feat-item-body { max-height: 100px; margin-top: 8px; }
-    .feat-item-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-
-    /* Progress bar – lives at top of each item, acts as the divider line */
-    .feat-item-bar {
-      height: 2px;
-      width: 100%;
-      background: rgba(255,255,255,0.08);
-      border-radius: 1px;
-      overflow: hidden;
-      margin-bottom: 13px;
-    }
-    /* Closing line after last item */
-    .feat-list::after {
-      content: '';
-      display: block;
-      height: 2px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 1px;
-    }
-    .feat-item-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: rgba(255,255,255,0.88);
-      border-radius: 1px;
-    }
-    @keyframes featProgress {
-      from { width: 0%; }
-      to   { width: 100%; }
-    }
-
-    /* System visual – also 2-component */
-    .system-visual {
+    .supply-body { font-size: 15px; color: var(--muted); line-height: 1.75; }
+    .meta-labels {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      height: 460px;
-      position: relative;
     }
-
-    .system-visual .nature-bg { height: 100%; }
-
-    .system-visual-inner {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px;
-      background: linear-gradient(180deg, rgba(13,15,22,0.10) 0%, rgba(13,15,22,0.68) 55%, rgba(13,15,22,0.95) 100%);
+    .meta-label-item {
+      padding: 22px 24px;
+      border-right: 1px solid var(--border);
     }
-
-    .system-visual-chart {
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .system-visual-chart-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 12px; }
-
-    .system-visual-bars { display: flex; flex-direction: column; gap: 9px; }
-    .system-visual-bar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
-    .system-visual-bar-label { width: 110px; flex-shrink: 0; }
-    .system-visual-bar-track { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
-    .system-visual-bar-fill { height: 100%; border-radius: 2px; background: var(--green); opacity: 0.7; }
-    .system-visual-bar-val { width: 28px; text-align: right; }
+    .meta-label-item:last-child { border-right: none; }
+    .meta-label-key { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+    .meta-label-val { font-size: 11px; color: var(--muted); }
 
     /* ─────────────────────────────────────────
-       TRUST PILLARS
+       METHODOLOGY
     ───────────────────────────────────────── */
-    .pillars-wrap { border-top: 1px solid var(--border); }
-    .pillars-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start; }
+    .methodology-wrap { background: var(--surface); border-top: 1px solid var(--border); }
+    .methodology-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .methodology-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 56px; }
+    .methodology-copy { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
 
-    .pillars-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; }
-    .pillars-sub { font-size: 15px; color: var(--muted); margin-top: 12px; line-height: 1.6; }
-    .pillars-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .pillar-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(74,222,128,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; color: var(--green); }
-    .pillar-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
-    .pillar-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-
-    /* ─────────────────────────────────────────
-       DEAL FLOW
-    ───────────────────────────────────────── */
-    .dealflow-wrap { border-top: 1px solid var(--border); background: var(--surface); }
-    .dealflow-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-
-    .dealflow-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; margin-bottom: 18px; }
-    .dealflow-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
-    .dealflow-table { margin-top: 32px; border-top: 1px solid var(--border); }
-    .dealflow-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-    .dealflow-key { color: var(--muted); }
-    .dealflow-val { color: var(--white); font-weight: 500; }
-
-    /* Deal flow property card – also 2-component */
-    .dealflow-card { background: var(--black); border: 1px solid var(--border2); border-radius: 10px; overflow: hidden; }
-    .dealflow-card-img { height: 200px; position: relative; overflow: hidden; }
-    .dealflow-card-img .nature-bg { height: 100%; }
-    .dealflow-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 20%, rgba(13,15,22,0.90) 100%); }
-
-    .dealflow-card-body { padding: 18px 22px 22px; }
-    .dealflow-card-tag { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 500; color: var(--green); margin-bottom: 10px; }
-    .dealflow-card-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 3px rgba(74,222,128,0.15); animation: gpulse 1.8s ease-in-out infinite; }
-    @keyframes gpulse {
-      0%,100% { box-shadow: 0 0 0 0px rgba(74,222,128,0.5), 0 0 5px 1px rgba(74,222,128,0.35); }
-      50%      { box-shadow: 0 0 0 5px rgba(74,222,128,0.0), 0 0 12px 4px rgba(74,222,128,0.12); }
-    }
-    .dealflow-card-address { font-family: var(--serif); font-size: 19px; font-weight: 500; line-height: 1.3; margin-bottom: 16px; }
-    .dealflow-card-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 14px; border-top: 1px solid var(--border); }
-    .dc-stat-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 4px; }
-    .dc-stat-val { font-size: 16px; font-weight: 600; }
-    .dc-stat-val.green { color: var(--green); }
-
-    /* ─────────────────────────────────────────
-       INVESTMENT
-    ───────────────────────────────────────── */
-    .invest-wrap { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
-    .invest-heading { font-family: var(--serif); font-size: clamp(28px, 3vw, 46px); font-weight: 500; line-height: 1.1; margin-bottom: 48px; }
-
-    .invest-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .invest-card { padding: 32px 28px; border-right: 1px solid var(--border); }
-    .invest-card:last-child { border-right: none; }
-    .invest-card-icon { margin-bottom: 18px; color: var(--green); }
-    .invest-price { font-family: var(--serif); font-size: 34px; font-weight: 500; letter-spacing: -0.01em; line-height: 1; margin-bottom: 6px; }
-    .invest-price small { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--muted); }
-    .invest-name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); margin-bottom: 12px; }
-    .invest-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .invest-note { font-size: 12px; color: var(--subtle); margin-top: 24px; font-style: italic; }
-
-    /* ─────────────────────────────────────────
-       APPLY
-    ───────────────────────────────────────── */
-    .apply-wrap { border-top: 1px solid var(--border); padding: 100px 32px; text-align: center; }
-    .apply-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 22px; }
-    .apply-heading { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 500; line-height: 1.06; margin-bottom: 18px; }
-    .apply-body { font-size: 15px; color: var(--muted); max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
-    .apply-note { font-size: 12px; color: var(--subtle); margin-top: 14px; }
-
-    /* ─────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────── */
-    .footer-disclaimer { border-top: 1px solid var(--border); padding: 18px 32px; }
-    .footer-disclaimer-text { font-size: 11px; color: var(--subtle); line-height: 1.5; }
-
-    .footer-main { border-top: 1px solid var(--border); padding: 48px 32px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
-
-    .footer-brand { display: block; margin-bottom: 12px; text-decoration: none; }
-    .footer-brand img { height: 29px; width: auto; opacity: 0.6; }
-    .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 220px; }
-    .footer-col-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
-    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 200ms; }
-    .footer-col-links a:hover { color: var(--white); }
-
-    .footer-bottom { border-top: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-copy { font-size: 12px; color: var(--subtle); }
-
-    .footer-watermark {
-      font-family: var(--serif);
-      font-size: clamp(72px, 14vw, 180px);
-      font-weight: 700;
-      color: rgba(255,255,255,0.025);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      padding: 0 28px;
-      user-select: none;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    /* ─────────────────────────────────────────
-       SCROLL REVEAL
-    ───────────────────────────────────────── */
-    .r { opacity: 0; transform: translateY(20px); transition: opacity 500ms ease, transform 500ms ease; }
-    .r.on { opacity: 1; transform: none; }
-    .r1 { transition-delay: 80ms; }
-    .r2 { transition-delay: 160ms; }
-    .r3 { transition-delay: 240ms; }
-
-    /* ─────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .pillars-inner { grid-template-columns: 1fr; gap: 40px; }
-      .pillars-cols { grid-template-columns: repeat(3, 1fr); }
-      .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; }
-    }
-
-    @media (max-width: 768px) {
-      /* Nav */
-      .nav { padding: 0 20px; height: 56px; }
-      .nav.scrolled { width: calc(100% - 32px); padding: 0 6px 0 18px; height: 48px; }
-      .nav-links { display: none; }
-      .nav-cta { display: none; }
-      .nav-mobile-cta { display: block; }
-
-      /* Hero */
-      .hero { padding: 80px 20px 60px; }
-      .hero-rock { display: none; }
-      .hero-ui-body { grid-template-columns: 1fr; }
-      .hero-ui-sidebar { display: none; }
-      .hero-ui-cols { grid-template-columns: 1fr; }
-      .hero-ui-cols > div:last-child { display: none; }
-
-      /* Sections */
-      .section { padding: 60px 20px; }
-      .system-section { padding: 0 20px 60px; }
-      .cred-strip { padding: 20px; }
-      .cred-items { gap: 20px; }
-
-      /* Cards */
-      .offer-grid { grid-template-columns: 1fr; }
-      .offer-card-img { height: 260px; }
-
-      /* System rows */
-      .system-row { grid-template-columns: 1fr; gap: 32px; }
-      .system-row--flip { direction: ltr; }
-      .system-visual { height: 320px; }
-
-      /* Pillars */
-      .pillars-inner { padding: 60px 20px; }
-      .pillars-cols { grid-template-columns: 1fr; gap: 24px; }
-
-      /* Deal flow */
-      .dealflow-inner { grid-template-columns: 1fr; padding: 60px 20px; gap: 40px; }
-
-      /* Investment */
-      .invest-wrap { padding: 60px 20px; }
-      .invest-grid { grid-template-columns: 1fr; border-radius: 10px; }
-      .invest-card { border-right: none; border-bottom: 1px solid var(--border); }
-      .invest-card:last-child { border-bottom: none; }
-
-      /* Apply */
-      .apply-wrap { padding: 70px 20px; }
-
-      /* Deal Flow Filters */
-      .dealflow-filters-wrap { padding: 60px 20px; }
-      .filter-grid { grid-template-columns: repeat(2, 1fr); }
-
-      /* Footer */
-      .footer-main { grid-template-columns: 1fr; padding: 40px 20px 24px; }
-      .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
-      .footer-disclaimer { padding: 16px 20px; }
-      .footer-watermark { padding: 0 20px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-headline { font-size: 32px; }
-      .offer-heading { font-size: 28px; }
-      .system-heading { font-size: 28px; }
-      .dealflow-heading { font-size: 28px; }
-      .apply-heading { font-size: 32px; }
-      .pillars-heading { font-size: 26px; }
-      .invest-heading { font-size: 26px; }
-      .hero-ui { margin-top: 40px; }
-      .cred-item { font-size: 11px; }
-      .glass-browser { left: 12px; right: 12px; bottom: 12px; }
-      .filter-grid { grid-template-columns: 1fr; }
-    }
-    /* ── Deal Flow Filters Section ── */
-    .dealflow-filters-wrap {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 80px 32px;
-    }
-    .dealflow-filters-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .dealflow-filters-heading {
-      font-family: var(--serif);
-      font-size: clamp(28px, 3.2vw, 42px);
-      font-weight: 500;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      margin-bottom: 40px;
-    }
     .filter-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -811,6 +516,380 @@
       color: var(--muted);
       line-height: 1.7;
     }
+
+    /* ─────────────────────────────────────────
+       SERVICES – every stage
+    ───────────────────────────────────────── */
+    .services-wrap { border-top: 1px solid var(--border); }
+    .services-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+    .service-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .service-row--flip { direction: rtl; }
+    .service-row--flip > * { direction: ltr; }
+
+    .service-num { font-size: 11px; font-weight: 600; color: var(--subtle); letter-spacing: 0.06em; margin-bottom: 10px; }
+    .service-title { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 32px); font-weight: 500; line-height: 1.15; margin-bottom: 14px; }
+    .service-desc { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 22px; }
+
+    .service-img-placeholder {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─────────────────────────────────────────
+       PROJECTS BAND
+    ───────────────────────────────────────── */
+    .projects-band-wrap {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .projects-band-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .projects-band-left {}
+    .projects-band-eyebrow { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .projects-band-heading {
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    /* ─────────────────────────────────────────
+       TRACK RECORD
+    ───────────────────────────────────────── */
+    .track-wrap { background: var(--black); border-top: 1px solid var(--border); }
+    .track-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .track-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+    .track-stat-num {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .track-stat-num.green { color: var(--green); }
+    .track-stat-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .track-support { font-size: 13px; color: var(--subtle); line-height: 1.7; margin-bottom: 24px; }
+    .sand-note {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: var(--subtle);
+      font-style: italic;
+      line-height: 1.6;
+      display: inline-block;
+    }
+
+    /* ─────────────────────────────────────────
+       PARTNERS INVEST
+    ───────────────────────────────────────── */
+    .partners-invest-wrap { background: var(--surface); border-top: 1px solid var(--border); }
+    .partners-invest-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .partners-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 40px; }
+    .partner-card { background: var(--black); padding: 30px 28px; }
+    .partner-card-num { font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 0.06em; margin-bottom: 14px; }
+    .partner-card-title { font-family: var(--serif); font-size: 19px; font-weight: 500; margin-bottom: 10px; }
+    .partner-card-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    .teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .teaser-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 30px 28px; }
+    .teaser-card-tag { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+    .teaser-card-title { font-family: var(--serif); font-size: 22px; font-weight: 500; line-height: 1.2; margin-bottom: 12px; }
+    .teaser-card-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+
+    /* ─────────────────────────────────────────
+       CLIENT OUTCOMES / QUOTES
+    ───────────────────────────────────────── */
+    .outcomes-wrap { border-top: 1px solid var(--border); }
+    .outcomes-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 30px 26px;
+      border-bottom: 2px solid var(--green);
+    }
+    .quote-text {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .quote-attr { font-size: 12px; color: var(--muted); }
+
+    /* ─────────────────────────────────────────
+       OS SECTION
+    ───────────────────────────────────────── */
+    .os-wrap { background: var(--surface); border-top: 1px solid var(--border); }
+    .os-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .os-divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+    .os-sub-tag { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 16px; }
+    .os-built-heading { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 32px); font-weight: 500; margin-bottom: 36px; }
+    .os-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .os-card { background: var(--black); padding: 26px 24px; }
+    .os-card-tag { font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 0.05em; margin-bottom: 12px; }
+    .os-card-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 10px; }
+    .os-card-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+    /* ─────────────────────────────────────────
+       TIERS
+    ───────────────────────────────────────── */
+    .tiers-wrap { border-top: 1px solid var(--border); }
+    .tiers-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+    .tier-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px 28px;
+    }
+    .tier-card--orbit { border-color: rgba(74,222,128,0.25); background: rgba(74,222,128,0.03); }
+    .tier-price { font-family: var(--serif); font-size: 28px; font-weight: 500; margin-bottom: 4px; }
+    .tier-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 12px; }
+    .tier-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+    .tier-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .tier-feature { font-size: 13px; color: rgba(255,255,255,0.75); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+    .tier-feature::before { content: '→'; color: var(--green); flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+    .tier-badge { display: inline-block; font-size: 10px; font-weight: 600; color: var(--green); border: 1px solid rgba(74,222,128,0.3); border-radius: 999px; padding: 3px 10px; letter-spacing: 0.05em; margin-bottom: 20px; }
+    .syndicate-note { text-align: center; font-size: 13px; font-style: italic; color: var(--muted); margin-top: 24px; }
+
+    .faq-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; border-top: 1px solid var(--border); padding-top: 48px; margin-top: 48px; }
+    .faq-q { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 12px; line-height: 1.3; }
+    .faq-a { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
+    /* ─────────────────────────────────────────
+       FOR CLIENTS
+    ───────────────────────────────────────── */
+    .for-clients-wrap { background: var(--surface); border-top: 1px solid var(--border); }
+    .for-clients-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+    .for-clients-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-bottom: 48px; align-items: start; }
+    .for-clients-heading { font-family: var(--serif); font-size: clamp(28px, 3.2vw, 46px); font-weight: 500; line-height: 1.1; }
+    .for-clients-body { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+
+    /* ─────────────────────────────────────────
+       APPLY / CLOSING CTA
+    ───────────────────────────────────────── */
+    .apply-wrap { border-top: 1px solid var(--border); padding: 100px 32px; text-align: center; }
+    .apply-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 22px; }
+    .apply-heading { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 500; line-height: 1.06; margin-bottom: 18px; }
+    .apply-body { font-size: 15px; color: var(--muted); max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
+    .apply-note { font-size: 12px; color: var(--subtle); margin-top: 14px; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    .footer-disclaimer { border-top: 1px solid var(--border); padding: 18px 32px; }
+    .footer-disclaimer-text { font-size: 11px; color: var(--subtle); line-height: 1.5; }
+
+    .footer-main { border-top: 1px solid var(--border); padding: 48px 32px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+
+    .footer-brand { display: block; margin-bottom: 12px; text-decoration: none; }
+    .footer-brand img { height: 29px; width: auto; opacity: 0.6; }
+    .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 220px; }
+    .footer-col-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 200ms; }
+    .footer-col-links a:hover { color: var(--white); }
+
+    .footer-bottom { border-top: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 12px; color: var(--subtle); }
+
+    .footer-ack { font-size: 11px; color: var(--subtle); opacity: 0.7; line-height: 1.5; margin-top: 16px; max-width: 340px; }
+
+    .footer-watermark {
+      font-family: var(--serif);
+      font-size: clamp(72px, 14vw, 180px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.025);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      padding: 0 28px;
+      user-select: none;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────────────────────
+       GLASS BROWSER (for hero offer cards)
+    ───────────────────────────────────────── */
+    .glass-browser {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .glass-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+    .glass-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .glass-dot-r { background: rgba(255,95,87,0.75); }
+    .glass-dot-y { background: rgba(255,189,68,0.75); }
+    .glass-dot-g { background: rgba(40,200,64,0.75); }
+    .glass-urlbar {
+      flex: 1; max-width: 180px; margin: 0 auto;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px; padding: 2px 10px; font-size: 10px; color: rgba(255,255,255,0.4); text-align: center;
+    }
+    .glass-body { padding: 12px 14px; }
+    .glass-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 11px; }
+    .glass-row:last-child { border-bottom: none; }
+    .glass-key { color: rgba(255,255,255,0.45); }
+    .glass-val { color: rgba(255,255,255,0.9); font-weight: 500; }
+    .glass-val.green { color: var(--green); }
+
+    /* Nature bg */
+    .nature-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(1) brightness(0.45) contrast(1.1);
+      transform: scale(1.02);
+    }
+    .nature-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,15,22,0.05) 0%, rgba(13,15,22,0.55) 70%, rgba(13,15,22,0.92) 100%);
+    }
+
+    /* Feature list (OS section) */
+    .feat-list { list-style: none; }
+    .feat-item { padding: 13px 0; cursor: pointer; }
+    .feat-item-title { font-size: 14px; color: var(--muted); transition: color 150ms; user-select: none; }
+    .feat-item.active .feat-item-title { color: var(--white); font-weight: 600; }
+    .feat-item-body { max-height: 0; overflow: hidden; transition: max-height 300ms ease, margin-top 200ms ease; }
+    .feat-item.active .feat-item-body { max-height: 100px; margin-top: 8px; }
+    .feat-item-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .feat-item-bar { height: 2px; width: 100%; background: rgba(255,255,255,0.08); border-radius: 1px; overflow: hidden; margin-bottom: 13px; }
+    .feat-list::after { content: ''; display: block; height: 2px; background: rgba(255,255,255,0.08); border-radius: 1px; }
+    .feat-item-bar-fill { height: 100%; width: 0%; background: rgba(255,255,255,0.88); border-radius: 1px; }
+    @keyframes featProgress { from { width: 0%; } to { width: 100%; } }
+
+    /* ─────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────── */
+    .r { opacity: 0; transform: translateY(20px); transition: opacity 500ms ease, transform 500ms ease; }
+    .r.on { opacity: 1; transform: none; }
+    .r1 { transition-delay: 80ms; }
+    .r2 { transition-delay: 160ms; }
+    .r3 { transition-delay: 240ms; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-col:nth-child(2) { border-right: none; }
+      .stat-col:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-col:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      .supply-grid { grid-template-columns: 1fr; gap: 24px; }
+      .meta-labels { grid-template-columns: repeat(2, 1fr); }
+      .meta-label-item:nth-child(2) { border-right: none; }
+      .meta-label-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .meta-label-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      .methodology-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: repeat(2, 1fr); }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; gap: 28px; }
+      .for-clients-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .os-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; height: 56px; }
+      .nav.scrolled { width: calc(100% - 32px); padding: 0 6px 0 18px; height: 48px; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-cta { display: block; }
+
+      .hero { padding: 80px 20px 60px; }
+      .hero-rock { display: none; }
+      .hero-ui-body { grid-template-columns: 1fr; }
+      .hero-ui-sidebar { display: none; }
+      .hero-ui-cols { grid-template-columns: 1fr; }
+      .hero-ui-cols > div:last-child { display: none; }
+
+      .section { padding: 60px 20px; }
+      .supply-inner, .methodology-inner, .services-inner, .track-inner, .partners-invest-inner, .outcomes-inner, .os-inner, .tiers-inner, .for-clients-inner { padding: 60px 20px; }
+      .manifesto-wrap { padding: 60px 20px; }
+
+      .stats-strip-inner { grid-template-columns: repeat(2, 1fr); }
+
+      .service-row { grid-template-columns: 1fr; gap: 28px; }
+      .service-row--flip { direction: ltr; }
+
+      .projects-band-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding: 40px 20px; }
+
+      .track-stats { grid-template-columns: 1fr; gap: 32px; }
+
+      .quotes-grid { grid-template-columns: 1fr; }
+      .teaser-grid { grid-template-columns: 1fr; }
+      .partners-grid { grid-template-columns: 1fr; }
+      .os-cards { grid-template-columns: 1fr; }
+
+      .apply-wrap { padding: 70px 20px; }
+
+      .footer-main { grid-template-columns: 1fr; padding: 40px 20px 24px; }
+      .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
+      .footer-disclaimer { padding: 16px 20px; }
+      .footer-watermark { padding: 0 20px; }
+
+      .filter-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 32px; }
+      .apply-heading { font-size: 32px; }
+      .hero-ui { margin-top: 40px; }
+      .glass-browser { left: 12px; right: 12px; bottom: 12px; }
+      .filter-grid { grid-template-columns: 1fr; }
+      .stats-strip-inner { grid-template-columns: 1fr; }
+      .stat-col { border-right: none !important; border-top: 1px solid var(--border); }
+      .stat-col:first-child { border-top: none; }
+      .meta-labels { grid-template-columns: 1fr; }
+      .meta-label-item { border-right: none !important; border-bottom: 1px solid var(--border); }
+      .meta-label-item:last-child { border-bottom: none; }
+    }
   </style>
 </head>
 <body>
@@ -821,12 +900,13 @@
       <img src="logo.svg" alt="PropLaunch">
     </a>
     <ul class="nav-links">
-      <li><a href="#dealflow">Deal Flow</a></li>
-      <li><a href="#system">PropLaunch OS</a></li>
-      <li><a href="#built">What Gets Built</a></li>
+      <li><a href="#supply">Deal Flow</a></li>
+      <li><a href="#methodology">Methodology</a></li>
+      <li><a href="#partners-invest">Partners</a></li>
+      <li><a href="#tiers">Tiers</a></li>
       <li><a href="#apply">Apply</a></li>
     </ul>
-    <a href="apply-now.html" class="nav-cta">Apply for access</a>
+    <a href="apply-now.html" class="nav-cta">Request stock access →</a>
     <a href="apply-now.html" class="nav-mobile-cta">Apply</a>
   </nav>
 
@@ -837,14 +917,10 @@
     <div class="hero-rock hero-rock--right"></div>
 
     <div class="hero-content">
-      <p class="hero-eyebrow r"><span class="dealflow-card-dot"></span>PropLaunch OS · Now accepting applications</p>
-      <h1 class="hero-headline r r1">
-        We scale your business.<br>
-        We supply your deals.<br>
-        You just <em>close.</em>
-      </h1>
-      <p class="hero-sub r r2">The operating system for serious property businesses. Curated Deal Flow, Systems, Marketing and Brand – built and ready to go.</p>
-      <a href="apply-now.html" class="btn-pill r r3">Apply for access →</a>
+      <p class="hero-eyebrow r"><span class="green-dot"></span>Now accepting applications</p>
+      <h1 class="hero-headline r r1">The property wealth<br><em>operating</em> system.</h1>
+      <p class="hero-sub r r2">Wholesale supply, AI intelligence, and end-to-end execution for Australia's best property advisers. Exclusive builders, exclusive land, our own developments.</p>
+      <a href="apply-now.html" class="btn-pill r r3">Request stock access →</a>
     </div>
 
     <div class="hero-ui r r3">
@@ -890,258 +966,490 @@
   </section>
 
 
-  <!-- ═══ CREDENTIAL STRIP ═══ -->
-  <div class="cred-strip">
-    <p class="cred-strip-label">Built by operators who've run</p>
-    <div class="cred-items">
-      <span class="cred-item">Property Businesses</span>
-      <span class="cred-item">CRM Infrastructure</span>
-      <span class="cred-item">Paid Acquisition</span>
-      <span class="cred-item">Off-Market Supply</span>
-      <span class="cred-item">AI Automation</span>
-    </div>
-  </div>
-
-
-  <!-- ═══ DEAL FLOW ═══ -->
-  <div class="dealflow-wrap" id="dealflow">
-    <div class="dealflow-inner">
-      <div>
-        <p class="section-tag r">· Deal Flow</p>
-        <h2 class="dealflow-heading r">Your clients want good property. We make sure you always have it.</h2>
-        <p class="dealflow-desc r r1">Behind PropLaunch is a proprietary deal sourcing network operating across Australia's highest-conviction growth corridors. Every piece of stock has been researched, stress-tested, and approved before it reaches you.</p>
-        <p class="dealflow-desc r r1">This is not a portal. It is not a database. It is a supply relationship, exclusive to PropLaunch operators.</p>
-        <div class="dealflow-table r r2">
-          <div class="dealflow-row"><span class="dealflow-key">Supply network</span><span class="dealflow-val">Proprietary</span></div>
-          <div class="dealflow-row"><span class="dealflow-key">Research standard</span><span class="dealflow-val">Stress-tested</span></div>
-          <div class="dealflow-row"><span class="dealflow-key">Access model</span><span class="dealflow-val">Operator-exclusive</span></div>
-          <div class="dealflow-row"><span class="dealflow-key">Coverage</span><span class="dealflow-val">AUS growth corridors</span></div>
-        </div>
+  <!-- ═══ STATS STRIP ═══ -->
+  <div class="stats-strip">
+    <div class="stats-strip-inner">
+      <div class="stat-col r">
+        <div class="stat-num">872</div>
+        <div class="stat-label">Deals settled</div>
       </div>
-      <div class="r r1">
-        <div class="dealflow-card">
-          <div class="dealflow-card-img">
-            <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=70')"></div>
-          </div>
-          <div class="dealflow-card-body">
-            <div class="dealflow-card-tag"><div class="dealflow-card-dot"></div>Active allocation · Off-market</div>
-            <div class="dealflow-card-address">Lot 5440, Hoist Drive,<br><em>Tarneit VIC 3029</em></div>
-            <div class="dealflow-card-stats">
-              <div><div class="dc-stat-label">Entry</div><div class="dc-stat-val">$685K</div></div>
-              <div><div class="dc-stat-label">Yield</div><div class="dc-stat-val green">4.70%</div></div>
-              <div><div class="dc-stat-label">Rating</div><div class="dc-stat-val">A–</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="stat-col r r1">
+        <div class="stat-num">$597M</div>
+        <div class="stat-label">Property transacted</div>
+      </div>
+      <div class="stat-col r r2">
+        <div class="stat-num">120</div>
+        <div class="stat-label">Settlements last quarter</div>
+      </div>
+      <div class="stat-col r r3">
+        <div class="stat-num">5</div>
+        <div class="stat-label">States · WA QLD VIC NSW SA</div>
       </div>
     </div>
   </div>
 
-  <!-- ═══ HOW DEAL FLOW WORKS ═══ -->
-  <div class="dealflow-filters-wrap">
-    <div class="dealflow-filters-inner">
-      <p class="section-tag r">· Four filters. Zero guesswork.</p>
-      <h2 class="dealflow-filters-heading r">Every deal passes four screens before you see it.</h2>
-      <div class="filter-grid">
-        <div class="filter-card r">
+
+  <!-- ═══ MANIFESTO ═══ -->
+  <div class="manifesto-wrap">
+    <div class="manifesto-inner">
+      <p class="manifesto-line dim r">Most property is sold on a guess. A listing. A commission. A hope.</p>
+      <p class="manifesto-line em r r1">We removed the guess.</p>
+      <p class="manifesto-line r r2">Every corridor — verified. Every deal — stress-tested. Every home — delivered fixed-price, inspected, end-to-end.</p>
+      <p class="manifesto-line dim r r3">One methodology. One platform. One standard, applied every time.</p>
+      <p class="manifesto-kicker r r3">This is property, operated like a system.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══ EXCLUSIVE SUPPLY ═══ -->
+  <div class="supply-wrap" id="supply">
+    <div class="supply-inner">
+      <p class="section-tag r">· Exclusive Supply</p>
+      <h2 class="section-heading r">Your clients want good property.<br>We make sure you always have it.</h2>
+      <div class="supply-grid r r1">
+        <p class="supply-body">Behind PropLaunch is supply you cannot get anywhere else — build partners who deliver exclusively through us, land we option before it reaches the market, and developments we run ourselves.</p>
+        <p class="supply-body">This is not a listing site. It is a wholesale pipeline — every property researched, stress-tested, and secured at inception, exclusive to PropLaunch partners and their clients.</p>
+      </div>
+      <div class="meta-labels r r2">
+        <div class="meta-label-item">
+          <div class="meta-label-key">Build partners</div>
+          <div class="meta-label-val">Exclusive to PropLaunch</div>
+        </div>
+        <div class="meta-label-item">
+          <div class="meta-label-key">Land</div>
+          <div class="meta-label-val">Optioned &amp; owned</div>
+        </div>
+        <div class="meta-label-item">
+          <div class="meta-label-key">Developments</div>
+          <div class="meta-label-val">In-house</div>
+        </div>
+        <div class="meta-label-item">
+          <div class="meta-label-key">Coverage</div>
+          <div class="meta-label-val">AUS growth corridors</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ METHODOLOGY ═══ -->
+  <div class="methodology-wrap" id="methodology">
+    <div class="methodology-inner">
+      <p class="section-tag r">· The Greenfield Convergence Methodology</p>
+      <h2 class="section-heading r">We don't predict the market.<br>We <em>find</em> where it's already converging.</h2>
+      <div class="methodology-grid">
+        <div class="r r1">
+          <p class="methodology-copy">The Greenfield Convergence Methodology identifies growth corridors before prices move — using three compounding forces that, when they align, reliably produce sustained capital growth and rental demand.</p>
+          <p class="methodology-copy">We map the intersection of closing affordability gaps, forced gentrification, and cost inflation. Where all three converge, supply constraints drive price acceleration.</p>
+          <p class="methodology-copy">Every corridor in our supply network has passed all four screens. None of our stock is sourced on speculation.</p>
+        </div>
+        <div class="r r2">
+          <svg viewBox="0 0 520 512" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+            <defs>
+              <marker id="ah" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.3"/>
+              </marker>
+              <marker id="ahb" markerWidth="13" markerHeight="13" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L9,4 L0,8 Z" fill="#4ade80"/>
+              </marker>
+            </defs>
+            <g fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5">
+              <circle cx="260" cy="76" r="56"/><circle cx="100" cy="220" r="56"/><circle cx="420" cy="220" r="56"/>
+            </g>
+            <g font-family="'Inter',sans-serif" font-size="8.5" fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="0.4">
+              <text x="260" y="72">AFFORDABILITY</text><text x="260" y="86">GAP CLOSING</text>
+              <text x="100" y="216">FORCED</text><text x="100" y="230">GENTRIFICATION</text>
+              <text x="420" y="216">COST</text><text x="420" y="230">INFLATION</text>
+            </g>
+            <path d="M260,134 L260,160" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+            <path d="M150,244 L224,212" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+            <path d="M370,244 L296,212" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+            <circle cx="260" cy="196" r="31" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <text x="260" y="200" font-family="'Inter',sans-serif" font-size="8.5" fill="rgba(255,255,255,0.8)" text-anchor="middle">CONVERGE</text>
+            <path d="M255,226 C 200,300 140,372 104,438" stroke="rgba(255,255,255,0.15)" stroke-width="1.1" stroke-dasharray="3,4" fill="none" marker-end="url(#ah)"/>
+            <path d="M72,470 L470,470" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <path d="M72,470 L72,300" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <path d="M90,460 C 250,458 338,442 452,322" stroke="#4ade80" stroke-width="3" fill="none" marker-end="url(#ahb)"/>
+            <text x="262" y="300" font-family="'Playfair Display',Georgia,serif" font-style="italic" font-size="19" fill="rgba(255,255,255,0.7)">Prices accelerate</text>
+            <text x="78" y="490" font-family="'Inter',sans-serif" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="1">TIME</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="filter-grid r">
+        <div class="filter-card">
           <div class="filter-num">01</div>
           <h3 class="filter-title">Affordability Convergence</h3>
           <p class="filter-desc">Where median prices meet household income growth. The intersection that drives sustained demand without speculative risk.</p>
         </div>
-        <div class="filter-card r r1">
+        <div class="filter-card">
           <div class="filter-num">02</div>
           <h3 class="filter-title">Infrastructure Catalysts</h3>
           <p class="filter-desc">Government-backed corridors with committed capital in transport, health, and education. The spending that always precedes price movement.</p>
         </div>
-        <div class="filter-card r r2">
+        <div class="filter-card">
           <div class="filter-num">03</div>
           <h3 class="filter-title">Demographic Acceleration</h3>
           <p class="filter-desc">Population growth running above the national average. The leading indicator of rental demand and long-term capital appreciation.</p>
         </div>
-        <div class="filter-card r r3">
+        <div class="filter-card">
           <div class="filter-num">04</div>
           <h3 class="filter-title">Supply Constraints</h3>
           <p class="filter-desc">Limited land release, low vacancy rates, and restrictive zoning. Where scarcity meets demand, prices move. We only work here.</p>
         </div>
       </div>
-      <div class="r r3" style="text-align:center;margin-top:48px;">
+
+      <div class="r" style="text-align:center;margin-top:48px;">
         <a href="deal-launch.html" class="btn-text">See Deal Launch in full →</a>
       </div>
     </div>
   </div>
 
 
-  <!-- ═══ WHAT WE OFFER ═══ -->
-  <section class="section" id="system">
-    <p class="section-tag r">· PropLaunch OS</p>
-    <h2 class="offer-heading r">Not a program. Not an agency.<br>An operating system.</h2>
-    <div class="offer-grid">
+  <!-- ═══ EVERY STAGE HANDLED ═══ -->
+  <div class="services-wrap" id="services">
+    <div class="services-inner">
+      <p class="section-tag r">· What we deliver</p>
+      <h2 class="section-heading r">Every stage, <em>handled.</em></h2>
+      <p class="section-lede r r1">From the research desk to a tenanted property, one firm runs the entire process — so you and your clients always know exactly where things stand.</p>
 
-      <!-- Card 1: Business OS -->
-      <div class="offer-card r">
-        <div class="offer-card-img">
-          <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=70')"></div>
-          <div class="nature-fade"></div>
-          <div class="glass-browser">
-            <div class="glass-titlebar">
-              <div class="glass-dot glass-dot-r"></div>
-              <div class="glass-dot glass-dot-y"></div>
-              <div class="glass-dot glass-dot-g"></div>
-              <div class="glass-urlbar">proplaunch.com/dashboard</div>
-            </div>
-            <div class="glass-body">
-              <div class="glass-row"><span class="glass-key">CRM status</span><span class="glass-val green">Active</span></div>
-              <div class="glass-row"><span class="glass-key">Leads in pipeline</span><span class="glass-val">24</span></div>
-              <div class="glass-row"><span class="glass-key">Auto follow-ups today</span><span class="glass-val green">8 sent</span></div>
-              <div class="glass-row"><span class="glass-key">Brand assets</span><span class="glass-val">Ready</span></div>
-            </div>
-          </div>
+      <!-- Row 1: Research & Acquisitions -->
+      <div class="service-row r">
+        <div>
+          <div class="service-num">— 01</div>
+          <h3 class="service-title">Research &amp; Acquisitions</h3>
+          <p class="service-desc">We identify corridors before prices move using the Greenfield Convergence Methodology — then go deeper. Every site is assessed on infrastructure, demographics, land supply, and builder delivery history. Only the highest-conviction opportunities enter the supply pipeline.</p>
+          <a href="deal-launch.html" class="btn-text">See Deal Launch →</a>
         </div>
-        <div class="offer-card-body">
-          <p class="offer-card-tag">Built for you · 90 days</p>
-          <h3 class="offer-card-title">Business Operating System</h3>
-          <p class="offer-card-desc">Brand, CRM, automations, content, and sales infrastructure: designed, configured, and live. You arrive with a business that runs, not a to-do list.</p>
-          <a href="#built" class="btn-text">See what gets built →</a>
+        <div class="service-img-placeholder">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 8 L48 22 L48 46 L8 46 L8 22 Z" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+            <path d="M20 46 L20 32 L28 32 L28 46" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+            <circle cx="35" cy="34" r="5" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+            <path d="M39 38 L43 42" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
 
-      <!-- Card 2: Deal Flow -->
-      <div class="offer-card r r1">
-        <div class="offer-card-img">
-          <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=900&q=70')"></div>
-          <div class="nature-fade"></div>
-          <div class="glass-browser">
-            <div class="glass-titlebar">
-              <div class="glass-dot glass-dot-r"></div>
-              <div class="glass-dot glass-dot-y"></div>
-              <div class="glass-dot glass-dot-g"></div>
-              <div class="glass-urlbar">proplaunch.com/deals</div>
-            </div>
-            <div class="glass-body">
-              <div class="glass-row"><span class="glass-key">Location</span><span class="glass-val">Tarneit VIC</span></div>
-              <div class="glass-row"><span class="glass-key">Entry</span><span class="glass-val">$685,000</span></div>
-              <div class="glass-row"><span class="glass-key">Gross yield</span><span class="glass-val green">4.70%</span></div>
-              <div class="glass-row"><span class="glass-key">Access</span><span class="glass-val">Off-market</span></div>
-            </div>
-          </div>
+      <!-- Row 2: Analysis & Stress-Testing (flipped) -->
+      <div class="service-row service-row--flip r">
+        <div>
+          <div class="service-num">— 02</div>
+          <h3 class="service-title">Analysis &amp; Stress-Testing</h3>
+          <p class="service-desc">Before any property reaches a partner, it is modelled through multiple scenarios — rental yield under vacancy, capital growth under conservative assumptions, construction cost overruns, and settlement timing. What you present is already pressure-tested.</p>
+          <a href="research.html" class="btn-text">Read the research →</a>
         </div>
-        <div class="offer-card-body">
-          <p class="offer-card-tag">Exclusive supply · Proprietary network</p>
-          <h3 class="offer-card-title">Curated Deal Flow</h3>
-          <p class="offer-card-desc">A proprietary sourcing network across Australia's highest-conviction growth corridors. Every piece of stock researched, stress-tested, and approved before it reaches you.</p>
-          <a href="#dealflow" class="btn-text">How deal flow works →</a>
+        <div class="service-img-placeholder">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+            <path d="M16 38 L22 28 L28 34 L34 22 L40 30" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="34" cy="22" r="2.5" fill="rgba(74,222,128,0.35)" stroke="rgba(74,222,128,0.5)" stroke-width="1"/>
+          </svg>
         </div>
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- ═══ THE SYSTEM ═══ -->
-  <section class="system-section" id="built">
-    <h2 class="system-heading r">The system that runs your firm</h2>
-
-    <!-- Row 1 -->
-    <div class="system-row r">
-      <div>
-        <p class="system-copy-label">Starting out</p>
-        <p class="system-copy-sub">You have the drive, the licence, and the conviction. PropLaunch gives you what took others a decade to figure out, on day one.</p>
-        <ul class="feat-list" id="featList1">
-          <li class="feat-item active" data-i="0" data-list="1" data-img="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Brand Identity</div><div class="feat-item-body"><p class="feat-item-desc">Logo, style guide, templates, and a complete asset library, built to last.</p></div></li>
-          <li class="feat-item" data-i="1" data-list="1" data-img="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Business Operating System</div><div class="feat-item-body"><p class="feat-item-desc">CRM, pipelines, and automations configured to your business from day one.</p></div></li>
-          <li class="feat-item" data-i="2" data-list="1" data-img="https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">AI-Powered Workflows</div><div class="feat-item-body"><p class="feat-item-desc">Every lead engaged, qualified, and summarised. Every follow-up sent automatically.</p></div></li>
-          <li class="feat-item" data-i="3" data-list="1" data-img="https://images.unsplash.com/photo-1478827387698-1527781a4887?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Content System</div><div class="feat-item-body"><p class="feat-item-desc">Social templates, email frameworks, and a content library ready to publish.</p></div></li>
-        </ul>
+      <!-- Row 3: Quality Construction -->
+      <div class="service-row r">
+        <div>
+          <div class="service-num">— 03</div>
+          <h3 class="service-title">Quality Construction</h3>
+          <p class="service-desc">Every build in the PropLaunch supply chain is delivered by a vetted construction partner under a fixed-price contract, with independent inspections at key milestones. Your client knows the price on day one. No surprises at handover.</p>
+        </div>
+        <div class="service-img-placeholder">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 46 L14 24 L28 12 L42 24 L42 46" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+            <rect x="22" y="32" width="12" height="14" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+            <rect x="17" y="26" width="8" height="6" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+            <rect x="31" y="26" width="8" height="6" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+            <path d="M10 24 L28 10 L46 24" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
       </div>
-      <div class="system-visual r r1">
-        <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=70')"></div>
-        <div class="system-visual-inner">
-          <div class="glass-browser" style="position:relative;bottom:auto;left:auto;right:auto;margin:16px 16px 16px;">
-            <div class="glass-titlebar">
-              <div class="glass-dot glass-dot-r"></div><div class="glass-dot glass-dot-y"></div><div class="glass-dot glass-dot-g"></div>
-              <div class="glass-urlbar">proplaunch.com/build</div>
-            </div>
-            <div class="glass-body">
-              <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;">Build progress · Day 47 of 90</div>
-              <div class="system-visual-bars" style="margin-bottom:12px;">
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Brand Identity</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">CRM Setup</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">AI Workflows</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:78%"></div></div><span class="system-visual-bar-val">78%</span></div>
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Content Library</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:45%"></div></div><span class="system-visual-bar-val">45%</span></div>
-              </div>
-              <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
-                <div class="glass-row"><span class="glass-key">logo.svg</span><span class="glass-val green">Complete</span></div>
-                <div class="glass-row"><span class="glass-key">style-guide.pdf</span><span class="glass-val green">Complete</span></div>
-                <div class="glass-row"><span class="glass-key">asset-library/</span><span class="glass-val">Ready</span></div>
-              </div>
-            </div>
-          </div>
+
+      <!-- Row 4: Through to Tenanted (flipped) -->
+      <div class="service-row service-row--flip r">
+        <div>
+          <div class="service-num">— 04</div>
+          <h3 class="service-title">Through to Tenanted</h3>
+          <p class="service-desc">Settlement is not the finish line. PropLaunch manages the final mile — property management onboarding, tenancy placement, and post-settlement client communication. The deal closes. The relationship continues. Your client settles into a performing asset, not a vacant lot.</p>
+          <a href="apply-now.html" class="btn-text">Request stock access →</a>
+        </div>
+        <div class="service-img-placeholder">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="22" r="8" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+            <path d="M14 44 C14 36.268 20.268 30 28 30 C35.732 30 42 36.268 42 44" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M34 18 L38 22 L46 14" stroke="rgba(74,222,128,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Row 2 (flipped) -->
-    <div class="system-row system-row--flip r">
-      <div>
-        <p class="system-copy-label">Already operating</p>
-        <p class="system-copy-sub">You have clients, transactions, and a track record. PropLaunch replaces the manual with automated, the inconsistent with systematic.</p>
-        <ul class="feat-list" id="featList2">
-          <li class="feat-item active" data-i="0" data-list="2" data-img="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Sales Infrastructure</div><div class="feat-item-body"><p class="feat-item-desc">Discovery frameworks, objection handling, and a repeatable conversion process.</p></div></li>
-          <li class="feat-item" data-i="1" data-list="2" data-img="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Deal Flow Access</div><div class="feat-item-body"><p class="feat-item-desc">Curated, analysis-backed property sourced through a proprietary supply network.</p></div></li>
-          <li class="feat-item" data-i="2" data-list="2" data-img="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">$6,000 Meta Campaign</div><div class="feat-item-body"><p class="feat-item-desc">Managed and optimised over 90 days. Leads in your pipeline from day one.</p></div></li>
-          <li class="feat-item" data-i="3" data-list="2" data-img="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=70"><div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div><div class="feat-item-title">Everything for Starting Out and more</div><div class="feat-item-body"><p class="feat-item-desc">Built on the full foundation with additional infrastructure for scale and consistency.</p></div></li>
-        </ul>
+
+  <!-- ═══ PROJECTS BAND ═══ -->
+  <div class="projects-band-wrap" id="projects-band">
+    <div class="projects-band-inner">
+      <div class="projects-band-left r">
+        <p class="projects-band-eyebrow">· Active developments</p>
+        <h2 class="projects-band-heading">Projects across five states.</h2>
       </div>
-      <div class="system-visual r r1">
-        <div class="nature-bg" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=900&q=70')"></div>
-        <div class="system-visual-inner">
-          <div class="glass-browser" style="position:relative;bottom:auto;left:auto;right:auto;margin:16px 16px 16px;">
-            <div class="glass-titlebar">
-              <div class="glass-dot glass-dot-r"></div><div class="glass-dot glass-dot-y"></div><div class="glass-dot glass-dot-g"></div>
-              <div class="glass-urlbar">proplaunch.com/pipeline</div>
-            </div>
-            <div class="glass-body">
-              <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;">Pipeline · This week</div>
-              <div class="system-visual-bars" style="margin-bottom:12px;">
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">New inquiries</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:88%"></div></div><span class="system-visual-bar-val">12</span></div>
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Qualified leads</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:55%"></div></div><span class="system-visual-bar-val">7</span></div>
-                <div class="system-visual-bar-row"><span class="system-visual-bar-label">Proposals sent</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:30%"></div></div><span class="system-visual-bar-val">4</span></div>
-              </div>
-              <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
-                <div class="glass-row"><span class="glass-key">10:14 · Lead qualified</span><span class="glass-val green">Auto</span></div>
-                <div class="glass-row"><span class="glass-key">10:22 · Follow-up sent</span><span class="glass-val green">Auto</span></div>
-                <div class="glass-row"><span class="glass-key">11:05 · Deal assigned</span><span class="glass-val">Done</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a href="projects.html" class="btn-text r r1">See the projects →</a>
     </div>
-  </section>
+  </div>
 
 
-  <!-- ═══ TRUST PILLARS ═══ -->
-  <div class="pillars-wrap">
-    <div class="pillars-inner">
-      <div>
-        <h2 class="pillars-heading r">Built on<br>infrastructure</h2>
-        <p class="pillars-sub r">Tested, refined, and scaled over 18 months of live operations.</p>
-      </div>
-      <div class="pillars-cols">
+  <!-- ═══ TRACK RECORD ═══ -->
+  <div class="track-wrap" id="track-record">
+    <div class="track-inner">
+      <p class="section-tag r">· The track record · A decade in the making</p>
+      <h2 class="section-heading r">Proof, not <em>promises.</em></h2>
+      <div class="track-stats">
         <div class="r">
-          <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div class="pillar-title">90-day transformation</div>
-          <p class="pillar-desc">Business designed, configured, and handed over live. Not a course. Not a framework. A running operation.</p>
+          <div class="track-stat-num green">872</div>
+          <p class="track-stat-desc">settlements across five states — WA · QLD · VIC · NSW · SA</p>
         </div>
         <div class="r r1">
-          <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-          <div class="pillar-title">Proprietary deal flow</div>
-          <p class="pillar-desc">A supply relationship, not a portal. Stress-tested stock across Australia's highest-conviction growth corridors, exclusive to operators.</p>
+          <div class="track-stat-num">$597M</div>
+          <p class="track-stat-desc">in property transacted</p>
         </div>
         <div class="r r2">
-          <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <div class="pillar-title">AI-powered automation</div>
-          <p class="pillar-desc">Every lead engaged, qualified, and followed up. The business runs between client conversations.</p>
+          <div class="track-stat-num">$200,000+</div>
+          <p class="track-stat-desc">average client equity gain*</p>
+        </div>
+      </div>
+      <p class="track-support r r2">$685,000 average package · 120 settlements delivered last quarter ($92M) · Built and led by operators with 10+ years in Australian property</p>
+      <span class="sand-note r r3">*Indicative — based on current market valuation versus contracted package price. Past performance is not indicative of future results.</span>
+    </div>
+  </div>
+
+
+  <!-- ═══ WE INVEST IN OUR PARTNERS ═══ -->
+  <div class="partners-invest-wrap" id="partners-invest">
+    <div class="partners-invest-inner">
+      <p class="section-tag r">· We invest in our partners</p>
+      <h2 class="section-heading r">We only win when <em>you</em> close.</h2>
+      <p class="section-lede r r1">Our model is simple — we only earn when a deal settles well through you. So everything we build exists to make you better, faster, and easier to buy from.</p>
+      <p class="section-lede r r1" style="margin-top:-28px;">Think of it this way — what an aggregator is to mortgage brokers, PropLaunch is to property advisers. The deal infrastructure behind the advice.</p>
+
+      <div class="partners-grid r r2">
+        <div class="partner-card">
+          <div class="partner-card-num">— Training</div>
+          <h3 class="partner-card-title">Sales training that compounds</h3>
+          <p class="partner-card-desc">Not a one-day workshop. Ongoing access to discovery frameworks, objection handling, and conversion process training — built specifically for property advisers operating in the new-build space.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-num">— Resources</div>
+          <h3 class="partner-card-title">Resources &amp; AI tools</h3>
+          <p class="partner-card-desc">A library of white-label tools, calculators, and AI-powered workflows that handle the day-to-day. Research summaries, proposal generation, and client-ready reports — all on-brand for your business.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-num">— Deal-matching</div>
+          <h3 class="partner-card-title">The right deal for each client</h3>
+          <p class="partner-card-desc">Our acquisitions desk reviews client briefs and matches them against live supply. You don't pitch product that doesn't fit. You present verified corridors, matched to your client's position, every time.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-num">— Blueprints</div>
+          <h3 class="partner-card-title">White-label strategy blueprints</h3>
+          <p class="partner-card-desc">Property strategy documents, portfolio plans, and client-facing research — your branding, our research and methodology behind it. You walk into discovery calls with institutional-grade collateral.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-num">— Portfolio engine</div>
+          <h3 class="partner-card-title">Your client book, working</h3>
+          <p class="partner-card-desc">A systematic approach to managing your existing client base — checking in at the right time, identifying second purchases, and turning settled clients into referral sources. A portfolio engine, not a client list.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-card-num">— Fulfilment</div>
+          <h3 class="partner-card-title">Everything after the EOI</h3>
+          <p class="partner-card-desc">From EOI through to tenancy, the fulfilment process runs inside PropLaunch. Contract management, construction milestones, settlement coordination, and post-settlement care — handled, so you stay in front of new clients.</p>
+        </div>
+      </div>
+
+      <div class="teaser-grid r r3">
+        <div class="teaser-card">
+          <p class="teaser-card-tag">— Buyer's agents &amp; property advisers</p>
+          <h3 class="teaser-card-title">Stock and ops, solved.</h3>
+          <p class="teaser-card-desc">A verified supply pipeline and a complete operating system in one membership. Stop sourcing product ad hoc — have a proprietary supply relationship and a business that runs between client conversations.</p>
+          <a href="deal-launch.html" class="btn-text">See Deal Launch →</a>
+        </div>
+        <div class="teaser-card">
+          <p class="teaser-card-tag">— Accountants &amp; financial planners</p>
+          <h3 class="teaser-card-title">A property division with zero headcount.</h3>
+          <p class="teaser-card-desc">Add property to your service offering without hiring a specialist. We supply the deals, the research, the fulfilment, and the client-facing collateral. Your practice diversifies. Your clients are better served. You don't take on new overhead.</p>
+          <a href="apply-now.html" class="btn-text">Request stock access →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ CLIENT OUTCOMES ═══ -->
+  <div class="outcomes-wrap" id="outcomes">
+    <div class="outcomes-inner">
+      <p class="section-tag r">· Client outcomes</p>
+      <h2 class="section-heading r">Our clients' success <em>stories.</em></h2>
+      <p class="section-lede r r1">We can explain the process — we'd rather let the results and the clients do the talking.</p>
+      <div class="quotes-grid">
+        <div class="quote-card r">
+          <p class="quote-text">"The numbers were done before I ever saw the deal. I presented with total confidence and my client settled in eleven weeks."</p>
+          <p class="quote-attr">Operator · QLD</p>
+        </div>
+        <div class="quote-card r r1">
+          <p class="quote-text">"No pressure, no jargon. Just a verified corridor, a clear set of numbers, and a team that handled everything after the EOI."</p>
+          <p class="quote-attr">Operator · VIC</p>
+        </div>
+        <div class="quote-card r r2">
+          <p class="quote-text">"My clients see my brand — and behind it, a national acquisitions desk. That combination changed my business."</p>
+          <p class="quote-attr">Operator · NSW</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ PROPLAUNCH OS ═══ -->
+  <div class="os-wrap" id="os">
+    <div class="os-inner">
+      <p class="section-tag r">· PropLaunch OS · Launching Q4 2026</p>
+      <h2 class="section-heading r">The business of property,<br>in one <em>system.</em></h2>
+      <p class="section-lede r r1">Strategy, deal-matching, property analysis, client presentations, and your CRM and inbox in one place — run by an AI agent that handles the day-to-day so you can focus on closing. Available to Launchpad and Orbit members from Q4 2026.</p>
+      <div class="r r2">
+        <a href="apply-now.html" class="btn-text">Join the Q4 2026 waitlist →</a>
+      </div>
+
+      <hr class="os-divider">
+
+      <p class="os-sub-tag r">— Available now · Built in 90 days</p>
+      <h3 class="os-built-heading r">What gets built, today.</h3>
+      <div class="os-cards r r1">
+        <div class="os-card">
+          <div class="os-card-tag">— Brand</div>
+          <h4 class="os-card-title">Brand Identity</h4>
+          <p class="os-card-desc">Logo, style guide, templates, and a complete asset library built to last — your name in front of clients from day one.</p>
+        </div>
+        <div class="os-card">
+          <div class="os-card-tag">— System</div>
+          <h4 class="os-card-title">Business Operating System</h4>
+          <p class="os-card-desc">CRM, pipelines, and automations configured to your business. Every lead engaged, tracked, and followed up without manual effort.</p>
+        </div>
+        <div class="os-card">
+          <div class="os-card-tag">— AI</div>
+          <h4 class="os-card-title">AI-Powered Workflows</h4>
+          <p class="os-card-desc">Every lead qualified and summarised. Every follow-up sent automatically. The business runs between client conversations.</p>
+        </div>
+        <div class="os-card">
+          <div class="os-card-tag">— Growth</div>
+          <h4 class="os-card-title">$6,000 Meta Campaign</h4>
+          <p class="os-card-desc">Managed and optimised over 90 days. Leads in your pipeline from day one, without spending your own time on paid acquisition.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ TIERS ═══ -->
+  <div class="tiers-wrap" id="tiers">
+    <div class="tiers-inner">
+      <p class="section-tag r">· The Launch System</p>
+      <h2 class="section-heading r">Three ways to run with <em>PropLaunch.</em></h2>
+      <p class="section-lede r r1">Start at Basecamp. Systemise on Launchpad. Take the full economics on Orbit. One platform, one supply chain — pick the altitude.</p>
+
+      <div class="tiers-grid">
+        <!-- Basecamp -->
+        <div class="tier-card r">
+          <div class="tier-price">Free</div>
+          <div class="tier-name">Basecamp</div>
+          <p class="tier-desc">Where you start the climb.</p>
+          <ul class="tier-features">
+            <li class="tier-feature">Access to vetted deal flow across active corridors</li>
+            <li class="tier-feature">Corridor research and property stress-tests</li>
+            <li class="tier-feature">White-label client collateral and strategy blueprints</li>
+            <li class="tier-feature">Onboarding support and deal-matching desk access</li>
+          </ul>
+          <a href="apply-now.html" class="btn-text">Request stock access →</a>
+        </div>
+
+        <!-- Launchpad -->
+        <div class="tier-card r r1">
+          <div class="tier-price">$2,000<span style="font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);">/month</span></div>
+          <div class="tier-name">Launchpad</div>
+          <p class="tier-desc">Your business, systemised.</p>
+          <ul class="tier-features">
+            <li class="tier-feature">Everything in Basecamp</li>
+            <li class="tier-feature">PropLaunch OS access from Q4 2026</li>
+            <li class="tier-feature">90-day business build — brand, CRM, AI workflows</li>
+            <li class="tier-feature">$6,000 managed Meta campaign included</li>
+          </ul>
+          <a href="apply-now.html" class="btn-text">Join the waitlist →</a>
+        </div>
+
+        <!-- Orbit -->
+        <div class="tier-card tier-card--orbit r r2">
+          <div class="tier-price">$4,000<span style="font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);">/month</span></div>
+          <div class="tier-name">Orbit</div>
+          <p class="tier-desc">Full economics. Full machine.</p>
+          <ul class="tier-features">
+            <li class="tier-feature">Everything in Launchpad</li>
+            <li class="tier-feature">Priority deal allocation and early access to new corridors</li>
+            <li class="tier-feature">Dedicated acquisitions desk contact</li>
+            <li class="tier-feature">White-label in-house development access</li>
+            <li class="tier-feature">Full fulfilment and portfolio engine — end-to-end</li>
+          </ul>
+          <span class="tier-badge">Capped · Waitlisted</span>
+          <br>
+          <a href="apply-now.html" class="btn-text">Join the Orbit waitlist →</a>
+        </div>
+      </div>
+
+      <p class="syndicate-note r">Above Orbit sits The Syndicate. By invitation.</p>
+
+      <div class="faq-grid">
+        <div class="r">
+          <p class="faq-q">So you're an aggregator?</p>
+          <p class="faq-a">In structure, yes — we sit behind the adviser the way an aggregator sits behind a broker. But the comparison only goes so far. An aggregator provides access to lenders. PropLaunch provides access to exclusive supply, a vetted research pipeline, and an end-to-end fulfilment operation. The economics are aligned the same way: we earn when you settle.</p>
+        </div>
+        <div class="r r1">
+          <p class="faq-q">Why pay when Basecamp is free?</p>
+          <p class="faq-a">Basecamp gives you the supply relationship. Launchpad and Orbit give you the machine to convert it — a business operating system, AI workflows, paid acquisition, and a direct acquisitions desk. If you're already running at volume and want to systemise, the investment has a clear ROI. If you're starting out, Basecamp is the right entry point.</p>
+        </div>
+        <div class="r r2">
+          <p class="faq-q">What if stock dries up?</p>
+          <p class="faq-a">It's the right question, and the answer is in the supply structure. PropLaunch controls supply at the source — build partners who build exclusively through us, land optioned before it reaches market, and in-house developments. We're not a portal that aggregates whatever developers list. If we don't have the right stock, we say so rather than pushing product that doesn't pass the screen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ FOR CLIENTS ═══ -->
+  <div class="for-clients-wrap" id="for-clients">
+    <div class="for-clients-inner">
+      <p class="section-tag r">· For your clients</p>
+      <div class="for-clients-grid">
+        <div>
+          <h2 class="for-clients-heading r">A firm that stands behind every property.</h2>
+        </div>
+        <div>
+          <p class="for-clients-body r">Your clients are trusting you with a significant financial decision. What stands behind your recommendation matters as much as the recommendation itself.</p>
+          <p class="for-clients-body r r1">PropLaunch gives you a national acquisitions desk, verified research, and a fixed-price, inspected construction process to stand behind every property you present. Not a developer's brochure. A process.</p>
+          <p class="for-clients-body r r1">When your client asks how you know the corridor is right, you can show them the methodology. When they ask about the build, you can show them the inspections. When they ask what happens after settlement, you can walk them through the tenancy process.</p>
+          <div class="r r2" style="margin-top:20px;">
+            <a href="for-clients.html" class="btn-text">Why advisers partner with PropLaunch →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="teaser-grid r r2">
+        <div class="teaser-card">
+          <p class="teaser-card-tag">— Resources</p>
+          <h3 class="teaser-card-title">The operator library.</h3>
+          <p class="teaser-card-desc">Discovery frameworks, strategy blueprints, objection-handling guides, and client-facing calculators — all built for property advisers operating in the new-build space. White-labelled and ready to use.</p>
+          <a href="apply-now.html" class="btn-text">Request access</a>
+        </div>
+        <div class="teaser-card">
+          <p class="teaser-card-tag">— Research</p>
+          <h3 class="teaser-card-title">Backed by original research.</h3>
+          <p class="teaser-card-desc">Every corridor in the PropLaunch pipeline is supported by original research — not aggregated data or third-party indices. Infrastructure commitments, demographic movements, rental dynamics, and supply constraints, compiled by our team.</p>
+          <a href="research.html" class="btn-text">Read our research →</a>
         </div>
       </div>
     </div>
@@ -1150,11 +1458,11 @@
 
   <!-- ═══ APPLY ═══ -->
   <div class="apply-wrap" id="apply">
-    <div class="apply-tag r"><div class="dealflow-card-dot"></div>Selective intake · Limited operators at any time</div>
+    <div class="apply-tag r"><span class="green-dot"></span>Selective intake · Reviewed personally</div>
     <h2 class="apply-heading r">This isn't for everyone.<br>It's for the <em>right person.</em></h2>
-    <p class="apply-body r r1">PropLaunch intake is selective. We work with a limited number of operators at any one time, and every application is reviewed personally. If you're ready to run a property business that operates like a serious firm. Apply below.</p>
-    <a href="apply-now.html" class="btn-pill r r2">Apply for access →</a>
-    <p class="apply-note r r3">Applications reviewed within 48 hours</p>
+    <p class="apply-body r r1">Access is selective and reviewed personally. If property is your business — not your side project — there's a seat.</p>
+    <a href="apply-now.html" class="btn-pill r r2">Request stock access →</a>
+    <p class="apply-note r r3">Reviewed personally · Response within 48 hours</p>
   </div>
 
 
@@ -1167,23 +1475,28 @@
     <div class="footer-main">
       <div>
         <a href="#" class="footer-brand"><img src="logo.svg" alt="PropLaunch"></a>
-        <p class="footer-desc">The operating system for serious property businesses. Brand, systems, marketing and deal flow – built and running in 90 days.</p>
+        <p class="footer-desc">The property wealth operating system for Australia's best property advisers. Wholesale supply, AI intelligence, and end-to-end execution.</p>
+        <p class="footer-ack">PropLaunch acknowledges the Traditional Owners of Country throughout Australia, and pays respect to Elders past and present.</p>
       </div>
       <div>
-        <div class="footer-col-title">Product</div>
+        <div class="footer-col-title">Company</div>
         <ul class="footer-col-links">
-          <li><a href="#dealflow">Deal Flow</a></li>
-          <li><a href="#system">PropLaunch OS</a></li>
-          <li><a href="#built">What Gets Built</a></li>
+          <li><a href="#supply">Supply</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#track-record">Track Record</a></li>
+          <li><a href="#partners-invest">Partners</a></li>
+          <li><a href="#tiers">Tiers</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">PropLaunch</div>
+        <div class="footer-col-title">Explore</div>
         <ul class="footer-col-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#apply">Apply</a></li>
           <li><a href="deal-launch.html">Deal Launch</a></li>
-          <li><a href="mailto:info@proplaunch.com.au">Contact</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="for-clients.html">For Clients</a></li>
+          <li><a href="apply-now.html">Apply</a></li>
         </ul>
       </div>
       <div>
@@ -1191,11 +1504,12 @@
         <ul class="footer-col-links">
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
+          <li><a href="mailto:info@proplaunch.com.au">Contact</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 PropLaunch. All rights reserved.</span>
+      <span class="footer-copy">PropLaunch Pty Ltd · ABN [to be supplied] · Founded and led by Keshav Mehra. · © 2026 PropLaunch. All rights reserved.</span>
     </div>
     <div class="footer-watermark">proplaunch</div>
   </footer>
@@ -1237,12 +1551,6 @@
       '1': [
         { url: 'proplaunch.com/brand',
           html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Brand Identity · Assets</div>
-<div class="system-visual-bars" style="margin-bottom:12px;">
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Logo suite</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Style guide</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Templates</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Asset library</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-</div>
 <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
   <div class="glass-row"><span class="glass-key">logo.svg</span><span class="glass-val green">Complete</span></div>
   <div class="glass-row"><span class="glass-key">style-guide.pdf</span><span class="glass-val green">Complete</span></div>
@@ -1250,11 +1558,6 @@
 </div>` },
         { url: 'proplaunch.com/crm',
           html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">CRM Overview · Live</div>
-<div class="system-visual-bars" style="margin-bottom:12px;">
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Contacts</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:88%"></div></div><span class="system-visual-bar-val">847</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Pipeline value</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:72%"></div></div><span class="system-visual-bar-val">$2.4M</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Qualified leads</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:55%"></div></div><span class="system-visual-bar-val">7</span></div>
-</div>
 <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
   <div class="glass-row"><span class="glass-key">New inquiries</span><span class="glass-val">12</span></div>
   <div class="glass-row"><span class="glass-key">Proposals sent</span><span class="glass-val">4</span></div>
@@ -1262,72 +1565,17 @@
 </div>` },
         { url: 'proplaunch.com/workflows',
           html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Automation · Running</div>
-<div style="border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:10px;margin-bottom:10px;">
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
   <div class="glass-row"><span class="glass-key">10:14 · Lead qualified</span><span class="glass-val green">Auto</span></div>
   <div class="glass-row"><span class="glass-key">10:22 · Follow-up sent</span><span class="glass-val green">Auto</span></div>
-  <div class="glass-row"><span class="glass-key">10:45 · SMS triggered</span><span class="glass-val green">Auto</span></div>
-  <div class="glass-row"><span class="glass-key">11:03 · Email sequence</span><span class="glass-val green">Auto</span></div>
-</div>
-<div class="glass-row"><span class="glass-key">Auto-handled leads</span><span class="glass-val green">94%</span></div>
-<div class="glass-row"><span class="glass-key">Avg response time</span><span class="glass-val">&lt; 2 min</span></div>` },
-        { url: 'proplaunch.com/content',
-          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Content Library · Active</div>
-<div class="system-visual-bars" style="margin-bottom:12px;">
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Social posts</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val">48</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Email sequences</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:75%"></div></div><span class="system-visual-bar-val">12</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Video scripts</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:40%"></div></div><span class="system-visual-bar-val">6</span></div>
-</div>
-<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
-  <div class="glass-row"><span class="glass-key">Scheduled this week</span><span class="glass-val green">14</span></div>
-  <div class="glass-row"><span class="glass-key">Published this month</span><span class="glass-val">38</span></div>
-</div>` }
-      ],
-      '2': [
-        { url: 'proplaunch.com/sales',
-          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Conversion Pipeline · Live</div>
-<div class="system-visual-bars" style="margin-bottom:12px;">
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Discovery calls</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val">24</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Qualified</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:75%"></div></div><span class="system-visual-bar-val">18</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Proposals sent</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:46%"></div></div><span class="system-visual-bar-val">11</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Closed</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:25%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">6</span></div>
-</div>
-<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
-  <div class="glass-row"><span class="glass-key">Close rate</span><span class="glass-val green">54%</span></div>
-  <div class="glass-row"><span class="glass-key">Avg deal size</span><span class="glass-val">$685K</span></div>
-</div>` },
-        { url: 'proplaunch.com/deals',
-          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Active Allocation · Off-market</div>
-<div class="glass-row"><span class="glass-key">Tarneit VIC · $685K</span><span class="glass-val green">A–</span></div>
-<div class="glass-row"><span class="glass-key">Werribee VIC · $590K</span><span class="glass-val">Analysis</span></div>
-<div class="glass-row"><span class="glass-key">Kalkallo VIC · $720K</span><span class="glass-val">Coming</span></div>
-<div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:10px;padding-top:10px;">
-  <div class="glass-row"><span class="glass-key">Properties reviewed</span><span class="glass-val">47</span></div>
-  <div class="glass-row"><span class="glass-key">Approved for release</span><span class="glass-val green">3</span></div>
-  <div class="glass-row"><span class="glass-key">Supply network</span><span class="glass-val">Proprietary</span></div>
+  <div class="glass-row"><span class="glass-key">Auto-handled leads</span><span class="glass-val green">94%</span></div>
 </div>` },
         { url: 'proplaunch.com/campaigns',
           html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">Meta Campaign · Live</div>
-<div class="system-visual-bars" style="margin-bottom:12px;">
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Budget used</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:47%"></div></div><span class="system-visual-bar-val">47%</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Leads generated</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:62%"></div></div><span class="system-visual-bar-val">31</span></div>
-</div>
 <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
   <div class="glass-row"><span class="glass-key">Spend to date</span><span class="glass-val">$2,840</span></div>
-  <div class="glass-row"><span class="glass-key">Cost per lead</span><span class="glass-val">$91.60</span></div>
+  <div class="glass-row"><span class="glass-key">Leads generated</span><span class="glass-val green">31</span></div>
   <div class="glass-row"><span class="glass-key">CTR</span><span class="glass-val green">3.2%</span></div>
-  <div class="glass-row"><span class="glass-key">ROAS</span><span class="glass-val green">4.1×</span></div>
-</div>` },
-        { url: 'proplaunch.com/dashboard',
-          html: `<div style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;">System Status · All Live</div>
-<div class="system-visual-bars" style="margin-bottom:12px;">
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Brand Identity</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">CRM + Pipelines</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">AI Workflows</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-  <div class="system-visual-bar-row"><span class="system-visual-bar-label">Deal Flow</span><div class="system-visual-bar-track"><div class="system-visual-bar-fill" style="width:100%"></div></div><span class="system-visual-bar-val" style="color:var(--green)">✓</span></div>
-</div>
-<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">
-  <div class="glass-row"><span class="glass-key">Meta Campaign</span><span class="glass-val green">Live</span></div>
-  <div class="glass-row"><span class="glass-key">Content System</span><span class="glass-val green">Active</span></div>
 </div>` }
       ]
     };
@@ -1343,32 +1591,18 @@
 
       function activate(idx) {
         current = idx;
-        const row = items[idx].closest('.system-row');
-        const natureBg = row ? row.querySelector('.system-visual .nature-bg') : null;
-        const glassBody = row ? row.querySelector('.glass-browser .glass-body') : null;
-        const glassTitlebar = row ? row.querySelector('.glass-urlbar') : null;
         const content = featBrowserContent[listId] && featBrowserContent[listId][idx];
 
         items.forEach((item, i) => {
           const fill = item.querySelector('.feat-item-bar-fill');
           item.classList.remove('active');
-          // Reset animation
           fill.style.animation = 'none';
-          fill.offsetWidth; // force reflow
+          fill.offsetWidth;
           fill.style.animation = '';
 
           if (i === idx) {
             item.classList.add('active');
             fill.style.animation = 'featProgress 7s linear forwards';
-            // Swap background image
-            if (natureBg && item.dataset.img) {
-              natureBg.style.backgroundImage = `url('${item.dataset.img}')`;
-            }
-            // Swap browser window content
-            if (content) {
-              if (glassTitlebar) glassTitlebar.textContent = content.url;
-              if (glassBody) glassBody.innerHTML = content.html;
-            }
           }
         });
       }
@@ -1382,7 +1616,6 @@
         timer = setInterval(next, 7000);
       }
 
-      // Click to jump to item
       items.forEach((item, i) => {
         item.addEventListener('click', () => {
           activate(i);
@@ -1390,20 +1623,11 @@
         });
       });
 
-      // Pause on hover
-      const row = items[0].closest('.system-row');
-      if (row) {
-        row.addEventListener('mouseenter', () => { paused = true; });
-        row.addEventListener('mouseleave', () => { paused = false; });
-      }
-
-      // Kick off
       activate(0);
       startTimer();
     }
 
     initFeatList('1');
-    initFeatList('2');
   </script>
 
 </body>

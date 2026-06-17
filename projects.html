@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — PropLaunch</title>
+  <meta name="description" content="The PropLaunch portfolio — exclusive projects across Australia's verified growth corridors.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black:#0d0f16; --surface:#0f1119; --surface2:#11141d; --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.13); --white:#ffffff; --muted:rgba(255,255,255,0.45); --subtle:rgba(255,255,255,0.22); --green:#4ade80; --green-d:#22c55e; --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse at 0% 0%,rgba(13,89,242,0.09) 0%,transparent 55%),radial-gradient(ellipse at 100% 0%,rgba(13,89,242,0.07) 0%,transparent 55%),radial-gradient(ellipse at 100% 100%,rgba(13,89,242,0.09) 0%,transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(13,89,242,0.07) 0%,transparent 55%); pointer-events:none; z-index:0; }
+    .nav, section, footer, div, header { position:relative; z-index:1; }
+
+    /* NAV */
+    .nav { position:fixed; top:0; left:50%; transform:translateX(-50%); z-index:200; width:100%; max-width:100%; display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 32px; background:transparent; border:1px solid transparent; border-radius:0; backdrop-filter:none; transition:top 380ms cubic-bezier(0.4,0,0.2,1),width 380ms cubic-bezier(0.4,0,0.2,1),max-width 380ms cubic-bezier(0.4,0,0.2,1),padding 380ms cubic-bezier(0.4,0,0.2,1),height 380ms cubic-bezier(0.4,0,0.2,1),background 380ms cubic-bezier(0.4,0,0.2,1),border-color 380ms cubic-bezier(0.4,0,0.2,1),border-radius 380ms cubic-bezier(0.4,0,0.2,1); }
+    .nav.scrolled { top:14px; width:calc(100% - 48px); max-width:1100px; height:52px; padding:0 8px 0 22px; background:rgba(13,15,22,0.86); border-color:rgba(255,255,255,0.10); border-radius:999px; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
+    .nav-logo img { height:34px; width:auto; }
+    .nav-links { display:flex; align-items:center; gap:2px; list-style:none; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-links a { font-size:14px; font-weight:400; color:var(--muted); text-decoration:none; padding:7px 14px; border-radius:999px; transition:color 200ms,background 200ms; white-space:nowrap; }
+    .nav-links a:hover { color:var(--white); background:rgba(255,255,255,0.06); }
+    .nav-cta { font-size:13px; font-weight:500; color:var(--black); background:var(--white); border-radius:999px; padding:9px 20px; text-decoration:none; transition:background 200ms; flex-shrink:0; white-space:nowrap; }
+    .nav-cta:hover { background:#e0e0e0; }
+
+    /* BUTTONS */
+    .btn-pill { display:inline-block; font-family:var(--sans); font-size:14px; font-weight:500; color:var(--black); background:var(--white); border-radius:999px; padding:11px 26px; text-decoration:none; transition:background 200ms; }
+    .btn-pill:hover { background:#e8e8e8; }
+    .btn-text { font-size:13px; font-weight:500; color:var(--white); text-decoration:none; display:inline-flex; align-items:center; gap:4px; border:1px solid var(--border2); border-radius:999px; padding:7px 16px; transition:background 200ms,border-color 200ms; }
+    .btn-text:hover { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.22); }
+
+    /* SECTION SCAFFOLDING */
+    .section { padding:80px 32px; max-width:1200px; margin:0 auto; }
+    .section-divider { border:none; border-top:1px solid var(--border); }
+    .section-tag { font-size:12px; font-weight:500; color:var(--green); margin-bottom:4px; }
+    .section-heading { font-family:var(--serif); font-size:clamp(30px,3.5vw,50px); font-weight:500; line-height:1.08; letter-spacing:-0.01em; }
+    .section-heading em { font-style:italic; }
+    .section-lede { font-size:15px; color:var(--muted); line-height:1.7; max-width:680px; margin-top:18px; }
+
+    /* PAGE HEADER */
+    .page-header { padding: 120px 32px 60px; max-width: 1200px; margin: 0 auto; }
+    .page-eyebrow { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 20px; }
+    .page-h1 { font-family: var(--serif); font-size: clamp(52px, 8vw, 96px); font-weight: 500; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .page-sub { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 620px; margin-bottom: 40px; }
+
+    /* FILTER BAR */
+    .filter-bar { padding: 0 32px 32px; max-width: 1200px; margin: 0 auto; display: flex; gap: 12px; flex-wrap: wrap; }
+    .filter-select { background: var(--surface); border: 1px solid var(--border2); border-radius: 6px; color: var(--white); font-family: var(--sans); font-size: 13px; padding: 8px 36px 8px 12px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.45)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-color: var(--surface); transition: border-color 200ms; }
+    .filter-select:focus { outline: none; border-color: rgba(255,255,255,0.3); }
+    .filter-select option { background: #1a1d2a; }
+
+    /* GALLERY GRID */
+    .gallery-section { padding: 0 32px 80px; max-width: 1200px; margin: 0 auto; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .stock-card { text-decoration: none; color: var(--white); display: block; transition: opacity 200ms; }
+    .stock-card:hover .stock-photo { filter: brightness(1.08); }
+    .stock-photo { aspect-ratio: 4/3; position: relative; background: var(--surface2); overflow: hidden; display: flex; align-items: center; justify-content: center; transition: filter 200ms; }
+    .stock-photo svg { width: 70%; height: 70%; }
+    .status-tag { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 600; text-transform: uppercase; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 4px 10px; letter-spacing: 0.06em; }
+    .status-tag.eoi { background: rgba(74,222,128,0.2); color: var(--green); border-color: rgba(74,222,128,0.3); }
+    .status-tag.available { color: var(--white); }
+    .status-tag.completed { color: var(--subtle); background: rgba(0,0,0,0.4); }
+    .status-tag.coming-soon { color: rgba(255,255,255,0.6); }
+    .caption-strip { padding: 14px 16px; background: var(--surface); border-top: 1px solid var(--border); }
+    .caption-loc { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+    .caption-type { font-size: 11px; color: var(--muted); }
+
+    /* EMPTY STATE */
+    .empty-state { display: none; padding: 60px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+    /* CAPTION NOTE */
+    .gallery-note { font-size: 12px; color: var(--subtle); text-align: center; padding: 24px 0 0; }
+
+    /* CLOSING CTA */
+    .closing-cta { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 32px; text-align: center; }
+    .closing-cta-inner { max-width: 560px; margin: 0 auto; }
+    .closing-h2 { font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 16px; }
+    .closing-h2 em { font-style: italic; }
+    .closing-sub { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 32px; }
+    .closing-note { font-size: 12px; color: var(--subtle); margin-top: 16px; }
+
+    /* FOOTER */
+    .footer-disclaimer { border-top: 1px solid var(--border); padding: 18px 32px; }
+    .footer-disclaimer-text { font-size: 11px; color: var(--subtle); line-height: 1.5; }
+    .footer-aoc { font-size: 11px; color: var(--subtle); line-height: 1.5; padding: 14px 32px; border-top: 1px solid var(--border); }
+    .footer-main { border-top: 1px solid var(--border); padding: 48px 32px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
+    .footer-brand { display: block; margin-bottom: 12px; text-decoration: none; }
+    .footer-brand img { height: 29px; width: auto; opacity: 0.6; }
+    .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 220px; }
+    .footer-col-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 200ms; }
+    .footer-col-links a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-copy { font-size: 12px; color: var(--subtle); }
+    .footer-watermark { font-family: var(--serif); font-size: clamp(72px,14vw,180px); font-weight: 700; color: rgba(255,255,255,0.025); letter-spacing: -0.02em; line-height: 1; padding: 0 28px; user-select: none; overflow: hidden; white-space: nowrap; }
+
+    /* SCROLL REVEAL */
+    .r { opacity:0; transform:translateY(20px); transition:opacity 500ms ease,transform 500ms ease; }
+    .r.on { opacity:1; transform:none; }
+    .r1 { transition-delay:80ms; }
+    .r2 { transition-delay:160ms; }
+    .r3 { transition-delay:240ms; }
+
+    /* GREEN PULSING DOT */
+    @keyframes gpulse { 0%,100% { box-shadow:0 0 0 0px rgba(74,222,128,0.5),0 0 5px 1px rgba(74,222,128,0.35); } 50% { box-shadow:0 0 0 5px rgba(74,222,128,0.0),0 0 12px 4px rgba(74,222,128,0.12); } }
+    .gpulse-dot { width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block; animation:gpulse 1.8s ease-in-out infinite; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .nav { padding: 0 20px; height: 56px; } .nav.scrolled { width: calc(100% - 32px); padding: 0 6px 0 18px; height: 48px; } .nav-links { display: none; } .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-bottom { flex-direction: column; } .page-header { padding: 100px 20px 40px; } .filter-bar { padding: 0 20px 24px; } .gallery-section { padding: 0 20px 60px; } }
+    @media (max-width: 480px) { .gallery-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="PropLaunch home">
+      <img src="logo.svg" alt="PropLaunch">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">← PropLaunch</a></li>
+      <li><a href="deal-launch.html">Deal Launch</a></li>
+      <li><a href="research.html">Research</a></li>
+    </ul>
+    <a href="apply-now.html" class="nav-cta">Request stock access →</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="page-eyebrow r">— The portfolio</p>
+    <h1 class="page-h1 r r1">Projects</h1>
+    <p class="page-sub r r2">A decade of exclusive projects across five states — secured at inception, delivered end-to-end, and standing today.</p>
+    <hr class="section-divider r r3">
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <select class="filter-select" id="filter-status" aria-label="Filter by status">
+      <option value="all">Status — All</option>
+      <option value="available">Available</option>
+      <option value="eoi">EOI</option>
+      <option value="under-construction">Under Construction</option>
+      <option value="completed">Completed</option>
+      <option value="coming-soon">Coming Soon</option>
+    </select>
+    <select class="filter-select" id="filter-type" aria-label="Filter by type">
+      <option value="all">Type — All</option>
+      <option value="house-land">House &amp; Land</option>
+      <option value="dual-key">Dual-Key</option>
+      <option value="duplex">Duplex</option>
+      <option value="smsf">SMSF</option>
+    </select>
+    <select class="filter-select" id="filter-state" aria-label="Filter by state">
+      <option value="all">State — All</option>
+      <option value="qld">QLD</option>
+      <option value="vic">VIC</option>
+      <option value="nsw">NSW</option>
+      <option value="wa">WA</option>
+      <option value="sa">SA</option>
+    </select>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-section">
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- Card 1: Duplex / QLD / Available -->
+      <a href="apply-now.html" class="stock-card r" data-status="available" data-type="duplex" data-state="qld">
+        <div class="stock-photo">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="10" y="55" width="60" height="55" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="10,55 40,25 70,55" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+            <rect x="90" y="55" width="60" height="55" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="90,55 120,25 150,55" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+            <rect x="25" y="75" width="16" height="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="105" y="75" width="16" height="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="50" y="68" width="12" height="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="130" y="68" width="12" height="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          </svg>
+          <span class="status-tag available">Available</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Forest Brook, QLD</div>
+          <div class="caption-type">Duplex</div>
+        </div>
+      </a>
+
+      <!-- Card 2: Dual-Key / QLD / Available -->
+      <a href="apply-now.html" class="stock-card r r1" data-status="available" data-type="dual-key" data-state="qld">
+        <div class="stock-photo">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="20" y="40" width="120" height="70" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="20,40 80,10 140,40" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+            <line x1="80" y1="40" x2="80" y2="110" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="4,3"/>
+            <rect x="30" y="70" width="18" height="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="112" y="70" width="18" height="22" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="58" y="58" width="14" height="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="88" y="58" width="14" height="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          </svg>
+          <span class="status-tag available">Available</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Forest Brook, QLD</div>
+          <div class="caption-type">Dual-Key</div>
+        </div>
+      </a>
+
+      <!-- Card 3: SMSF / QLD / Available -->
+      <a href="apply-now.html" class="stock-card r r2" data-status="available" data-type="smsf" data-state="qld">
+        <div class="stock-photo">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="30" y="45" width="100" height="65" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="30,45 80,12 130,45" fill="rgba(255,255,255,0.09)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+            <rect x="60" y="78" width="40" height="32" fill="rgba(74,222,128,0.06)" stroke="rgba(74,222,128,0.15)" stroke-width="1"/>
+            <rect x="45" y="62" width="16" height="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="99" y="62" width="16" height="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <circle cx="80" cy="35" r="5" fill="none" stroke="rgba(74,222,128,0.4)" stroke-width="1.2"/>
+          </svg>
+          <span class="status-tag available">Available</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">New Road, Burpengary East QLD</div>
+          <div class="caption-type">SMSF</div>
+        </div>
+      </a>
+
+      <!-- Card 4: House & Land / QLD / EOI -->
+      <a href="apply-now.html" class="stock-card r" data-status="eoi" data-type="house-land" data-state="qld">
+        <div class="stock-photo">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="25" y="48" width="110" height="62" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="15,48 80,8 145,48" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1.3"/>
+            <rect x="65" y="80" width="30" height="30" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="36" y="64" width="18" height="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="106" y="64" width="18" height="18" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="73" y="88" width="14" height="22" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          </svg>
+          <span class="status-tag eoi">EOI</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Forest Brook, QLD</div>
+          <div class="caption-type">House &amp; Land</div>
+        </div>
+      </a>
+
+      <!-- Card 5: House & Land / VIC / Available -->
+      <a href="apply-now.html" class="stock-card r r1" data-status="available" data-type="house-land" data-state="vic">
+        <div class="stock-photo">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="20" y="52" width="120" height="58" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2"/>
+            <polygon points="20,52 80,14 140,52" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.17)" stroke-width="1.3"/>
+            <rect x="35" y="68" width="22" height="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="103" y="68" width="22" height="20" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <rect x="69" y="72" width="22" height="38" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <rect x="55" y="34" width="8" height="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          </svg>
+          <span class="status-tag available">Available</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Coridale, Lara VIC</div>
+          <div class="caption-type">House &amp; Land</div>
+        </div>
+      </a>
+
+      <!-- Card 6: House & Land / QLD / Completed -->
+      <a href="#" class="stock-card r r2" data-status="completed" data-type="house-land" data-state="qld">
+        <div class="stock-photo" style="opacity:0.6;">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="28" y="50" width="104" height="60" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+            <polygon points="18,50 80,16 142,50" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2"/>
+            <rect x="66" y="78" width="28" height="32" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+            <rect x="38" y="66" width="16" height="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <rect x="106" y="66" width="16" height="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <polyline points="50,95 60,85 72,97" stroke="rgba(74,222,128,0.35)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="status-tag completed">Completed</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Southeast Queensland</div>
+          <div class="caption-type">House &amp; Land</div>
+        </div>
+      </a>
+
+      <!-- Card 7: Duplex / VIC / Completed -->
+      <a href="#" class="stock-card r" data-status="completed" data-type="duplex" data-state="vic">
+        <div class="stock-photo" style="opacity:0.6;">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="8" y="56" width="62" height="54" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+            <polygon points="8,56 39,24 70,56" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2"/>
+            <rect x="90" y="56" width="62" height="54" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+            <polygon points="90,56 121,24 152,56" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" stroke-width="1.2"/>
+            <rect x="22" y="76" width="14" height="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <rect x="104" y="76" width="14" height="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <polyline points="100,100 112,90 124,102" stroke="rgba(74,222,128,0.35)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="status-tag completed">Completed</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Melbourne Growth Corridor, VIC</div>
+          <div class="caption-type">Duplex</div>
+        </div>
+      </a>
+
+      <!-- Card 8: House & Land / WA / Completed -->
+      <a href="#" class="stock-card r r1" data-status="completed" data-type="house-land" data-state="wa">
+        <div class="stock-photo" style="opacity:0.6;">
+          <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="22" y="46" width="116" height="64" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+            <polygon points="12,46 80,10 148,46" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1.3"/>
+            <rect x="36" y="68" width="20" height="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <rect x="104" y="68" width="20" height="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <rect x="68" y="76" width="24" height="34" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+            <polyline points="30,105 44,93 58,107" stroke="rgba(74,222,128,0.35)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span class="status-tag completed">Completed</span>
+        </div>
+        <div class="caption-strip">
+          <div class="caption-loc">Perth Growth Corridor, WA</div>
+          <div class="caption-type">House &amp; Land</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state">
+      — No projects match this filter. New allocations land monthly.
+    </div>
+
+    <p class="gallery-note r">Pricing and full analysis sit behind professional access.</p>
+  </div>
+
+  <!-- CLOSING CTA -->
+  <div class="closing-cta">
+    <div class="closing-cta-inner">
+      <h2 class="closing-h2 r">The next project is already <em>secured.</em></h2>
+      <p class="closing-sub r r1">New allocations open to registered partners first. By the time a project is public, the best lots are gone.</p>
+      <a href="apply-now.html" class="btn-pill r r2">Request stock access →</a>
+      <p class="closing-note r r3">Reviewed personally · Response within 48 hours</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-disclaimer">
+    <p class="footer-disclaimer-text">PropLaunch is not a licensed financial adviser. Information on this site is general in nature and does not constitute financial advice. Past results are not indicative of future performance. All figures are indicative only.</p>
+  </div>
+  <footer>
+    <p class="footer-aoc"><strong>Acknowledgement of Country:</strong> PropLaunch acknowledges the Traditional Owners of Country throughout Australia, and pays respect to Elders past and present.</p>
+    <div class="footer-main">
+      <div>
+        <a href="index.html" class="footer-brand"><img src="logo.svg" alt="PropLaunch"></a>
+        <p class="footer-desc">The operating system for serious property businesses.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-col-links">
+          <li><a href="index.html#supply">Exclusive Supply</a></li>
+          <li><a href="index.html#methodology">Methodology</a></li>
+          <li><a href="index.html#track-record">Track Record</a></li>
+          <li><a href="index.html#os">PropLaunch OS</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-col-links">
+          <li><a href="deal-launch.html">Deal Launch</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="for-clients.html">For Clients</a></li>
+          <li><a href="apply-now.html">Request stock access</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-col-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">PropLaunch Pty Ltd · ABN [to be supplied] · Founded and led by Keshav Mehra.</span>
+      <span class="footer-copy">© 2026 PropLaunch. All rights reserved.</span>
+    </div>
+    <div class="footer-watermark">proplaunch</div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+
+    // Scroll reveal
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);} }), { threshold: 0.08 });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+    // Filter logic
+    const filterStatus = document.getElementById('filter-status');
+    const filterType = document.getElementById('filter-type');
+    const filterState = document.getElementById('filter-state');
+    const cards = document.querySelectorAll('.stock-card');
+    const emptyState = document.getElementById('empty-state');
+
+    function applyFilters() {
+      const status = filterStatus.value;
+      const type = filterType.value;
+      const state = filterState.value;
+      let visible = 0;
+      cards.forEach(card => {
+        const matchStatus = status === 'all' || card.dataset.status === status;
+        const matchType = type === 'all' || card.dataset.type === type;
+        const matchState = state === 'all' || card.dataset.state === state;
+        const show = matchStatus && matchType && matchState;
+        card.style.display = show ? 'block' : 'none';
+        if (show) visible++;
+      });
+      emptyState.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    filterStatus.addEventListener('change', applyFilters);
+    filterType.addEventListener('change', applyFilters);
+    filterState.addEventListener('change', applyFilters);
+  </script>
+
+</body>
+</html>

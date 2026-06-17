@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research & Insights — PropLaunch</title>
+  <meta name="description" content="Original research on Australian residential property — convergence, infrastructure, demographics and replacement-cost economics. Measured, sourced, and open to scrutiny.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --black:#0d0f16; --surface:#0f1119; --surface2:#11141d; --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.13); --white:#ffffff; --muted:rgba(255,255,255,0.45); --subtle:rgba(255,255,255,0.22); --green:#4ade80; --green-d:#22c55e; --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse at 0% 0%,rgba(13,89,242,0.09) 0%,transparent 55%),radial-gradient(ellipse at 100% 0%,rgba(13,89,242,0.07) 0%,transparent 55%),radial-gradient(ellipse at 100% 100%,rgba(13,89,242,0.09) 0%,transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(13,89,242,0.07) 0%,transparent 55%); pointer-events:none; z-index:0; }
+    .nav, section, footer, div, header { position:relative; z-index:1; }
+
+    /* NAV */
+    .nav { position:fixed; top:0; left:50%; transform:translateX(-50%); z-index:200; width:100%; max-width:100%; display:flex; align-items:center; justify-content:space-between; height:64px; padding:0 32px; background:transparent; border:1px solid transparent; border-radius:0; backdrop-filter:none; transition:top 380ms cubic-bezier(0.4,0,0.2,1),width 380ms cubic-bezier(0.4,0,0.2,1),max-width 380ms cubic-bezier(0.4,0,0.2,1),padding 380ms cubic-bezier(0.4,0,0.2,1),height 380ms cubic-bezier(0.4,0,0.2,1),background 380ms cubic-bezier(0.4,0,0.2,1),border-color 380ms cubic-bezier(0.4,0,0.2,1),border-radius 380ms cubic-bezier(0.4,0,0.2,1); }
+    .nav.scrolled { top:14px; width:calc(100% - 48px); max-width:1100px; height:52px; padding:0 8px 0 22px; background:rgba(13,15,22,0.86); border-color:rgba(255,255,255,0.10); border-radius:999px; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
+    .nav-logo img { height:34px; width:auto; }
+    .nav-links { display:flex; align-items:center; gap:2px; list-style:none; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-links a { font-size:14px; font-weight:400; color:var(--muted); text-decoration:none; padding:7px 14px; border-radius:999px; transition:color 200ms,background 200ms; white-space:nowrap; }
+    .nav-links a:hover { color:var(--white); background:rgba(255,255,255,0.06); }
+    .nav-cta { font-size:13px; font-weight:500; color:var(--black); background:var(--white); border-radius:999px; padding:9px 20px; text-decoration:none; transition:background 200ms; flex-shrink:0; white-space:nowrap; }
+    .nav-cta:hover { background:#e0e0e0; }
+
+    /* BUTTONS */
+    .btn-pill { display:inline-block; font-family:var(--sans); font-size:14px; font-weight:500; color:var(--black); background:var(--white); border-radius:999px; padding:11px 26px; text-decoration:none; transition:background 200ms; }
+    .btn-pill:hover { background:#e8e8e8; }
+    .btn-text { font-size:13px; font-weight:500; color:var(--white); text-decoration:none; display:inline-flex; align-items:center; gap:4px; border:1px solid var(--border2); border-radius:999px; padding:7px 16px; transition:background 200ms,border-color 200ms; }
+    .btn-text:hover { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.22); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 120px 32px 60px; max-width: 1200px; margin: 0 auto; }
+    .page-eyebrow { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 20px; }
+    .page-h1 { font-family: var(--serif); font-size: clamp(48px, 7vw, 88px); font-weight: 500; line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .page-h1 em { font-style: italic; }
+    .page-sub { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 620px; margin-bottom: 40px; }
+    .section-divider { border: none; border-top: 1px solid var(--border); }
+
+    /* FLAGSHIP PAPER */
+    .flagship-wrap { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 64px 32px; }
+    .flagship-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+    .flagship-eyebrow { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 18px; }
+    .flagship-h2 { font-family: var(--serif); font-size: clamp(22px, 2.8vw, 36px); font-weight: 500; line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 16px; }
+    .flagship-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 480px; margin-bottom: 28px; }
+    .flagship-diagram { flex-shrink: 0; }
+
+    /* PAPERS LIST */
+    .papers-section { padding: 80px 32px; max-width: 1200px; margin: 0 auto; }
+    .papers-heading { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 32px); font-weight: 500; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .papers-sub { font-size: 14px; color: var(--muted); margin-bottom: 40px; line-height: 1.6; }
+    .papers-list { list-style: none; }
+    .papers-list li { display: flex; justify-content: space-between; align-items: start; gap: 40px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+    .papers-list li:first-child { border-top: 1px solid var(--border); }
+    .paper-body h3 { font-family: var(--serif); font-size: 19px; font-weight: 500; margin-bottom: 8px; }
+    .paper-body p { font-size: 13px; color: var(--muted); line-height: 1.65; max-width: 560px; }
+    .paper-date { font-size: 12px; color: var(--subtle); white-space: nowrap; padding-top: 4px; flex-shrink: 0; }
+
+    /* SAND NOTE */
+    .sand-note { font-size: 12px; color: var(--subtle); font-style: italic; padding: 14px 18px; border: 1px solid var(--border); border-radius: 6px; margin-top: 20px; line-height: 1.55; }
+
+    /* SECTION TAG */
+    .section-tag { font-size: 12px; font-weight: 500; color: var(--green); margin-bottom: 4px; }
+
+    /* FOOTER */
+    .footer-disclaimer { border-top: 1px solid var(--border); padding: 18px 32px; }
+    .footer-disclaimer-text { font-size: 11px; color: var(--subtle); line-height: 1.5; }
+    .footer-aoc { font-size: 11px; color: var(--subtle); line-height: 1.5; padding: 14px 32px; border-top: 1px solid var(--border); }
+    .footer-main { border-top: 1px solid var(--border); padding: 48px 32px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1200px; margin: 0 auto; }
+    .footer-brand { display: block; margin-bottom: 12px; text-decoration: none; }
+    .footer-brand img { height: 29px; width: auto; opacity: 0.6; }
+    .footer-desc { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 220px; }
+    .footer-col-title { font-size: 13px; font-weight: 600; margin-bottom: 14px; }
+    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 200ms; }
+    .footer-col-links a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .footer-copy { font-size: 12px; color: var(--subtle); }
+    .footer-watermark { font-family: var(--serif); font-size: clamp(72px,14vw,180px); font-weight: 700; color: rgba(255,255,255,0.025); letter-spacing: -0.02em; line-height: 1; padding: 0 28px; user-select: none; overflow: hidden; white-space: nowrap; }
+
+    /* SCROLL REVEAL */
+    .r { opacity:0; transform:translateY(20px); transition:opacity 500ms ease,transform 500ms ease; }
+    .r.on { opacity:1; transform:none; }
+    .r1 { transition-delay:80ms; }
+    .r2 { transition-delay:160ms; }
+    .r3 { transition-delay:240ms; }
+
+    /* GREEN PULSING DOT */
+    @keyframes gpulse { 0%,100% { box-shadow:0 0 0 0px rgba(74,222,128,0.5),0 0 5px 1px rgba(74,222,128,0.35); } 50% { box-shadow:0 0 0 5px rgba(74,222,128,0.0),0 0 12px 4px rgba(74,222,128,0.12); } }
+    .gpulse-dot { width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block; animation:gpulse 1.8s ease-in-out infinite; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) { .flagship-inner { grid-template-columns: 1fr; } .flagship-diagram { display: none; } }
+    @media (max-width: 768px) { .nav { padding: 0 20px; height: 56px; } .nav.scrolled { width: calc(100% - 32px); padding: 0 6px 0 18px; height: 48px; } .nav-links { display: none; } .nav-cta { display: none; } .footer-main { grid-template-columns: 1fr 1fr; gap: 32px; } .footer-bottom { flex-direction: column; } .page-header { padding: 100px 20px 40px; } .flagship-wrap { padding: 48px 20px; } .papers-section { padding: 60px 20px; } .papers-list li { flex-direction: column; gap: 8px; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="PropLaunch home">
+      <img src="logo.svg" alt="PropLaunch">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">← PropLaunch</a></li>
+      <li><a href="deal-launch.html">Deal Launch</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resources.html">Resources</a></li>
+    </ul>
+    <a href="apply-now.html" class="nav-cta">Request stock access →</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="page-eyebrow r">— Research &amp; Insights</p>
+    <h1 class="page-h1 r r1">The thinking behind the <em>methodology.</em></h1>
+    <p class="page-sub r r2">Original research on Australian residential property — convergence, infrastructure, demographics and replacement-cost economics. Measured, sourced, and open to scrutiny.</p>
+    <hr class="section-divider r r3">
+  </div>
+
+  <!-- FLAGSHIP PAPER -->
+  <div class="flagship-wrap">
+    <div class="flagship-inner">
+      <div>
+        <p class="flagship-eyebrow r">— Flagship paper</p>
+        <h2 class="flagship-h2 r r1">The Greenfield Convergence Investment Methodology</h2>
+        <p class="flagship-desc r r2">PropLaunch's core investment thesis: identifying the intersection of affordability gaps, forced gentrification and replacement-cost inflation across Australian growth corridors — and why that intersection reliably produces asymmetric outcomes for early investors.</p>
+        <a href="apply-now.html" class="btn-text r r3">Read the paper →</a>
+      </div>
+      <div class="flagship-diagram r">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;display:block;">
+          <g fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.2">
+            <circle cx="100" cy="58" r="32"/>
+            <circle cx="60" cy="120" r="32"/>
+            <circle cx="140" cy="120" r="32"/>
+          </g>
+          <g font-family="'Inter',sans-serif" font-size="7" fill="rgba(255,255,255,0.4)" text-anchor="middle">
+            <text x="100" y="54">AFFORDABILITY</text>
+            <text x="100" y="65">GAP</text>
+            <text x="60" y="116">FORCED</text>
+            <text x="60" y="127">GENTRIF.</text>
+            <text x="140" y="116">COST</text>
+            <text x="140" y="127">INFLATION</text>
+          </g>
+          <circle cx="100" cy="104" r="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <text x="100" y="108" font-family="'Inter',sans-serif" font-size="6.5" fill="rgba(255,255,255,0.7)" text-anchor="middle">CONVERGE</text>
+          <path d="M40 168 C 90 166, 130 156, 168 120" stroke="#4ade80" stroke-width="2.5" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAPERS LIST -->
+  <div class="papers-section">
+    <p class="section-tag r">— Further reading</p>
+    <h2 class="papers-heading r r1">Forthcoming papers</h2>
+    <p class="papers-sub r r2">The research pipeline — each paper addresses a distinct pillar of the PropLaunch investment methodology.</p>
+
+    <ul class="papers-list">
+      <li class="r">
+        <div class="paper-body">
+          <h3>The Affordability Convergence Gap</h3>
+          <p>An empirical analysis of the divergence between median dwelling prices and household income across Australian capital cities and growth corridors — and why greenfield markets consistently absorb displaced demand from adjacent premium suburbs.</p>
+        </div>
+        <span class="paper-date">Forthcoming · Q3 2026</span>
+      </li>
+      <li class="r r1">
+        <div class="paper-body">
+          <h3>Replacement Cost Economics</h3>
+          <p>Why the cost of building a new dwelling has become the primary price floor in Australia's residential market — examining material costs, labour constraints, and the structural gap between replacement cost and land-plus-build market pricing.</p>
+        </div>
+        <span class="paper-date">Forthcoming · Q3 2026</span>
+      </li>
+      <li class="r r2">
+        <div class="paper-body">
+          <h3>Reading Infrastructure Catalysts</h3>
+          <p>A framework for interpreting announced government infrastructure spend — roads, rail, schools, hospitals — as leading indicators of residential price movement, with case studies across PropLaunch's five-state portfolio.</p>
+        </div>
+        <span class="paper-date">Forthcoming · Q4 2026</span>
+      </li>
+      <li class="r r3">
+        <div class="paper-body">
+          <h3>Demographic Acceleration vs Organic Gentrification</h3>
+          <p>Distinguishing between population-driven demand growth — the kind that compounds — and sentiment-driven gentrification, which peaks and reverts. How PropLaunch identifies the former before the market prices it in.</p>
+        </div>
+        <span class="paper-date">Forthcoming · Q4 2026</span>
+      </li>
+    </ul>
+
+    <p class="sand-note r">Sources across our research include CoreLogic, PropTrack, the Australian Bureau of Statistics and the Reserve Bank of Australia. Research is general in nature and does not constitute financial advice.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-disclaimer">
+    <p class="footer-disclaimer-text">PropLaunch is not a licensed financial adviser. Information on this site is general in nature and does not constitute financial advice. Past results are not indicative of future performance. All figures are indicative only.</p>
+  </div>
+  <footer>
+    <p class="footer-aoc"><strong>Acknowledgement of Country:</strong> PropLaunch acknowledges the Traditional Owners of Country throughout Australia, and pays respect to Elders past and present.</p>
+    <div class="footer-main">
+      <div>
+        <a href="index.html" class="footer-brand"><img src="logo.svg" alt="PropLaunch"></a>
+        <p class="footer-desc">The operating system for serious property businesses.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-col-links">
+          <li><a href="index.html#supply">Exclusive Supply</a></li>
+          <li><a href="index.html#methodology">Methodology</a></li>
+          <li><a href="index.html#track-record">Track Record</a></li>
+          <li><a href="index.html#os">PropLaunch OS</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-col-links">
+          <li><a href="deal-launch.html">Deal Launch</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="for-clients.html">For Clients</a></li>
+          <li><a href="apply-now.html">Request stock access</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-col-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">PropLaunch Pty Ltd · ABN [to be supplied] · Founded and led by Keshav Mehra.</span>
+      <span class="footer-copy">© 2026 PropLaunch. All rights reserved.</span>
+    </div>
+    <div class="footer-watermark">proplaunch</div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); }, { passive: true });
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);} }), { threshold: 0.08 });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>

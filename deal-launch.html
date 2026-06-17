@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deal Launch — Wholesale Property Platform</title>
+  <title>Deal Launch — PropLaunch's Wholesale Property Engine</title>
   <meta name="description" content="Deal Launch is the wholesale property engine behind PropLaunch. Verified corridor intelligence. Wholesale pricing. Professional-only access.">
-  <meta property="og:title" content="Deal Launch — Wholesale Property Platform">
-  <meta property="og:description" content="Verified wholesale property. Professional-only access. Invite only.">
+  <meta property="og:title" content="Deal Launch — PropLaunch's Wholesale Property Engine">
+  <meta property="og:description" content="Verified wholesale property. Professional-only access.">
   <meta property="og:type" content="website">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -154,7 +154,7 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -167,7 +167,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1600&q=70');
+      background-image: url('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1400&q=70');
       background-size: cover;
       background-position: center;
       filter: grayscale(1) brightness(0.3) contrast(1.1);
@@ -215,7 +215,7 @@
       font-weight: 400;
       color: var(--muted);
       line-height: 1.65;
-      max-width: 520px;
+      max-width: 540px;
       margin: 0 auto 36px;
     }
 
@@ -232,6 +232,16 @@
       transition: background 200ms;
     }
     .btn-pill:hover { background: #e8e8e8; }
+
+    .btn-text {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .btn-text:hover { color: var(--white); }
 
     /* ── GREEN PULSE DOT ── */
     .dealflow-card-dot {
@@ -256,6 +266,11 @@
 
     .section-wrap--alt {
       background: var(--black);
+      border-top: 1px solid var(--border);
+    }
+
+    .section-wrap--surface2 {
+      background: var(--surface2);
       border-top: 1px solid var(--border);
     }
 
@@ -302,14 +317,15 @@
     }
 
     .card--highlight {
-      border-top: 3px solid var(--green);
+      border: 1px solid var(--border2);
+      background: #131722;
+      border-top: 2px solid var(--green);
     }
 
     .card-label {
       font-size: 11px;
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.04em;
       color: var(--muted);
       margin-bottom: 10px;
     }
@@ -332,13 +348,44 @@
       line-height: 1.7;
     }
 
+    /* ── PROCESS STEPS ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .process-step {
+      padding: 28px 28px 28px 0;
+      border-top: 2px solid var(--border2);
+    }
+
+    .process-step + .process-step {
+      padding-left: 28px;
+      border-left: 1px solid var(--border);
+    }
+
     .step-num {
       font-family: 'Courier New', monospace;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.08em;
       color: var(--green);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .step-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .step-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     /* ── CORRIDORS TWO-COLUMN ── */
@@ -474,22 +521,165 @@
     .glass-val { color: rgba(255,255,255,0.9); font-weight: 500; }
     .glass-val.green { color: var(--green); }
 
-    .system-visual-bar-row {
+    /* ── STOCK GALLERY ── */
+    .stock-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .stock-gallery-title {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .stock-hr {
+      border: none;
+      border-top: 1px solid var(--border2);
+      margin-bottom: 28px;
+    }
+
+    .stock-filter-bar {
       display: flex;
       align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .stock-filter-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .stock-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 13px;
+      padding: 8px 32px 8px 14px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color 200ms;
+      min-width: 160px;
+    }
+    .stock-select:focus { outline: none; border-color: var(--border2); }
+    .stock-select:hover { border-color: rgba(255,255,255,0.25); }
+
+    .stock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .stock-card {
+      background: var(--black);
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .stock-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stock-card-img svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0.12;
+    }
+
+    .stock-caption {
+      padding: 14px 16px;
+      background: var(--surface2);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 8px;
+    }
+
+    .stock-caption-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .stock-location {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .stock-type {
       font-size: 11px;
       color: var(--muted);
-      margin-bottom: 7px;
     }
-    .system-visual-bar-label { width: 120px; flex-shrink: 0; }
-    .system-visual-bar-track { flex: 1; height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
-    .system-visual-bar-fill { height: 100%; border-radius: 2px; background: var(--green); opacity: 0.7; }
-    .system-visual-bar-val { width: 28px; text-align: right; color: var(--muted); }
+
+    .stock-status {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .stock-status--available {
+      background: rgba(74,222,128,0.10);
+      color: var(--green);
+      border: 1px solid rgba(74,222,128,0.20);
+    }
+
+    .stock-status--eoi {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid var(--border2);
+    }
+
+    .stock-empty {
+      display: none;
+      grid-column: 1 / -1;
+      padding: 48px 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .stock-disclaimer {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--subtle);
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
 
     /* ── CTA SECTION ── */
     .cta-section {
-      background: var(--surface);
+      background: var(--black);
       border-top: 1px solid var(--border);
       text-align: center;
       padding: 100px 32px;
@@ -497,7 +687,7 @@
 
     .cta-heading {
       font-family: var(--serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(36px, 5vw, 56px);
       font-weight: 500;
       line-height: 1.06;
       letter-spacing: -0.01em;
@@ -507,7 +697,7 @@
     .cta-body {
       font-size: 15px;
       color: var(--muted);
-      max-width: 500px;
+      max-width: 520px;
       margin: 0 auto 36px;
       line-height: 1.7;
     }
@@ -519,37 +709,98 @@
     }
 
     /* ── FOOTER ── */
-    .footer {
+    .footer-wrap {
+      background: var(--surface);
       border-top: 1px solid var(--border);
-      padding: 32px;
+    }
+
+    .footer-disclaimer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 32px 0;
+      font-size: 11px;
+      color: var(--subtle);
+      line-height: 1.7;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand-logo img { height: 26px; width: auto; opacity: 0.7; margin-bottom: 14px; }
+
+    .footer-brand-tagline {
+      font-size: 12px;
+      color: var(--subtle);
+      line-height: 1.6;
+      max-width: 220px;
+    }
+
+    .footer-col-heading {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .footer-col-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col-links a {
+      font-size: 13px;
+      color: var(--subtle);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+    .footer-col-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 32px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 16px;
-      max-width: 1200px;
-      margin: 0 auto;
+      gap: 12px;
+      border-top: 1px solid var(--border);
     }
 
-    .footer-logo img { height: 22px; width: auto; opacity: 0.6; }
-
-    .footer-copy {
+    .footer-bottom-left {
       font-size: 12px;
       color: var(--subtle);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
+    .footer-bottom-right {
+      font-size: 12px;
+      color: var(--subtle);
     }
 
-    .footer-links a {
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 200ms;
+    .footer-watermark {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.025);
+      text-align: center;
+      padding: 0 32px 16px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
-    .footer-links a:hover { color: var(--white); }
 
     /* ── SCROLL REVEAL ── */
     .r { opacity: 0; transform: translateY(18px); transition: opacity 400ms ease, transform 400ms ease; }
@@ -561,6 +812,8 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .card-grid-3 { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
 
     @media (max-width: 768px) {
@@ -570,22 +823,29 @@
       .nav-cta { display: none; }
       .nav-mobile-cta { display: block; }
 
-      .hero { padding: 80px 20px 60px; }
+      .hero { padding: 80px 20px 60px; min-height: 80vh; }
       .section { padding: 60px 20px; }
       .cta-section { padding: 70px 20px; }
 
       .card-grid-3 { grid-template-columns: 1fr; }
       .card-grid-2 { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .process-step + .process-step { padding-left: 0; border-left: none; }
       .corridors-row { grid-template-columns: 1fr; gap: 40px; }
       .system-visual { height: 320px; }
-
-      .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .stock-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; padding: 32px 20px; }
+      .footer-bottom { padding: 16px 20px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-disclaimer { padding: 24px 20px; }
     }
 
     @media (max-width: 480px) {
       .hero-headline { font-size: 32px; }
       .section-heading { font-size: 28px; }
       .cta-heading { font-size: 30px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .stock-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -597,14 +857,15 @@
       <img src="logo.svg" alt="PropLaunch">
     </a>
     <ul class="nav-links">
-      <li><a href="index.html">← PropLaunch</a></li>
-      <li><a href="#wholesale">Wholesale</a></li>
+      <li><a href="index.html">&larr; PropLaunch</a></li>
+      <li><a href="#advantage">The Advantage</a></li>
       <li><a href="#corridors">Corridors</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#stock">Live Stock</a></li>
       <li><a href="#partners">Partners</a></li>
+      <li><a href="apply-now.html">Enquire</a></li>
     </ul>
-    <a href="mailto:info@proplaunch.com.au" class="nav-cta">Enquire &rarr;</a>
-    <a href="mailto:info@proplaunch.com.au" class="nav-mobile-cta">Enquire</a>
+    <a href="apply-now.html" class="nav-cta">Request stock access &rarr;</a>
+    <a href="apply-now.html" class="nav-mobile-cta">Apply</a>
   </nav>
 
 
@@ -613,42 +874,42 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow r"><span class="dealflow-card-dot"></span>Professional access only</p>
+      <p class="hero-eyebrow r"><span class="dealflow-card-dot"></span>&mdash; Professional access only</p>
       <h1 class="hero-headline r r1">
-        We don't find deals.<br>
+        We don&rsquo;t find deals.<br>
         We <em>build</em> them.
       </h1>
       <p class="hero-sub r r2">
-        Deal Launch is the wholesale property engine powering Australia's most serious operators. Every corridor verified. Every deal stress-tested. Every piece of stock ready before you need it.
+        Deal Launch is the wholesale engine inside PropLaunch. Every corridor verified against the Greenfield Convergence Methodology. Every deal stress-tested. Every property secured before the market sees it.
       </p>
-      <a href="mailto:info@proplaunch.com.au" class="btn-pill r r3">Enquire about access &rarr;</a>
+      <a href="apply-now.html" class="btn-pill r r3">Request stock access &rarr;</a>
     </div>
   </section>
 
 
-  <!-- WHOLESALE -->
-  <div class="section-wrap" id="wholesale">
+  <!-- THREE WAYS TO BUY -->
+  <div class="section-wrap" id="advantage">
     <div class="section">
-      <p class="section-tag r">· The wholesale advantage</p>
+      <p class="section-tag r">&middot; The wholesale advantage</p>
       <h2 class="section-heading r r1">Three ways to buy the same property.</h2>
       <div class="card-grid-3">
 
         <div class="card r">
-          <p class="card-label">Established</p>
+          <p class="card-label">&mdash; Established</p>
           <h3 class="card-title">Last in the food chain.</h3>
-          <p class="card-body">You're buying at market value – after every agent, developer, and speculator has already taken their margin. The price you pay is the price everyone else rejected.</p>
+          <p class="card-body">You&rsquo;re buying at market value &mdash; after every agent, developer, and speculator has already taken their margin. The price you pay is the price everyone else rejected.</p>
         </div>
 
         <div class="card r r1">
-          <p class="card-label">Retail new</p>
+          <p class="card-label">&mdash; Retail new</p>
           <h3 class="card-title">Developer pricing with retail margins.</h3>
-          <p class="card-body">Display villages, marketing levies, and sales commissions are built into the ticket. You're paying for the developer's customer acquisition – not the property's value.</p>
+          <p class="card-body">Display villages, marketing levies, and sales commissions are built into the ticket. You&rsquo;re paying for the developer&rsquo;s customer acquisition &mdash; not the property&rsquo;s value.</p>
         </div>
 
         <div class="card card--highlight r r2">
-          <p class="card-label card-label--green">Wholesale via Deal Launch</p>
+          <p class="card-label card-label--green">&mdash; Wholesale via Deal Launch</p>
           <h3 class="card-title">First to buyer. At inception.</h3>
-          <p class="card-body">No middlemen. No display village costs. No retail markup. You access stock at wholesale pricing before the wider market sees it. That's how manufactured equity is built.</p>
+          <p class="card-body">No middlemen. No display village costs. No retail markup. You access stock at wholesale pricing before the wider market sees it. That&rsquo;s how manufactured equity is built.</p>
         </div>
 
       </div>
@@ -659,8 +920,8 @@
   <!-- CORRIDORS -->
   <div class="section-wrap--alt" id="corridors">
     <div class="section">
-      <p class="section-tag r">· Corridor intelligence</p>
-      <h2 class="section-heading r r1">Every deal passes four filters before you see it.</h2>
+      <p class="section-tag r">&mdash; Corridor intelligence</p>
+      <h2 class="section-heading r r1">Every deal passes the Greenfield Convergence Methodology.</h2>
       <div class="corridors-row">
         <ul class="feat-list" id="corridors-list">
           <li class="feat-item r">
@@ -671,7 +932,7 @@
           <li class="feat-item r r1">
             <div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div>
             <div class="feat-item-title">Infrastructure Catalysts</div>
-            <div class="feat-item-desc">Government-backed development corridors. Transport, health, education – the capital commitments that precede price movement by years.</div>
+            <div class="feat-item-desc">Government-backed development corridors. Transport, health, education &mdash; the capital commitments that precede price movement by years.</div>
           </li>
           <li class="feat-item r r2">
             <div class="feat-item-bar"><div class="feat-item-bar-fill"></div></div>
@@ -696,7 +957,7 @@
                 <div class="glass-urlbar" id="corridors-glass-url">deal-launch.com/affordability</div>
               </div>
               <div class="glass-body" id="corridors-glass-body">
-                <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.45);margin-bottom:12px;">Affordability Check · Ipswich QLD</div>
+                <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.45);margin-bottom:12px;">Affordability Check &middot; Ipswich QLD</div>
                 <div class="glass-row"><span class="glass-key">Median price</span><span class="glass-val">$620,000</span></div>
                 <div class="glass-row"><span class="glass-key">Household income</span><span class="glass-val">$98,400</span></div>
                 <div class="glass-row"><span class="glass-key">Price-to-income</span><span class="glass-val green">6.3&times;</span></div>
@@ -714,32 +975,32 @@
   <!-- PROCESS -->
   <div class="section-wrap" id="process">
     <div class="section">
-      <p class="section-tag r">· From deal to tenanted</p>
+      <p class="section-tag r">&middot; From deal to tenanted</p>
       <h2 class="section-heading r r1">You place the deal. We handle everything after.</h2>
-      <div class="card-grid-2">
+      <div class="process-grid">
 
-        <div class="card r">
+        <div class="process-step r">
           <p class="step-num">01</p>
-          <h3 class="card-title">Research</h3>
-          <p class="card-body">Corridor identified, stock verified, analysis complete. Every number checked before it reaches your desk.</p>
+          <h3 class="step-title">Research</h3>
+          <p class="step-body">Corridor identified, stock verified, analysis complete. Every number checked before it reaches your desk.</p>
         </div>
 
-        <div class="card r r1">
+        <div class="process-step r r1">
           <p class="step-num">02</p>
-          <h3 class="card-title">Production</h3>
-          <p class="card-body">Construction managed, inspections scheduled, rectification tracked. You never chase a builder.</p>
+          <h3 class="step-title">Production</h3>
+          <p class="step-body">Quality construction through our vetted build partners &mdash; fixed-price contracts, independent inspections at every stage, full visibility from slab to handover.</p>
         </div>
 
-        <div class="card r r2">
+        <div class="process-step r r2">
           <p class="step-num">03</p>
-          <h3 class="card-title">Distribution</h3>
-          <p class="card-body">Finance coordination, settlement management, and handover – all handled with full visibility for you and your client.</p>
+          <h3 class="step-title">Distribution</h3>
+          <p class="step-body">Finance coordination, settlement management, and handover &mdash; all handled with full visibility for you and your client.</p>
         </div>
 
-        <div class="card r r3">
+        <div class="process-step r r3">
           <p class="step-num">04</p>
-          <h3 class="card-title">Tenanted</h3>
-          <p class="card-body">Property management referral, tenant placement, and your client's investment is live and performing.</p>
+          <h3 class="step-title">Tenanted</h3>
+          <p class="step-body">Property management referral, tenant placement, and your client&rsquo;s investment is live and performing.</p>
         </div>
 
       </div>
@@ -747,38 +1008,172 @@
   </div>
 
 
-  <!-- PARTNERS -->
-  <div class="section-wrap--alt" id="partners">
+  <!-- LIVE STOCK GALLERY -->
+  <div class="section-wrap--surface2" id="stock">
     <div class="section">
-      <h2 class="section-heading r">Built for professionals who already have clients.</h2>
+      <p class="section-tag r">&middot; The portfolio</p>
+      <div class="stock-header r r1">
+        <h2 class="stock-gallery-title">Live stock</h2>
+      </div>
+      <hr class="stock-hr">
+
+      <div class="stock-filter-bar r">
+        <span class="stock-filter-label">Filter:</span>
+        <select class="stock-select" id="filter-type" aria-label="Property type">
+          <option value="all">Type &mdash; All</option>
+          <option value="house-land">House &amp; Land</option>
+          <option value="dual-key">Dual-Key</option>
+          <option value="duplex">Duplex</option>
+          <option value="smsf">SMSF</option>
+        </select>
+        <select class="stock-select" id="filter-state" aria-label="State">
+          <option value="all">State &mdash; All</option>
+          <option value="QLD">QLD</option>
+          <option value="VIC">VIC</option>
+          <option value="NSW">NSW</option>
+          <option value="WA">WA</option>
+          <option value="SA">SA</option>
+        </select>
+      </div>
+
+      <div class="stock-grid" id="stock-grid">
+
+        <div class="stock-card" data-type="duplex" data-state="QLD">
+          <div class="stock-card-img">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 28L32 10L56 28V56H40V40H24V56H8V28Z" fill="white"/>
+              <rect x="28" y="40" width="8" height="16" fill="white" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="stock-caption">
+            <div class="stock-caption-left">
+              <div class="stock-location">Forest Brook &middot; Collingwood Park QLD</div>
+              <div class="stock-type">Duplex</div>
+            </div>
+            <span class="stock-status stock-status--available">Available</span>
+          </div>
+        </div>
+
+        <div class="stock-card" data-type="dual-key" data-state="QLD">
+          <div class="stock-card-img">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 28L18 16L18 8H26V20L32 14L60 28V56H36V40H28V56H4V28Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="stock-caption">
+            <div class="stock-caption-left">
+              <div class="stock-location">Forest Brook &middot; Collingwood Park QLD</div>
+              <div class="stock-type">Dual-Key</div>
+            </div>
+            <span class="stock-status stock-status--available">Available</span>
+          </div>
+        </div>
+
+        <div class="stock-card" data-type="smsf" data-state="QLD">
+          <div class="stock-card-img">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 28L32 8L56 28V56H8V28Z" fill="white"/>
+              <rect x="24" y="36" width="16" height="20" fill="white" opacity="0.35"/>
+              <rect x="28" y="20" width="8" height="8" rx="1" fill="white" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="stock-caption">
+            <div class="stock-caption-left">
+              <div class="stock-location">New Road &middot; Burpengary East QLD</div>
+              <div class="stock-type">SMSF</div>
+            </div>
+            <span class="stock-status stock-status--available">Available</span>
+          </div>
+        </div>
+
+        <div class="stock-card" data-type="house-land" data-state="QLD">
+          <div class="stock-card-img">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 30L32 8L58 30V56H6V30Z" fill="white"/>
+              <rect x="22" y="38" width="20" height="18" fill="white" opacity="0.35"/>
+              <rect x="28" y="22" width="8" height="8" rx="1" fill="white" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="stock-caption">
+            <div class="stock-caption-left">
+              <div class="stock-location">Forest Brook &middot; Collingwood Park QLD</div>
+              <div class="stock-type">House &amp; Land</div>
+            </div>
+            <span class="stock-status stock-status--eoi">EOI</span>
+          </div>
+        </div>
+
+        <div class="stock-card" data-type="house-land" data-state="VIC">
+          <div class="stock-card-img">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 30L32 8L58 30V56H6V30Z" fill="white"/>
+              <rect x="22" y="38" width="20" height="18" fill="white" opacity="0.35"/>
+              <rect x="28" y="22" width="8" height="8" rx="1" fill="white" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="stock-caption">
+            <div class="stock-caption-left">
+              <div class="stock-location">Coridale &middot; Lara VIC</div>
+              <div class="stock-type">House &amp; Land</div>
+            </div>
+            <span class="stock-status stock-status--available">Available</span>
+          </div>
+        </div>
+
+        <div class="stock-empty" id="stock-empty">
+          &mdash; No stock matches this filter. New allocations land monthly.
+        </div>
+
+      </div>
+
+      <p class="stock-disclaimer r">Pricing and full analysis sit behind professional access. <a href="apply-now.html" style="color:var(--muted);text-decoration:underline;text-underline-offset:3px;">Request access &rarr;</a></p>
+    </div>
+  </div>
+
+
+  <!-- PARTNER BENEFITS -->
+  <div class="section-wrap" id="partners">
+    <div class="section">
+      <p class="section-tag r">&middot; Built for professionals</p>
+      <h2 class="section-heading r r1">Built for professionals who already have clients.</h2>
       <div class="card-grid-3">
 
         <div class="card r">
           <h3 class="card-title">Wholesale Access</h3>
-          <p class="card-body">Pre-vetted stock at wholesale pricing. No retail markup. No competition from the public market.</p>
+          <p class="card-body">Pre-vetted stock secured at inception. No retail markup. No competition from the public market.</p>
         </div>
 
         <div class="card r r1">
           <h3 class="card-title">Verified Corridors</h3>
-          <p class="card-body">Every corridor passes four filters. Zero guesswork. Present to your clients with conviction.</p>
-        </div>
-
-        <div class="card r r1">
-          <h3 class="card-title">White-Label Ready</h3>
-          <p class="card-body">Present under your own brand. Your clients see your firm, not ours. The infrastructure is invisible.</p>
+          <p class="card-body">Every corridor passes the Greenfield Convergence Methodology. Zero guesswork. Present to your clients with conviction.</p>
         </div>
 
         <div class="card r r2">
+          <h3 class="card-title">Your Brand, Our Desk</h3>
+          <p class="card-body">Present under your own brand. Your clients see your firm, not ours. The infrastructure is invisible.</p>
+        </div>
+
+        <div class="card r">
           <h3 class="card-title">Transparent Commission</h3>
           <p class="card-body">Clear, upfront structure. No hidden fees. You know exactly what you earn on every deal.</p>
         </div>
 
-        <div class="card r r2">
+        <div class="card r r1">
           <h3 class="card-title">End-to-End Fulfilment</h3>
-          <p class="card-body">From EOI to tenanted – construction, inspections, settlement, and property management. Handled.</p>
+          <p class="card-body">From EOI to tenanted &mdash; construction, inspections, settlement, and property management. Handled.</p>
         </div>
 
-        <div class="card r r3">
+        <div class="card r r2">
+          <h3 class="card-title">White-Label Blueprints</h3>
+          <p class="card-body">Research packs, property analysis, and client-ready materials produced under your brand at no extra cost.</p>
+        </div>
+
+        <div class="card r">
+          <h3 class="card-title">Portfolio Engine</h3>
+          <p class="card-body">Build a repeatable system for placing clients into property. Deal after deal, managed under one operating framework.</p>
+        </div>
+
+        <div class="card r r1">
           <h3 class="card-title">Operator Support</h3>
           <p class="card-body">Direct access to the Deal Launch team. Questions answered. Deals supported. No tickets, no queues.</p>
         </div>
@@ -788,28 +1183,69 @@
   </div>
 
 
-  <!-- CTA -->
+  <!-- CLOSING CTA -->
   <div class="cta-section">
-    <div style="max-width:600px;margin:0 auto;">
-      <h2 class="cta-heading r">This is not for everyone.<br>That is the point.</h2>
+    <div style="max-width:640px;margin:0 auto;">
+      <h2 class="cta-heading r">This is not for everyone.<br>That is the <em>point.</em></h2>
       <p class="cta-body r r1">
-        Deal Launch is invite-only. Access is reserved for property professionals who operate at a level where wholesale stock, verified corridors, and hands-off fulfilment are not nice-to-haves – they are the operating standard.
+        Access is reserved for property professionals who operate at a level where secured stock, verified corridors, and hands-off fulfilment are the operating standard.
       </p>
-      <a href="mailto:info@proplaunch.com.au" class="btn-pill r r2">Enquire about access &rarr;</a>
-      <p class="cta-note r r3">Invite only · Verified corridors · Wholesale pricing · Hands-off execution</p>
+      <a href="apply-now.html" class="btn-pill r r2">Request stock access &rarr;</a>
+      <p class="cta-note r r3">Selective access &middot; Verified corridors &middot; End-to-end execution</p>
     </div>
   </div>
 
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer">
-      <a href="index.html" class="footer-logo"><img src="logo.svg" alt="PropLaunch"></a>
-      <span class="footer-copy">&copy; 2025 PropLaunch. All rights reserved.</span>
-      <nav class="footer-links">
-        <a href="index.html">PropLaunch</a>
-        <a href="mailto:info@proplaunch.com.au">Contact</a>
-      </nav>
+    <div class="footer-wrap">
+      <div class="footer-disclaimer">
+        PropLaunch is not a licensed financial adviser. Information on this site is general in nature and does not constitute financial advice. Past results are not indicative of future performance. All figures are indicative only.<br>
+        <span style="display:inline-block;margin-top:6px;">We acknowledge the Traditional Custodians of the lands on which we operate and pay our respects to Elders past, present, and emerging.</span>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo"><a href="index.html"><img src="logo.svg" alt="PropLaunch"></a></div>
+          <p class="footer-brand-tagline">Wholesale property infrastructure for Australia&rsquo;s most serious operators.</p>
+        </div>
+
+        <div>
+          <p class="footer-col-heading">Company</p>
+          <ul class="footer-col-links">
+            <li><a href="index.html#supply">Exclusive Supply</a></li>
+            <li><a href="index.html#methodology">Methodology</a></li>
+            <li><a href="index.html#track-record">Track Record</a></li>
+            <li><a href="index.html#os">PropLaunch OS</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-heading">Explore</p>
+          <ul class="footer-col-links">
+            <li><a href="deal-launch.html">Deal Launch</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="apply-now.html">Request stock access</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-heading">Legal</p>
+          <ul class="footer-col-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-bottom-left">PropLaunch Pty Ltd &middot; ABN [to be supplied] &middot; Founded and led by Keshav Mehra.</span>
+        <span class="footer-bottom-right">Reviewed personally &middot; Response within 48 hours &middot; &copy; 2025 PropLaunch. All rights reserved.</span>
+      </div>
+
+      <div class="footer-watermark">proplaunch</div>
     </div>
   </footer>
 
@@ -864,7 +1300,7 @@
           <div class="glass-row"><span class="glass-key">Transport investment</span><span class="glass-val green">$2.3B</span></div>
           <div class="glass-row"><span class="glass-key">Hospital expansion</span><span class="glass-val green">Confirmed</span></div>
           <div class="glass-row"><span class="glass-key">School pipeline</span><span class="glass-val">4 sites</span></div>
-          <div class="glass-row"><span class="glass-key">Delivery timeline</span><span class="glass-val">2025–2028</span></div>
+          <div class="glass-row"><span class="glass-key">Delivery timeline</span><span class="glass-val">2025&ndash;2028</span></div>
           <div class="glass-row"><span class="glass-key">Catalyst filter</span><span class="glass-val green">Pass</span></div>`
       },
       {
@@ -940,6 +1376,35 @@
     }
 
     initCorridors();
+
+    // ── Live Stock Filter ──
+    function initStockFilter() {
+      const typeSelect = document.getElementById('filter-type');
+      const stateSelect = document.getElementById('filter-state');
+      const cards = document.querySelectorAll('.stock-card');
+      const emptyMsg = document.getElementById('stock-empty');
+
+      function applyFilter() {
+        const typeVal = typeSelect.value;
+        const stateVal = stateSelect.value;
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const matchType = typeVal === 'all' || card.dataset.type === typeVal;
+          const matchState = stateVal === 'all' || card.dataset.state === stateVal;
+          const show = matchType && matchState;
+          card.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
+        });
+
+        emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+
+      typeSelect.addEventListener('change', applyFilter);
+      stateSelect.addEventListener('change', applyFilter);
+    }
+
+    initStockFilter();
 
     // Scroll reveal
     const revObs = new IntersectionObserver(
